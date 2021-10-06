@@ -9,11 +9,11 @@
         
 	<script>
         $('#mytime').hide();
-        $(document).ready(function(){
+        setInterval(function(){
             $('#mytime').html( "Breathe In.").fadeToggle(5000);
             //$('#mytime').html("Pause.");
             //$('#mytime').html("Breath Out.").fadeOut(3000);
-            });
+            }, 5000);
 
             $('#mytime').css({
                 "color" : "red",
