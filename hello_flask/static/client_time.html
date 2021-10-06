@@ -10,8 +10,10 @@
 	<script>
         $('#mytime').hide();
         setInterval(function(){
-            $('#mytime').html( "Breathe In.").fadeToggle(5000);
-            //$('#mytime').html("Pause.");
+            $('#mytime').html( "Breathe In.").fadeToggle(4000);
+            setTimeout(() => {
+                $('#mytime').html("Pause.");
+            }, 4500);
             //$('#mytime').html("Breath Out.").fadeOut(3000);
             }, 500);
 
