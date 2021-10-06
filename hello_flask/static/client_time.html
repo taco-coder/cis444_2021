@@ -6,19 +6,16 @@
     </head>
     <body>
 	    <h1 id="mytime"></h1>
-        <div id = "hours"></div>
-        <div id = "mins"></div>
-        <div id = "sec"></div>
 	<script>
         
 		setInterval( function(){ 
             var time = new Date();
-            var hours = $('#hours');
-            
-            $('#mytime').html( hours.html(("0" + time.getHours()).slice(-2)) + ":" + ("0" + time.getMinutes()).slice(-2) + ":" + ("0" + time.getSeconds()).slice(-2) );
+
+            $('#mytime').html( "Breathe In." ).fadeIn(3000);
             }, 1000);
+
             $('#mytime').css({
-                "color" : "lightblue",
+                "color" : "red",
                 "padding" : "250px",
                 "font-size" : "50px",
                 "font-family" : "Lucida Sans Unicode"
