@@ -15,12 +15,16 @@
             "font-size" : "50px",
             "font-family" : "Lucida Sans Unicode"
         });
+        int in = 3500;
+        int out = 4000;
+        int time = 5500;
         setInterval(()=>{
-            $('#mytime').html("Breathe In.").fadeIn(3500);
+            $('#mytime').html("Breathe In.").fadeIn(in);
+            $('#mytime').html("Pause.");
             setTimeout(()=> {
-                $('#mytime').html("Breathe Out.").fadeOut(4000);
-            }, 3750);
-        }, 10000);
+                $('#mytime').html("Breathe Out.").fadeOut(out);
+            }, time);
+        }, in + out + time);
 	</script>
     </body>
 </html>
