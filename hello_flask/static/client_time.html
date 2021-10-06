@@ -17,12 +17,13 @@
         });
         setInterval(()=>{
             $('#mytime').html("Breathe In.").fadeIn(3500);
-
-            $('#mytime').html("Pause.");
+            setTimeout(()=> {
+                $('#mytime').html("Pause.");
+            }, 3750);
             setTimeout(()=> {
                 $('#mytime').html("Breathe Out.").fadeOut(4000);
             }, 5500);
-        }, 15000);
+        }, 10000);
 	</script>
     </body>
 </html>
