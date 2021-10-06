@@ -23,6 +23,9 @@
         setTimeout(()=> {
             $('#mytime').html("Breathe Out.").fadeOut(3500);
         }, 6500);
+        setTimeout(()=> {
+            $('#mytime').html("Pause.");
+        }, 10000);
 
         setInterval(()=>{
             $('#mytime').html("Breathe In.").fadeIn(4500);
@@ -32,7 +35,10 @@
             setTimeout(()=> {
                 $('#mytime').html("Breathe Out.").fadeOut(3500);
             }, 6500);
-        }, 10000);
+            setTimeout(()=> {
+                $('#mytime').html("Pause.");
+            }, 10000);
+        }, 12000);
 	</script>
     </body>
 </html>
