@@ -8,6 +8,9 @@
 	    <div id="mytime"></div>
         
 	<script>
+        int in = 3500;
+        int out = 4000;
+        int time = 5500;
         $('#mytime').hide();
         $('#mytime').css({
             "color" : "red",
@@ -15,9 +18,7 @@
             "font-size" : "50px",
             "font-family" : "Lucida Sans Unicode"
         });
-        int in = 3500;
-        int out = 4000;
-        int time = 5500;
+
         setInterval(()=>{
             $('#mytime').html("Breathe In.").fadeIn(in);
             $('#mytime').html("Pause.");
