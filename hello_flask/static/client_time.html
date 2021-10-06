@@ -9,18 +9,18 @@
         
 	<script>
         $('#mytime').hide();
+        $('#mytime').css({
+            "color" : "red",
+            "padding" : "250px",
+            "font-size" : "50px",
+            "font-family" : "Lucida Sans Unicode"
+        });
         while(1){
             $('#mytime').html("Breathe In.").fadeIn(3500);
             setTimeout(()=> {
                 $('#mytime').html("Breathe Out.").fadeOut(4000);
             }, 3750);
         }
-            $('#mytime').css({
-                "color" : "red",
-                "padding" : "250px",
-                "font-size" : "50px",
-                "font-family" : "Lucida Sans Unicode"
-            });
 	</script>
     </body>
 </html>
