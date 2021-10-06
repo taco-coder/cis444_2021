@@ -18,9 +18,11 @@
         //set interval has a blank, first interval
         $('#mytime').html("Breathe In.").fadeIn(4500);
         setTimeout(()=> {
+            $('#mytime').hide();
             $('#mytime').html("Pause.");
         }, 4500);
         setTimeout(()=> {
+            $('#mytime').show();
             $('#mytime').html("Breathe Out.").fadeOut(3500);
         }, 6500);
         setTimeout(()=> {
@@ -30,9 +32,11 @@
         setInterval(()=>{
             $('#mytime').html("Breathe In.").fadeIn(4500);
             setTimeout(()=> {
+                $('#mytime').hide();
                 $('#mytime').html("Pause.");
             }, 4500);
             setTimeout(()=> {
+                $('#mytime').show();
                 $('#mytime').html("Breathe Out.").fadeOut(3500);
             }, 6500);
             setTimeout(()=> {
