@@ -13,7 +13,7 @@
         
 		setInterval( function(){ 
             var time = new Date();
-            $('#hours').html(("0" + time.getHours()).slice(-2));
+            $('#hours') = (("0" + time.getHours()).slice(-2));
             $('#mytime').html( $('#hours') + ":" + ("0" + time.getMinutes()).slice(-2) + ":" + ("0" + time.getSeconds()).slice(-2) );
             }, 1000);
             $('#mytime').css({
