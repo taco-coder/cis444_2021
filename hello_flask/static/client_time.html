@@ -10,7 +10,7 @@
         
 		setInterval( function(){ 
             var time = new Date();
-            $('#mytime').html( time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds());
+            $('#mytime').html( time.format("hh:mm:ss"));
             }, 1000);
             $('#mytime').css({
                 "color" : "lightblue",
