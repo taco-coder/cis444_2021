@@ -10,9 +10,8 @@
         
 		setInterval( function(){ 
             var time = new Date();
-            time.format('hh:mm:ss');
-            $('#mytime').html(time);
-        }, 1000);
+            $('#mytime').html( time.getHours() + ":" + time.getMinutes() + ":" + ( "0" + time.getSeconds()).slice(-2) );
+            }, 1000);
             $('#mytime').css({
                 "color" : "lightblue",
                 "padding" : "250px",
