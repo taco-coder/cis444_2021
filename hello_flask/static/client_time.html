@@ -9,14 +9,12 @@
         
 	<script>
         $('#mytime').hide();
-        setInterval(function(){
-            $('#mytime').html( "Breathe In.").fadeIn(4000);
-            setTimeout(() => {
-                $('#mytime').html("Pause.");
-            }, 5500);
-            //$('#mytime').html("Breath Out.").fadeOut(3000);
-            }, 9500);
-
+        while(1){
+            $('#mytime').html("Breathe In.").fadeIn(3500);
+            setTimeout(()=> {
+                $('#mytime').html("Breathe Out.").fadeOut(4000);
+            }, 3750);
+        }
             $('#mytime').css({
                 "color" : "red",
                 "padding" : "250px",
