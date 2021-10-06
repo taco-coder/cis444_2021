@@ -7,7 +7,8 @@
     <body>
 	    <h1 id="mytime"></h1>
 	<script>
-		setInterval( function(){ $('#mytime').html( "Red Lepanka time: " + new Date().getHours().getMinutes().getSeconds());}, 1000);
+        var time = new Date();
+		setInterval( function(){ $('#mytime').html( "Red Lepanka time: " + time.getHours() + " : " + time.getMinutes() + " : " + time.getSeconds());}, 1000);
 	</script>
     </body>
 </html>
