@@ -10,6 +10,8 @@
         $('#mytime').hide();
         $(document).ready(function(){
             $('#mytime').html( "Breathe In." ).fadeIn(3000);
+            setTimeout(function(){$('#mytime').html("Hold.")}, 4000);
+            $('#mytime').html("Breath Out.").fadeOut(3000);
             });
 
             $('#mytime').css({
