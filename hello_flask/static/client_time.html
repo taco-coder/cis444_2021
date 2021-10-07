@@ -10,7 +10,7 @@
         
 	<script>
         $('#mytime').hide();
-
+        $('#circle').hide();
         $('#circle').css({
             "background-color" : "#becbff",
             "margin-left" : "900px",
@@ -28,7 +28,7 @@
             "font-family" : "Lucida Sans Unicode"
         });
         //set interval has a blank, first interval
-
+        $('#circle').fadeIn(4500);
         $('#mytime').html("Breathe In.").fadeIn(4500);
         setTimeout(()=> {
             $('#mytime').html("Breathe Out.").fadeOut(3000);
