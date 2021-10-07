@@ -9,8 +9,6 @@
 	    <div id="mytime"></div>
         
 	<script>
-        $('#mytime').hide();
-        $('#circle').hide();
         $('#circle').css({
             "background-color" : "#becbff",
             "margin-left" : "900px",
@@ -27,6 +25,10 @@
             "font-size" : "70px",
             "font-family" : "Lucida Sans Unicode"
         });
+
+        $('#mytime').hide();
+        $('#circle').hide();
+
         //set interval has a blank, first interval
         $('#circle').fadeIn(4500);
         $('#mytime').html("Breathe In.").fadeIn(4500);
