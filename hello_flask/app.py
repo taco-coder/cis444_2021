@@ -40,7 +40,8 @@ def backp():
 #Assigment 2
 @app.route('/ss1', methods=['GET']) #endpoint
 def ss1():
-    return render_template('server_time.html', my_int = random.randint(100, 300), 
+    return render_template('server_time.html', my_width = random.randint(100, 300),
+                                               my_height = random.randint(100, 300), 
                                                rValue = random.randrange(0, 255), 
                                                gValue = random.randrange(0, 255), 
                                                bValue = random.randrange(0, 255),
