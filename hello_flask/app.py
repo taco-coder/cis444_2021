@@ -40,9 +40,9 @@ def backp():
 #Assigment 2
 @app.route('/ss1') #endpoint
 def ss1():
-    int rValue = random.randrange(0, 255)
-    int gValue = random.randrange(0, 255)
-    int bValue = random.randrange(0, 255)
+    rValue = random.randrange(0, 255)
+    gValue = random.randrange(0, 255)
+    bValue = random.randrange(0, 255)
     return render_template('server_time.html', my_int = int(100), rValue, gValue, bValue )
 
 
