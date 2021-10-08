@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request
 
 import datetime
+import random
 
 app = Flask(__name__)
 
@@ -39,7 +40,10 @@ def backp():
 #Assigment 2
 @app.route('/ss1') #endpoint
 def ss1():
-    return render_template('server_time.html', my_int = int(100) )
+    int rValue = random.randrange(0, 255)
+    int gValue = random.randrange(0, 255)
+    int bValue = random.randrange(0, 255)
+    return render_template('server_time.html', my_int = int(100), rValue, gValue, bValue )
 
 
 app.run(host='0.0.0.0', port=80)
