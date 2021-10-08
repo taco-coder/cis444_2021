@@ -30,6 +30,7 @@
         $('#mytime').html("Breathe In.").fadeIn(4500);
         setTimeout(()=> {
             $('#mytime').html("Breathe Out.").fadeOut(3000);
+            $('#circle').animate({paddingTop: '-=250px', marginTop: '=250px', opacity: '0'}, 3000, "linear");
         }, 5500);
         setTimeout(()=> {
             $('#mytime').html("Pause.");
