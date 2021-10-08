@@ -14,7 +14,8 @@
             "margin-top" : "450px",
             "margin-left" : "850px",
             "opacity": "0%",
-            "width" : "150px"
+            "width" : "250px",
+            "border-radius": "15px"
         });        
         $('#mytime').css({
             "color" : "#becbff",
@@ -37,9 +38,11 @@
         }, 8500);
 
         setInterval(()=>{
+            $('#circle').animate({paddingTop: '250px', marginTop: '-=250px', opacity: '1'}, 4500, "linear");
             $('#mytime').html("Breathe In.").fadeIn(4500);
             setTimeout(()=> {
                 $('#mytime').html("Breathe Out.").fadeOut(3000);
+                $('#circle').animate({paddingTop: '-=250px', marginTop: '+=250px', opacity: '0'}, 3000, "linear");
             }, 6500);
             setTimeout(()=> {
                 $('#mytime').html("Pause.");
