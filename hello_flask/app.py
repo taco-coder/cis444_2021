@@ -43,7 +43,8 @@ def ss1():
     rValue = random.randrange(0, 255)
     gValue = random.randrange(0, 255)
     bValue = random.randrange(0, 255)
-    return render_template('server_time.html', my_int = int(100), rValue, gValue, bValue )
+    my_int = 100
+    return render_template('server_time.html', my_int, rValue, gValue, bValue )
 
 
 app.run(host='0.0.0.0', port=80)
