@@ -34,7 +34,7 @@
             $('#circle').animate({paddingTop: '-=250px', marginTop: '+=250px', opacity: '0'}, 3000, "linear");
         }, 5500);
         setTimeout(()=> {
-            $('#mytime').html("Pause.");
+            $('#mytime').html("");
         }, 8500);
 
         setInterval(()=>{
@@ -43,9 +43,9 @@
             setTimeout(()=> {
                 $('#mytime').html("Breathe Out.").fadeOut(3000);
                 $('#circle').animate({paddingTop: '-=250px', marginTop: '+=250px', opacity: '0'}, 3000, "linear");
-            }, 6500);
+            }, 5500);
             setTimeout(()=> {
-                $('#mytime').html("Pause.");
+                $('#mytime').html("");
             }, 8500);
         }, 10500);
 	</script>
