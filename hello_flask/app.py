@@ -38,7 +38,7 @@ def backp():
 
 
 #Assigment 2
-@app.route('/ss1', methods=['POST']) #endpoint
+@app.route('/ss1', methods=['GET']) #endpoint
 def ss1():
     return render_template('server_time.html', my_int = random.randint(100, 300), 
                                                rValue = random.randrange(0, 255), 
