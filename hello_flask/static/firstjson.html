@@ -19,6 +19,7 @@
     
         <script> 
         $.getJSON("/get_time", function(data){
+            $('#mydiv').html(data.data.hello);
             console.log(data);
             alert("success");
         })
