@@ -51,7 +51,9 @@ def ss1():
 #JSON stuff
 @app.route('/get_time')
 def get_time():
-    return json_response(serverTime=str(datetime.datetime.utcnow()))
+    return json_response(data={"serverTime":str(datetime.datetime.utcnow()),
+                                "hello":"world"
+                                })
 
 app.run(host='0.0.0.0', port=80)
 
