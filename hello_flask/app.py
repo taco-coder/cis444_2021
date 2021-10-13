@@ -5,7 +5,7 @@ import datetime
 import random
 
 app = Flask(__name__)
-
+FlaskJSON(app)
 
 USER_PASSWORDS = { "cjardin": "strong password"}
 
@@ -48,6 +48,10 @@ def ss1():
                                                bValue = random.randrange(0, 255),
                                                radius = random.randrange(0, 100))
 
+#JSON stuff
+@app.route('/get_time')
+def get_time():
+    return json_response(time=datetime.utcnow())
 
 app.run(host='0.0.0.0', port=80)
 
