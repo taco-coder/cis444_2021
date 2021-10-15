@@ -16,31 +16,13 @@
     />
   </head>
   <body>
-    <div id="loginPage" class="container">
-      <div id = "loginForm" class="row center-block">
-        <div class="col-xs-6">
-          <form class="form-horizontal">
-            <div class="form-group">
-              <label for="inputEmail3" class="col-sm-2 control-label">Email</label>
-              <div class="col-sm-10">
-                <input type="email" class="form-control" id="inputEmail3" placeholder="Email"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
-              <div class="col-sm-10">
-                <input type="password"class="form-control" id="inputPassword3" placeholder="Password"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <div class="col-sm-offset-2 col-sm-10">
-                <button type="submit" class="btn btn-primary">Sign in</button>
-                <button type="submit" class="btn btn-primary">Create Account</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+        <form id="loginForm">
+        <label for="username" id="creds">Username:</label>
+        <input type="text" id="user" name="username"><br><br>
+        <label for="password" id="creds">Password:</label>
+        <input type="text" id="pwd" name="password"><br><br>
+        <input type="button" value="Sign Up" id="signBtn" onclick="navToSignUp();">
+        <input type="button" value="Login" id="credBtn" onclick="checkLogin();">
+        </form>    
   </body>
 </html>
