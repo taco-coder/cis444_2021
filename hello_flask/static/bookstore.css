@@ -1,37 +1,20 @@
 #loginForm{
     padding-left: 45%;
     margin-top: 100px;
-}
-#creds {
-
     font-family: 'Courier New', Courier, monospace;
 }
-#user, #pwd{
 
-    font-family: 'Courier New', Courier, monospace;
-}
-#credBtn{
-
-    font-family: 'Courier New', Courier, monospace;
-    font-size: large;
+#credBtn{    
     margin-left: 80px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
-#credBtn:hover{
-    background-color: #3b3b3b;
-}
-#signBtn{
-
-    font-family: 'Courier New', Courier, monospace;
+#credBtns{
     font-size: large;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
-#signBtn:hover{
+#credBtns:hover{
     background-color: #3b3b3b;
 }
+
