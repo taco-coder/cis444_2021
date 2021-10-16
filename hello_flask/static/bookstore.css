@@ -3,7 +3,6 @@
     margin-top: 100px;
     font-family: 'Courier New', Courier, monospace;
 }
-
 #credBtn{
     font-size: large;
     margin-left: 80px;
@@ -12,16 +11,14 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
-#credBtn:hover{
+#acntBtns:hover{
     background-color: #3b3b3b;
 }
+
 #signBtn{
     font-size: large;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
-}
-#signBtn:hover{
-    background-color: #3b3b3b;
 }
