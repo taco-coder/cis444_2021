@@ -4,17 +4,24 @@
     font-family: 'Courier New', Courier, monospace;
 }
 
-#credBtn{    
+#credBtn{
+    font-size: large;
     margin-left: 80px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
-#credBtns{
+#credBtn:hover{
+    background-color: #3b3b3b;
+}
+#signBtn{
     font-size: large;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
-#credBtns:hover{
+#signBtn:hover{
     background-color: #3b3b3b;
 }
-
