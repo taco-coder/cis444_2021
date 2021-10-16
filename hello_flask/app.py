@@ -63,7 +63,7 @@ def get_time():
 #JWT stuff
 @app.route('/auth')                                
 def get_auth():
-    jwt_str = instance.encode({"username" : "cary"}, JWT_SECRET, algorithm="HS256")
+    jwt_str = instance.encode({"username" : "cary"}, JWT_SECRET, alg="HS256")
     return json_response(jwt = jwt_str)
 
 app.run(host='0.0.0.0', port=80)
