@@ -19,6 +19,8 @@ IMGS_URL = {
 
 CUR_ENV = "PRD"
 
+JWT_SECRET = "this is bad but a lot easier to use"
+
 @app.route('/') #endpoint
 def index():
     return 'Web App with Python Caprice!' + USER_PASSWORDS['cjardin']
@@ -56,6 +58,12 @@ def get_time():
     return json_response(data={"serverTime":str(datetime.datetime.utcnow()),
                                 "hello":"world"
                                 })
+
+#JWT stuff
+@app.route('/auth')                                
+def get_auth():
+    jwt_str = jwt.encode({"username" : "cary"}, JWT_SECRET, algorithm="HS256")
+    return json_response(jwt = jwt_str)
 
 app.run(host='0.0.0.0', port=80)
 
