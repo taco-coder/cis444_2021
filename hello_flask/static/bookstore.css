@@ -3,17 +3,15 @@
     margin-top: 100px;
 }
 #creds {
-    color: #00ff00;
+
     font-family: 'Courier New', Courier, monospace;
 }
 #user, #pwd{
-    color: #0f0;
-    background-color: #2e2e2e;
+
     font-family: 'Courier New', Courier, monospace;
 }
 #credBtn{
-    color: #00FF00;
-    background-color: #2e2e2e;
+
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
     margin-left: 80px;
@@ -26,8 +24,7 @@
     background-color: #3b3b3b;
 }
 #signBtn{
-    color: #00FF00;
-    background-color: #2e2e2e;
+
     font-family: 'Courier New', Courier, monospace;
     font-size: large;
     padding-left: 10px;
