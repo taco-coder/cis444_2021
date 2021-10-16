@@ -68,7 +68,7 @@ def get_auth():
 @app.route('/expose')                                
 def get_token():
     jwt_token = request.args.get('jwt')
-    return json_response(jwt.decode(jwt_token, JWT_SECRET, algorithms=["HS256"]))    
+    return json_response(output = jwt.decode(jwt_token, JWT_SECRET, algorithms=["HS256"]))    
 
 app.run(host='0.0.0.0', port=80)
 
