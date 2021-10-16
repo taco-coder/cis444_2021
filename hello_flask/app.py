@@ -20,7 +20,7 @@ IMGS_URL = {
 CUR_ENV = "PRD"
 
 JWT_SECRET = "this is bad but a lot easier to use"
-instance = JWT()
+instance = jwt.JWT()
 
 @app.route('/') #endpoint
 def index():
