@@ -4,12 +4,7 @@
     font-family: 'Courier New', Courier, monospace;
 }
 #credBtn{
-    font-size: large;
     margin-left: 80px;
-    padding-left: 10px;
-    padding-right: 10px;
-    padding-top: 5px;
-    padding-bottom: 5px;
 }
 #acntBtns{
     font-size: large;
