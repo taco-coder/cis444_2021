@@ -11,14 +11,14 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
-#acntBtns:hover{
-    background-color: #3b3b3b;
-}
-
-#signBtn{
+#acntBtns{
     font-size: large;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
 }
+#acntBtns:hover{
+    background-color: #3b3b3b;
+}
+
