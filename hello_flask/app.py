@@ -79,7 +79,7 @@ def get_token():
 def hello_db():
     db, cur = get_db_instance()
     cur.execute("select 5+5, 1+1, 3*9")
-    first, second, third= cur.fetchall()
+    first, second, third= cur.fetchone()
     return json_response(a = first, b = second, c = third)
 
 app.run(host='0.0.0.0', port=80)
