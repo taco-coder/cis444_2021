@@ -1,4 +1,4 @@
-#loginForm{
+#credForm{
     padding-left: 45%;
     margin-top: 100px;
     font-family: 'Courier New', Courier, monospace;
@@ -13,7 +13,7 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
-#acntBtns:hover{
+#credBtn:hover, #signBtn:hover{
     background-color: #3b3b3b;
 }
 

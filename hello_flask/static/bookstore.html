@@ -6,18 +6,44 @@
     <link rel="stylesheet" href="bookstore.css" type="text/css">
   </head>
   <body>
-      <div id="loginForm">
-        <h3 style="text-align: center">Sign into your account.</h3>
+      <div id="credForm"> <!--loginForm start-->
+        <p id="credForm">Sign into your account.</p>
+        <form>
+          <label for="username" id="creds">Username:</label>
+          <input type="text" id="user" name="username"><br><br>
+          <label for="password" id="creds">Password:</label>
+          <input type="password" id="pwd" name="password"><br><br>
+          <div id="acntBtns"> <!--acnt btns start-->
+            <input type="button" value="Sign Up" id="signBtn" onclick = "get_signup();">
+            <input type="button" value="Login" id="credBtn" >
+          </div> <!--acnt btns end-->
+        </form>    
+      </div> <!--loginForm end-->
+      <div id = "credForm"> <!--signupForm start-->
+        <p id="credForm">Create a unique username and password.</p>
+        <!--Login/Signup form-->
         <form>
         <label for="username" id="creds">Username:</label>
         <input type="text" id="user" name="username"><br><br>
         <label for="password" id="creds">Password:</label>
-        <input type="password" id="pwd" name="password"><br><br>
-        <div id="acntBtns">
-          <input type="button" value="Sign Up" id="signBtn">
-          <input type="button" value="Login" id="credBtn" >
-        </div>
-        </form>    
-        </div>
+        <input type="text" id="pwd" name="password"><br><br>
+        <input type="button" value="Create Account" id="acntBtn" onclick="createAccount();">
+        </form>          
+      </div> <!--signupForm end-->
+      
+      <!--jquery starts here-->
+      <script>
+        $("#loginForm").show();
+        $("#signupForm").hide();
+
+        function get_signup(){
+          $("#loginForm").hide();
+          $("#signupForm").show()
+        }
+        function createAccount(){
+          alert("success");
+          return 0;
+        }
+      </script>
   </body>
 </html>
