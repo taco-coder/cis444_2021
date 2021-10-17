@@ -23,7 +23,7 @@ CUR_ENV = "PRD"
 
 JWT_SECRET = None
 
-db = get_db
+db = get_db()
 
 with open("mysecret", "r") as f:
     JWT_SECRET = f.read()
