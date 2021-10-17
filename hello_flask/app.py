@@ -78,9 +78,9 @@ def get_token():
 @app.route('/hello_db')                                
 def hello_db():
     db, cur = get_db_instance()
-    cur.execute("select 5+5")
-    first= cur.fetchone()[0]
-    return json_response(first)   
+    cur.execute("select 5+5, 1+1, 3*9")
+    first, second, third= cur.fetchall()
+    return json_response(a = first, b = second, c = third)
 
 app.run(host='0.0.0.0', port=80)
 
