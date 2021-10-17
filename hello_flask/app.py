@@ -6,6 +6,8 @@ import jwt
 import datetime
 import random
 
+from db_con import get_db_instance
+
 app = Flask(__name__)
 FlaskJSON(app)
 
@@ -70,7 +72,15 @@ def get_auth():
 @app.route('/expose')                                
 def get_token():
     jwt_token = request.args.get('jwt')
-    return json_response(output = jwt.decode(jwt_token, JWT_SECRET, algorithms=["HS256"]))    
+    return json_response(output = jwt.decode(jwt_token, JWT_SECRET, algorithms=["HS256"]))
+
+#DB stuff
+@app.route('/hello_db')                                
+def hello_db():
+    db, cur = get_db_instance()
+    cur.execute("select 5+5, 1+1")
+    first, second = cur.fetchone()
+    return json_response(first, second)   
 
 app.run(host='0.0.0.0', port=80)
 
