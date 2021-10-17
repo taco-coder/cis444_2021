@@ -6,7 +6,7 @@ import jwt
 import datetime
 import random
 
-from db_con import get_db_instance
+from db_con import get_db_instance, get_db
 
 app = Flask(__name__)
 FlaskJSON(app)
@@ -22,6 +22,9 @@ IMGS_URL = {
 CUR_ENV = "PRD"
 
 JWT_SECRET = None
+
+db = get_db
+
 with open("mysecret", "r") as f:
     JWT_SECRET = f.read()
 
@@ -77,7 +80,7 @@ def get_token():
 #DB stuff
 @app.route('/hello_db')                                
 def hello_db():
-    db, cur = get_db_instance()
+    cur = db.cursor()
     cur.execute("select 5+5, 1+1, 3*9")
     first, second, third= cur.fetchone()
     return json_response(a = first, b = second, c = third)
