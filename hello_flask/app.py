@@ -104,7 +104,7 @@ def create_creds():
 def check_creds():
     cur = db.cursor()
     cur.execute("select * from users where username = 'taco'")
-    first = cur.fetchone()
+    first = cur.fetchone()[0]
     return json_response(user = first)
 
 app.run(host='0.0.0.0', port=80)
