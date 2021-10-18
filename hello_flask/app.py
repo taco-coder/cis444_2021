@@ -94,7 +94,7 @@ def create_creds():
     print(inputForm[0])
     print(inputForm[1])
     db.commit()
-    return render_template("bookstore.html", inputForm)
+    return render_template('backatu.html',input_from_browser= str(request.form))
 
 @app.route('/check_creds')
 def check_creds():
