@@ -94,7 +94,7 @@ def create_creds():
     print(inputForm[0])
     print(inputForm[1])
     db.commit()
-    return 0
+    return json_response(inputForm)
 
 @app.route('/check_creds')
 def check_creds():
