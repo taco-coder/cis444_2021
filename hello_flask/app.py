@@ -97,6 +97,7 @@ def create_creds():
     cur.execute("insert into users (username, password) values ('taco', 'tacoking')")
     cur.execute("select * from users where username = 'taco'")
     third = cur.fetchone()
+    db.commit()
     return json_response(b = second, c = third)
 
 @app.route('/check_creds')
