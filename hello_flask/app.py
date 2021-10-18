@@ -85,5 +85,18 @@ def hello_db():
     first, second, third= cur.fetchone()
     return json_response(a = first, b = second, c = third)
 
+#assignemnt 3 fullstack stuff
+@app.route('/create_creds')
+def create_creds():
+    cur = db.cursor()
+    cur.execute("select * from users")
+    first = cur.fetchone()[0]
+    cur.execute("select * from users where username = 'ben'")
+    second = cur.fetchone()[0]
+    cur.execute("select * from users where username = 'taco'")
+    third = cur.fetchone()[0]
+    return json_response(a = first, b = second, c = third)
+
+
 app.run(host='0.0.0.0', port=80)
 

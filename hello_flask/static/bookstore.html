@@ -10,9 +10,9 @@
         <p >Sign into your account.</p>
         <form>
           <label for="username" id="creds">Username:</label>
-          <input type="text" id="user" name="username"><br><br>
+          <input type="text" id="user" name="username" required><br><br>
           <label for="password" id="creds">Password:</label>
-          <input type="password" id="pwd" name="password"><br><br>
+          <input type="password" id="pwd" name="password" required><br><br>
           <div id="acntBtns"> <!--acnt btns start-->
             <input type="button" value="Sign Up" id="signBtn" onclick = "get_signup();">
             <input type="button" value="Login" id="credBtn" >
@@ -24,9 +24,9 @@
         <!--Login/Signup form-->
         <form>
         <label for="username" id="creds">Username:</label>
-        <input type="text" id="user" name="username"><br><br>
+        <input type="text" id="user" name="username" required><br><br>
         <label for="password" id="creds">Password:</label>
-        <input type="text" id="pwd" name="password"><br><br>
+        <input type="text" id="pwd" name="password" required><br><br>
         <input type="button" value="Create Account" id="acntBtn" onclick="createAccount();">
         </form>          
       </div> <!--signupForm end-->
