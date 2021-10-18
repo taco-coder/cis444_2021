@@ -94,7 +94,7 @@ def create_creds():
     print(inputForm[0])
     print(inputForm[1])
     db.commit()
-    return json_response(inputForm)
+    return render_template("bookstore.html", inputForm)
 
 @app.route('/check_creds')
 def check_creds():
