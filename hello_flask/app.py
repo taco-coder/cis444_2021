@@ -90,13 +90,14 @@ def hello_db():
 def create_creds():
     cur = db.cursor()
     cur.execute("select * from users")
-    print(cur.fetchone())
+    if cur.fetchone() is None:
+        print("Nonetype found")
     cur.execute("select * from users where username = 'ben'")
-    second = cur.fetchone()[0]
+    second = cur.fetchone()
     cur.execute("insert into users (username, password) values ('taco', 'tacoking')")
     cur.execute("select * from users where username = 'taco'")
-    third = cur.fetchone()[0]
-    return json_response(a = first, b = second, c = third)
+    third = cur.fetchone()
+    return json_response(b = second, c = third)
 
 
 app.run(host='0.0.0.0', port=80)
