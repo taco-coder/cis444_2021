@@ -90,8 +90,7 @@ def hello_db():
 def create_creds():
     cur = db.cursor()
     cur.execute("select * from users")
-    if cur.fetchone()[0] is None:
-        first = "None"
+    print(cur.fetchone())
     cur.execute("select * from users where username = 'ben'")
     second = cur.fetchone()[0]
     cur.execute("insert into users (username, password) values ('taco', 'tacoking')")
