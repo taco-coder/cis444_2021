@@ -86,13 +86,10 @@ def hello_db():
     return json_response(a = first, b = second, c = third)
 
 #assignemnt 3 fullstack stuff
-@app.route('/create_creds', methods=['POST', 'GET'])
+@app.route('/create_creds', methods=['POST'])
 def create_creds():
     cur = db.cursor()
-    if request.method == 'POST':
-        credsForm = request.form
-    else:
-        credsForm = request.args.get('form', type=dict)
+    credsForm = request.form
     print(credsForm)
     db.commit()
     return json_response(form = credsForm)
