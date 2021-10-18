@@ -89,12 +89,9 @@ def hello_db():
 @app.route('/create_creds', methods=['POST'])
 def create_creds():
     cur = db.cursor()
-    inputForm = str(request.form)
-    print(inputForm)
-    print(inputForm[0])
-    print(inputForm[1])
+    credsForm = str(request.form)
     db.commit()
-    return render_template('backatu.html',input_from_browser= str(request.form))
+    return json_response(form = credsForm)
 
 @app.route('/check_creds')
 def check_creds():
