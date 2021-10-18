@@ -90,7 +90,7 @@ def hello_db():
 def create_creds():
     cur = db.cursor()
     credsForm = request.form
-    print(credsForm)
+    print(credsForm['username'] + "and" + credsForm['password'])
     db.commit()
     return json_response(form = credsForm)
 
