@@ -93,6 +93,7 @@ def create_creds():
     first = cur.fetchone()[0]
     cur.execute("select * from users where username = 'ben'")
     second = cur.fetchone()[0]
+    cur.execute("insert into users (username, password) values ('taco', 'tacoking')")
     cur.execute("select * from users where username = 'taco'")
     third = cur.fetchone()[0]
     return json_response(a = first, b = second, c = third)
