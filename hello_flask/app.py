@@ -99,6 +99,12 @@ def create_creds():
     third = cur.fetchone()
     return json_response(b = second, c = third)
 
+@app.route('/check_creds')
+def check_creds():
+    cur = db.cursor()
+    cur.execute("select * from users where username = 'taco'")
+    first = cur.fetchone()
+    return json_response(user = first)
 
 app.run(host='0.0.0.0', port=80)
 
