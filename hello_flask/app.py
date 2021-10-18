@@ -86,19 +86,15 @@ def hello_db():
     return json_response(a = first, b = second, c = third)
 
 #assignemnt 3 fullstack stuff
-@app.route('/create_creds')
+@app.route('/create_creds', )
 def create_creds():
     cur = db.cursor()
-    cur.execute("select * from users")
-    if cur.fetchone() is None:
-        print("Nonetype found")
-    cur.execute("select * from users where username = 'ben'")
-    second = cur.fetchone()
-    cur.execute("insert into users (username, password) values ('taco', 'tacoking')")
-    cur.execute("select * from users where username = 'taco'")
-    third = cur.fetchone()
+    inputForm = str(request.form)
+    print(inputForm)
+    print(inputForm[0])
+    print(inputForm[1])
     db.commit()
-    return json_response(b = second, c = third)
+    return 0
 
 @app.route('/check_creds')
 def check_creds():
