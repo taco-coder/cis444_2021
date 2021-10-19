@@ -13,8 +13,8 @@
         $.getJSON("/main_store", function(books){
             $('#mydiv').html(books.Array);
             console.log(books);
-            console.log(books.Array);
-            console.log(books.Array.Array);
+            console.log(books[0]);
+            console.log(books[0][0]);
         })        
     </script>
 </html>
