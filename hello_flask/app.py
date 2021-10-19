@@ -126,10 +126,6 @@ def check_creds():
 def main_page():
     cur = db.cursor()
     cur.execute("select * from books;")
-    print(cur.fetchall()[0])
-    print(cur.fetchall()[1])
-    print(cur.fetchall()[2])
-    print(cur.fetchall()[3])
     return json_response(books = cur.fetchall())
 
 app.run(host='0.0.0.0', port=80)
