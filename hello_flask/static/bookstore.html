@@ -24,16 +24,16 @@
   <body>
       <div id="loginForm"> <!--loginForm start-->
         <p >Sign into your account.</p>
-        <form>
+        <form id="login">
           <label for="username" id="creds">Username:</label>
           <input type="text" id="user" name="username"><br><br>
           <label for="password" id="creds">Password:</label>
           <input type="password" id="pwd" name="password"><br><br>
-          <div id="acntBtns"> <!--acnt btns start-->
-            <input type="submit" value="Sign Up" id="signBtn" formaction = "/get_signup">
-            <input type="button" value="Login" id="credBtn" >
-          </div> <!--acnt btns end-->
-        </form>    
+        </form>
+        <div id="acntBtns"> <!--acnt btns start-->
+          <input type="button" value="Sign Up" id="signBtn" onclick = "get_signup();">
+          <input type="button" value="Login" id="credBtn" form="login">
+        </div> <!--acnt btns end-->        
       </div> <!--loginForm end-->
       <div id = "signupForm"> <!--signupForm start-->
         <p>Create a unique username and password.</p>
