@@ -94,7 +94,7 @@ def create_creds():
     cur = db.cursor()
     credsForm = request.form
     db.commit()
-    return json_response(create_status={"status": "success"})
+    return json_response(create_status={"response": "success"})
 
 @app.route('/check_creds')
 def check_creds():
