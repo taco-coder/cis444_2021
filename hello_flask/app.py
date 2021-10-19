@@ -98,7 +98,7 @@ def create_creds():
     credsForm = request.form
     cur.execute("select * from users where username = '" + credsForm['username'] + "';")
     if cur.fetchone() is None:
-        cur.execute("insert into users (username, password) values ('" + credsForm['username'] + "', '" + credsForm['password'] + "';")
+        cur.execute("insert into users (username, password) values ('" + credsForm['username'] + "', '" + credsForm['password'] + "');")
         db.commit()
         return get_signup(True)
     else:
