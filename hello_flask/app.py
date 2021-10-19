@@ -63,7 +63,7 @@ def ss1():
 @app.route('/get_time')
 def get_time():
     return json_response(data={"serverTime":str(datetime.datetime.utcnow()),
-                                "hello":"world"
+                                "hello":"world my name isthaipehfaepouiha"
                                 })
 
 #JWT stuff
@@ -91,7 +91,7 @@ def create_creds():
     cur = db.cursor()
     credsForm = request.form
     db.commit()
-    return json_response(create_status={"response": "success"})
+    
 
 @app.route('/check_creds')
 def check_creds():
