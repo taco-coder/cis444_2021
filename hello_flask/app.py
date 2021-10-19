@@ -117,7 +117,7 @@ def create_creds():
 def check_creds():
     cur = db.cursor()
     cur.execute("select * from users where username = '" + request.form['username'] + "' and password = '" + request.form['password'] + "';")
-    if cur.fetchone is None:
+    if cur.fetchone() is None:
         return render_template("bookstore.html", account_status = "Can't find")
     else:
         return render_template("bookstore.html", account_status = "Success")
