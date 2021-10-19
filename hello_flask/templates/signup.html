@@ -9,10 +9,7 @@
           margin-top: 100px;
           font-family: 'Courier New', Courier, monospace;
       }
-      #credBtn{
-          margin-left: 80px;
-      }
-      #signBtn, #credBtn, #acntBtn{
+      #Btn{
           font-size: large;
           padding-left: 10px;
           padding-right: 10px;
@@ -30,11 +27,11 @@
         <input type="text" id="user" name="username" required><br><br>
         <label for="password" id="creds">Password:</label>
         <input type="text" id="pwd" name="password" required><br><br>
-        <input type="submit" value="Create Account" id="acntBtn">
+        <input type="submit" value="Create Account" id="Btn">
         </form>          
         <p>{{create_status}}</p>
         <a href="http://23.21.164.56/static/bookstore.html">
-            <button>Return to Login</button>
+            <button id="Btn">Return to Login</button>
         </a>
       </div> <!--signupForm end-->
     </body>
