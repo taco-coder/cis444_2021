@@ -90,9 +90,8 @@ def hello_db():
 def create_creds():
     cur = db.cursor()
     credsForm = request.form
-    db.commit()
-    json_response(create_status = "success")
-    return 0
+    db.commit()    
+    return json_response(create_status = "success")
 
 @app.route('/check_creds')
 def check_creds():
