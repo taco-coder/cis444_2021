@@ -89,12 +89,18 @@ def hello_db():
 @app.route('/get_store')
 def get_store():
     return render_template("bookstore.html")
+
 @app.route('/get_signup')
-def get_signup(value):
+def get_signup():
+    return render_template("signup.html")
+
+@app.route('/check_signup')
+def check_signup(value):
     if value is True:
         return render_template('signup.html', create_status="Successfully created new account.")
     else:
         return render_template('signup.html', create_status="This username is already taken. Try another one.")
+        
 @app.route('/create_creds', methods=['POST'])
 def create_creds():
     cur = db.cursor()
