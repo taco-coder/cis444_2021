@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- head definitions go here -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <style>
+      #signupForm{
+          padding-left: 45%;
+          margin-top: 100px;
+          font-family: 'Courier New', Courier, monospace;
+      }
+      #credBtn{
+          margin-left: 80px;
+      }
+      #signBtn, #credBtn, #acntBtn{
+          font-size: large;
+          padding-left: 10px;
+          padding-right: 10px;
+          padding-top: 5px;
+          padding-bottom: 5px;
+      }    
+    </style>
+  </head>
+  <body>
+      <div id = "signupForm"> <!--signupForm start-->
+        <p>Create a unique username and password.</p>
+        <!--Login/Signup form-->
+        <form action="/create_creds" method="post">
+        <label for="username" id="creds">Username:</label>
+        <input type="text" id="user" name="username" required><br><br>
+        <label for="password" id="creds">Password:</label>
+        <input type="text" id="pwd" name="password" required><br><br>
+        <input type="submit" value="Create Account" id="acntBtn" onclick="createAccount();">
+        </form>          
+        <p id="status_reponse"></p>
+      </div> <!--signupForm end-->
+      
+      <!--jquery starts here-->
+      <script>
+        function createAccount(){
+            $.getJSON("/create_creds", function(create_status){
+            $('#status_reponse').html(create_status.status);
+            console.log("hello, world")
+            console.log(create_status.status);
+            alert("success");
+        })
+        }
+      </script>
+  </body>
+</html>
