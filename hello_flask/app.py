@@ -88,7 +88,7 @@ def hello_db():
 #assignemnt 3 fullstack stuff
 @app.route('/creds_page')
 def creds_page():
-    render_template("bookstore.html")
+    return render_template("bookstore.html")
 @app.route('/create_creds', methods=['POST'])
 def create_creds():
     cur = db.cursor()
