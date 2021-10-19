@@ -86,6 +86,9 @@ def hello_db():
     return json_response(a = first, b = second, c = third)
 
 #assignemnt 3 fullstack stuff
+@app.route('/get_store')
+def get_store():
+    return render_template("bookstore.html")
 @app.route('/get_signup')
 def get_signup(value):
     if value is True:
