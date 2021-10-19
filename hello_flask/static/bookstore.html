@@ -43,7 +43,7 @@
         <input type="text" id="user" name="username" required><br><br>
         <label for="password" id="creds">Password:</label>
         <input type="text" id="pwd" name="password" required><br><br>
-        <input type="submit" value="Create Account" id="acntBtn" onclick="createAccount();">
+        <input type="submit" value="Create Account" id="acntBtn">
         </form>          
         <p id="status_reponse"></p>
       </div> <!--signupForm end-->
@@ -57,14 +57,7 @@
           $('#loginForm').hide();
           $('#signupForm').show()
         }
-        function createAccount(){
-            $.getJSON("/create_creds", function(create_status){
-            $('#status_reponse').html(create_status.status);
-            console.log("hello, world")
-            console.log(create_status.status);
-            alert("success");
-        })
-        }
+        
       </script>
   </body>
 </html>
