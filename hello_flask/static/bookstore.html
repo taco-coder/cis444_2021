@@ -60,6 +60,8 @@
         function createAccount(){
             $.getJSON("/create_creds", function(create_status){
             $('#status_reponse').html(create_status.status);
+            console.log(create_status);
+            alert("success");
         })
         }
       </script>
