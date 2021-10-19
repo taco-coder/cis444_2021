@@ -109,19 +109,18 @@ def create_creds():
     if cur.fetchone() is None:
         cur.execute("insert into users (username, password) values ('" + credsForm['username'] + "', '" + credsForm['password'] + "');")
         db.commit()
-        return get_signup(True)
+        return check_signup(True)
     else:
-        return get_signup(False)
+        return check_signup(False)
 
 @app.route('/check_creds', methods=['POST'])
 def check_creds():
     cur = db.cursor()
     cur.execute("select * from users where username = '" + request.form['username'] + "' and password = '" + request.form['password'] + "';")
     if cur.fetchone is None:
-        return json_response(status = "failed")
+        return render_template("bookstore.html", account_status = "Can't find")
     else:
-        return json_response(status = "success")
-        #return failed_login()
+        return render_template("bookstore.html", account_status = "Success")
 
 def failed_login():
     return 0
