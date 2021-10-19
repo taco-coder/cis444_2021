@@ -88,16 +88,21 @@ def hello_db():
 #assignemnt 3 fullstack stuff
 @app.route('/get_signup')
 def get_signup(value):
-    return render_template('signup.html', create_status="Successfully created new account.")
+    if value is True:
+        return render_template('signup.html', create_status="Successfully created new account.")
+    else:
+        return render_template('signup.html', create_status="This username is already taken. Try another one.")
 @app.route('/create_creds', methods=['POST'])
 def create_creds():
     cur = db.cursor()
     credsForm = request.form
     cur.execute("select * from users where username = '" + credsForm['username'] + "';")
-    print(cur.fetchone())
-    print(credsForm['username'])
-    db.commit()    
-    return get_signup()
+    if cur.fetchone() is None:
+        cur.execute("insert into users (username, password) values ('" + credsForm['username'] + "', '" + credsForm['password'] + "';")
+        db.commit()
+        return get_signup(True)
+    else:
+        return get_signup(False)
 
 @app.route('/check_creds')
 def check_creds():
