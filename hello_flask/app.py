@@ -104,12 +104,18 @@ def create_creds():
     else:
         return get_signup(False)
 
-@app.route('/check_creds')
+@app.route('/check_creds', methods=['POST'])
 def check_creds():
     cur = db.cursor()
-    cur.execute("select * from users where username = 'taco'")
-    first = cur.fetchone()[0]
-    return json_response(user = first)
+    cur.execute("select * from users where username = '" + request.form['username'] + "' and password = '" + request.form['password'] + "';")
+    if cur.fetchone is None:
+        return json_response(status = "failed")
+    else:
+        return json_response(status = "success")
+        #return failed_login()
+
+def failed_login():
+    return 0
 
 app.run(host='0.0.0.0', port=80)
 
