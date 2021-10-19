@@ -95,6 +95,7 @@ def create_creds():
 
 
 
+
 @app.route('/check_creds')
 def check_creds():
     cur = db.cursor()
