@@ -45,7 +45,7 @@
         <input type="text" id="pwd" name="password" required><br><br>
         <input type="submit" value="Create Account" id="acntBtn" onclick="createAccount();">
         </form>          
-        <p>{{create_status}}</p>
+        <p id="status_reponse"></p>
       </div> <!--signupForm end-->
       
       <!--jquery starts here-->
@@ -58,8 +58,9 @@
           $('#signupForm').show()
         }
         function createAccount(){
-          
-          return 0;
+            $.getJSON("/get_time", function(create_status){
+            $('#status_reponse').html(create_status.status);
+        })
         }
       </script>
   </body>
