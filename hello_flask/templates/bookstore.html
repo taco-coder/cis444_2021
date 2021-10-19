@@ -59,7 +59,7 @@
         }
         function createAccount(){
             $.getJSON("/get_time", function(create_status){
-            $('#status_reponse').html(create_status.status);
+            $('#status_reponse').html(create_status.data.status);
         })
         }
       </script>
