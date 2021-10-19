@@ -91,7 +91,7 @@ def create_creds():
     cur = db.cursor()
     credsForm = request.form
     db.commit()
-    return render_template("bookstore.html", create_status="success")
+    return "success"
 
 @app.route('/check_creds')
 def check_creds():
