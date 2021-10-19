@@ -93,7 +93,7 @@ def get_signup(value):
 def create_creds():
     cur = db.cursor()
     credsForm = request.form
-    cur.execute("select * from users where username = " + credsForm['username'] + ";")
+    cur.execute("select * from users where username = '" + credsForm['username'] + "';")
     print(cur.fetchone())
     print(credsForm['username'])
     db.commit()    
