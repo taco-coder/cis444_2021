@@ -32,19 +32,7 @@
         <input type="text" id="pwd" name="password" required><br><br>
         <input type="submit" value="Create Account" id="acntBtn">
         </form>          
-        <p id="status_reponse">{{create_status}}</p>
+        <p>{{create_status}}</p>
       </div> <!--signupForm end-->
-      
-      <!--jquery starts here-->
-      <script>
-        function createAccount(){
-            $.getJSON("/create_creds", function(create_status){
-            $('#status_reponse').html(create_status.status);
-            console.log("hello, world")
-            console.log(create_status.status);
-            alert("success");
-        })
-        }
-      </script>
-  </body>
+    </body>
 </html>

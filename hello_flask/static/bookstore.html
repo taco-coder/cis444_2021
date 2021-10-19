@@ -24,7 +24,7 @@
   <body>
       <div id="loginForm"> <!--loginForm start-->
         <p >Sign into your account.</p>
-        <form id="login">
+        <form>
           <label for="username" id="creds">Username:</label>
           <input type="text" id="user" name="username"><br><br>
           <label for="password" id="creds">Password:</label>
@@ -32,7 +32,7 @@
         </form>
         <div id="acntBtns"> <!--acnt btns start-->
           <input type="button" value="Sign Up" id="signBtn" onclick = "get_signup();">
-          <input type="button" value="Login" id="credBtn" form="login">
+          <input type="button" value="Login" id="credBtn">
         </div> <!--acnt btns end-->        
       </div> <!--loginForm end-->
       <div id = "signupForm"> <!--signupForm start-->
@@ -45,7 +45,7 @@
         <input type="text" id="pwd" name="password" required><br><br>
         <input type="submit" value="Create Account" id="acntBtn">
         </form>          
-        <p id="status_reponse"></p>
+        <p></p>
       </div> <!--signupForm end-->
       
       <!--jquery starts here-->
