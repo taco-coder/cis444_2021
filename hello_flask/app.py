@@ -85,7 +85,7 @@ def hello_db():
     first, second, third= cur.fetchone()
     return json_response(a = first, b = second, c = third)
 
-#assignemnt 3 fullstack stuff
+#assignment 3 fullstack stuff
 @app.route('/get_store')
 def get_store():
     return render_template("bookstore.html")
@@ -118,12 +118,16 @@ def check_creds():
     cur = db.cursor()
     cur.execute("select * from users where username = '" + request.form['username'] + "' and password = '" + request.form['password'] + "';")
     if cur.fetchone() is None:
-        return render_template("bookstore.html", account_status = "Can't find")
+        return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
     else:
-        return render_template("bookstore.html", account_status = "Success")
+        return render_template("mainpage.html", account_status = "Success")
 
-def failed_login():
-    return 0
+@app.route('/main_store')
+def main_page():
+    cur = db.cursor()
+    cur.execute("select * from books;")
+    return json_response(books = cur.fetchall())
 
 app.run(host='0.0.0.0', port=80)
 
+#ssh -i "cis444.pem" ubuntu@ec2-23-21-164-56.compute-1.amazonaws.com
