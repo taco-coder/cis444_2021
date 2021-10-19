@@ -86,6 +86,9 @@ def hello_db():
     return json_response(a = first, b = second, c = third)
 
 #assignemnt 3 fullstack stuff
+@app.route('/get_signup')
+def get_signup():
+    return render_template('signup.html')
 @app.route('/create_creds', methods=['POST'])
 def create_creds():
     cur = db.cursor()
