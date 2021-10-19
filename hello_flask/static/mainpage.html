@@ -11,8 +11,10 @@
     </body>
     <script>
         $.getJSON("/main_store", function(books){
-            $('#mydiv').html(books.data);
+            $('#mydiv').html(books.Array);
             console.log(books);
+            console.log(books.Array);
+            console.log(books.Array.Array);
         })        
     </script>
 </html>
