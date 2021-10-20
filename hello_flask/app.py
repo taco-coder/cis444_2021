@@ -134,11 +134,23 @@ def check_creds():
 def main_page():
     cur = db.cursor()
     cur.execute("select * from books;")
-    books = cur.fetchall()
-    return json_response(books = books)
+    db_books = cur.fetchall()
+    return json_response(books = db_books)
 
 @app.route('/red_lepanka', methods=['GET'])    
 def get_red_lepanka():
     return render_template("redlepanka.html")
+
+@app.route('/become_taco', methods=['GET'])    
+def get_red_lepanka():
+    return render_template("becomingtaco.html")
+
+@app.route('/car_jack', methods=['GET'])    
+def get_red_lepanka():
+    return render_template("carjack.html")
+
+@app.route('/ego_bias', methods=['GET'])    
+def get_red_lepanka():
+    return render_template("ego.html")
 
 app.run(host='0.0.0.0', port=80)
