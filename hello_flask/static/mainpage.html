@@ -56,58 +56,34 @@
         width: 160px;
         height: 160px;
       }
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        background-color: coral;
-        border-radius: 15px;
-      }
-
-      li {
-        float: left;
-      }
-
-      li a, button {
-        display: block;
-        color: white;
-        text-align: center;
-        padding: 14px 16px;
-        text-decoration: none;
-        transition-duration: 0.3s;
-        background-color: coral;
-        border-radius: 15px;
-        cursor: pointer;
+      .btn {
         border: none;
+        outline: none;
+        padding: 10px 16px;
+        background-color: coral;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
       }
 
-      li a:hover:not(.active), button:hover:not(.active) {
+      /* Style the active class, and buttons on mouse-over */
+      .active, .btn:hover {
         background-color: white;
         color: coral;
-        border-radius: 15px;
-        border: 2px solid coral;
-      }
-
-      .active {
-        border-radius: 15px;
-        background-color: #eeeeee;
-        border: 2px solid coral;
-        color:coral;
-      }
+      }      
 </style>
 </head>
 <body>
     </style>
   </head>
   <body>
-    <ul class="button">
-      <li><button class="active" type="button">All Genres</button></li>
-      <li><button type="button">Thriller</button></li>
-      <li><button type="button">Romance</button></li>
-      <li><button type="button">Sci-Fi</button></li>
-      <li><button type="button">Inspiring</button></li>
-    </ul> 
+    <div id="myDIV">
+      <button class="btn active">All Genres</button>
+      <button class="btn ">Thriller</button>
+      <button class="btn">Romance</button>
+      <button class="btn">Sci-Fi</button>
+      <button class="btn">Self-Help</button>
+    </div>
     <div id="container">
       <div id="book_column_one">
         <div id="book_row_one_column_one" >
@@ -156,8 +132,14 @@
             $('#book_price4').html(books.books[3][2]);            
             console.log(books.books[0]);
         })
-        $('.button li').click(function() {
-          $(this).toggleClass("active");
+      var header = document.getElementById("myDIV");
+      var btns = header.getElementsByClassName("btn");
+      for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
         });
+      }
     </script>
 </html>
