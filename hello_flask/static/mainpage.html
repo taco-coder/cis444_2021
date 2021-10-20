@@ -13,15 +13,25 @@
         <div id="mydiv" style="color:black"></div>
         <div id="book_one">
           <button type="button"><img width="300px" height = "300px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Hqna9qEdWJ7jZT33ZoqdSQHaJ4%26pid%3DApi&f=1"></button>
-          <h2 id="book_name"></h2>
-          <p id="book_price" class="inner"></p>
+          <h2 id="book_name1"></h2>
+          <p id="book_price1" class="inner"></p>
           <button type="button" class="inner">Add to Cart</button>
         </div>
+        <div id="book_one">
+          <button type="button"><img width="300px" height = "300px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Hqna9qEdWJ7jZT33ZoqdSQHaJ4%26pid%3DApi&f=1"></button>
+          <h2 id="book_name2"></h2>
+          <p id="book_price2" class="inner"></p>
+          <button type="button" class="inner">Add to Cart</button>
+        </div>        
     </body>
+
     <script>
         $.getJSON("/main_store", function(books){
-            $('#book_name').html(books.books[0][1]);
-            $('#book_price').html(books.books[0][2]);
+            $('#book_name1').html(books.books[0][1]);
+            $('#book_price1').html(books.books[0][2]);
+
+            $('#book_name2').html(books.books[1][1]);
+            $('#book_price2').html(books.books[1][2]);            
             console.log(books.books[0]);
         })        
     </script>
