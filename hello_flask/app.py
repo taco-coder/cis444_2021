@@ -108,7 +108,7 @@ def create_creds():
     credsForm = request.form
     cur.execute("select * from users where username = '" + credsForm['username'] + "';")
     if cur.fetchone() is None:
-        jwt_pass = jwt.encode(credsForm['password'], JWT_SECRET, algorithm="HS256")
+        jwt_pass = jwt.encode({"password" :credsForm['password']}, JWT_SECRET, algorithm="HS256")
         print(jwt_pass)
         cur.execute("insert into users (username, password) values ('" + credsForm['username'] + "', '" + jwt_pass + "');")
         db.commit()
