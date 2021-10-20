@@ -134,7 +134,8 @@ def check_creds():
 def main_page():
     cur = db.cursor()
     cur.execute("select * from books;")
-    return json_response(books = cur.fetchall())
+    books = cur.fetchall()
+    return json_response(books)
 
 @app.route('/red_lepanka', methods=['GET'])    
 def get_red_lepanka():
