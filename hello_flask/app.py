@@ -121,7 +121,7 @@ def check_creds():
     if cur.fetchone() is None:
         return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
     else:
-        get_main_page()
+        return get_main_page()
         #return current_app.send_static_file("mainpage.html")
 
 @app.route('/main_store')
