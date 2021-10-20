@@ -122,12 +122,14 @@ def check_creds():
     cur.execute("select * from users where username = '" + request.form['username'] + "';")
     if cur.fetchone() is None:
         return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
-    jwt_pass = cur.fetchone()[3]
-    decode_pass = jwt.decode(jwt_pass, JWT_SECRET, algorithms=["HS256"])
-    if request.form['password'] == decode_pass:
-        return current_app.send_static_file("mainpage.html")
     else:
-        return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
+        cur.execute("select * from users where username = '" + request.form['username'] + "';")        
+        jwt_pass = cur.fetchone()[3]
+        decode_pass = jwt.decode(jwt_pass, JWT_SECRET, algorithms=["HS256"])
+        if request.form['password'] == decode_pass:
+            return current_app.send_static_file("mainpage.html")
+        else:
+            return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
 
 @app.route('/main_store')
 def main_page():
