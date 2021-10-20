@@ -136,4 +136,8 @@ def main_page():
     cur.execute("select * from books;")
     return json_response(books = cur.fetchall())
 
+@app.route('/red_lepanka')    
+def get_red_lepanka():
+    return render_template("redlepanka.html")
+
 app.run(host='0.0.0.0', port=80)
