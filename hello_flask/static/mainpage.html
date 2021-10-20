@@ -56,42 +56,54 @@
         width: 160px;
         height: 160px;
       }
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
     </style>
   </head>
-    <body>
-      <div id="container">
-        <div id="book_column_one">
-          <div id="book_row_one_column_one" >
-            <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
-            <h2 id="book_name1"></h2>
-            <p id="book_price1" class="inner"></p>
-            <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
-          </div>
-          <div id="book_row_two_column_one" >
-            <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629606332034.jpg"/>           
-            <h2 id="book_name2" onclick()=""></h2>
-            <p id="book_price2" class="inner"></p>
-            <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
-          </div>
+  <body>
+    <ul>
+      <li><a href="default">All Books</a></li>
+      <li><a href="default">Home</a></li>
+      <li><a href="news">News</a></li>
+      <li><a href="contact">Contact</a></li>
+      <li><a href="about">About</a></li>
+    </ul> 
+    <div id="container">
+      <div id="book_column_one">
+        <div id="book_row_one_column_one" >
+          <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
+          <h2 id="book_name1"></h2>
+          <p id="book_price1" class="inner"></p>
+          <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
         </div>
-        <div id="book_column_two">
-          <div id="book_row_one_column_two" >
-            <div id="image_column_two">
-              <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1622955044190.png"/>
-            </div>
-            <h2 id="book_name3"></h2>
-            <p id="book_price3" class="inner"></p>
-            <button type="button" id="buy_button" class="inner">Add to Cart &#128722</button>
+        <div id="book_row_two_column_one" >
+          <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629606332034.jpg"/>           
+          <h2 id="book_name2" onclick()=""></h2>
+          <p id="book_price2" class="inner"></p>
+          <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
+        </div>
+      </div>
+      <div id="book_column_two">
+        <div id="book_row_one_column_two" >
+          <div id="image_column_two">
+            <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1622955044190.png"/>
           </div>
-          <div id="book_row_two_column_two" >
-            <div id="image_column_two">
-              <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1622954694581.jpg"/>
-            </div>
-            <h2 id="book_name4"></h2>
-            <p id="book_price4" class="inner"></p>
-            <button type="button" id="buy_button" class="inner">Add to Cart &#128722</button>
-          </div>               
-        </div> 
+          <h2 id="book_name3"></h2>
+          <p id="book_price3" class="inner"></p>
+          <button type="button" id="buy_button" class="inner">Add to Cart &#128722</button>
+        </div>
+        <div id="book_row_two_column_two" >
+          <div id="image_column_two">
+            <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1622954694581.jpg"/>
+          </div>
+          <h2 id="book_name4"></h2>
+          <p id="book_price4" class="inner"></p>
+          <button type="button" id="buy_button" class="inner">Add to Cart &#128722</button>
+        </div>               
+      </div> 
   </div>        
 </body>
 
