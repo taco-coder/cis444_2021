@@ -1,4 +1,5 @@
 from flask import Flask,render_template,request
+from flask.globals import current_app
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 
 
@@ -120,7 +121,7 @@ def check_creds():
     if cur.fetchone() is None:
         return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
     else:
-        return render_template("mainpage.html", account_status = "Success")
+        return current_app.send_static_file("mainpage.html")
 
 @app.route('/main_store')
 def main_page():
