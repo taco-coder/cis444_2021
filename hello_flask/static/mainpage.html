@@ -87,7 +87,7 @@
   </head>
   <body>
     <div id="myDIV">
-      <button class="btn active">All Genres</button>
+      <button class="btn active" onclick="showAll();">All Genres</button>
       <button class="btn" onclick="onlyThriller();">Thriller</button>
       <button class="btn">Romance</button>
       <button class="btn">Sci-Fi</button>
@@ -154,6 +154,9 @@
         $('#book_row_one_column_two').hide();
         $('#book_row_two_column_two').hide();
         $('#book_row_two_column_one').hide();
+      }
+      function showAll(){
+        $('#container').show();
       }
     </script>
 </html>
