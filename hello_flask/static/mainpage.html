@@ -3,15 +3,19 @@
   <head>
     <!-- head definitions go here -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
+    <style>
+      .inner{
+        display: inline-block;
+      }
+    </style>
   </head>
     <body>
         <div id="mydiv" style="color:black"></div>
         <div id="book_one">
           <button type="button"><img width="300px" height = "300px" src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Hqna9qEdWJ7jZT33ZoqdSQHaJ4%26pid%3DApi&f=1"></button>
           <h2 id="book_name"></h2>
-          <p id="book_price" style="float:left;"></p>
-          <button type="button" style="float:right; margin-right:1500px;">Add to Cart</button>
+          <p id="book_price" class="inner"></p>
+          <button type="button" class="inner">Add to Cart</button>
         </div>
     </body>
     <script>
