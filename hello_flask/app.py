@@ -135,7 +135,7 @@ def main_page():
     cur = db.cursor()
     cur.execute("select * from books;")
     books = cur.fetchall()
-    return json_response(books)
+    return json_response(books = books)
 
 @app.route('/red_lepanka', methods=['GET'])    
 def get_red_lepanka():
