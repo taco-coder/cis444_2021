@@ -124,7 +124,7 @@ def check_creds():
         return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
     else:
         cur.execute("select * from users where username = '" + request.form['username'] + "';")        
-        jwt_pass = cur.fetchone()[3]
+        jwt_pass = cur.fetchone()[2]
         decode_pass = jwt.decode(jwt_pass, JWT_SECRET, algorithms=["HS256"])
         if request.form['password'] == decode_pass:
             return current_app.send_static_file("mainpage.html")
