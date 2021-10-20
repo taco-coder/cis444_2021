@@ -8,11 +8,14 @@
     <body>
         <h3>Successful login</h3>
         <div id="mydiv" style="color:black"></div>
+        <div id="book_one">
+          <button type="button"><img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Ftse3.mm.bing.net%2Fth%3Fid%3DOIP.Hqna9qEdWJ7jZT33ZoqdSQHaJ4%26pid%3DApi&f=1"></button>
+        </div>
     </body>
     <script>
         $.getJSON("/main_store", function(books){
             $('#mydiv').html(books.books[0][2]);
-            console.log(books.books[0][2]);
+            console.log(books.books[0]);
         })        
     </script>
 </html>
