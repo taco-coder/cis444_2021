@@ -109,7 +109,6 @@ def create_creds():
     cur.execute("select * from users where username = '" + credsForm['username'] + "';")
     if cur.fetchone() is None:
         jwt_pass = jwt.encode({"password" :credsForm['password']}, JWT_SECRET, algorithm="HS256")
-        print(jwt_pass)
         cur.execute("insert into users (username, password) values ('" + credsForm['username'] + "', '" + jwt_pass + "');")
         db.commit()
         return check_signup(True)
@@ -125,9 +124,7 @@ def check_creds():
     else:
         cur.execute("select * from users where username = '" + request.form['username'] + "';")        
         jwt_pass = cur.fetchone()[2]
-        print(jwt_pass)
         decode_pass = jwt.decode(jwt_pass, JWT_SECRET, algorithms=["HS256"])
-        print(decode_pass)
         if request.form['password'] == decode_pass['password']:
             return current_app.send_static_file("mainpage.html")
         else:
