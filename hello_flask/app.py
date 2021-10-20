@@ -142,15 +142,15 @@ def get_red_lepanka():
     return render_template("redlepanka.html")
 
 @app.route('/become_taco', methods=['GET'])    
-def get_red_lepanka():
+def get_taco():
     return render_template("becomingtaco.html")
 
 @app.route('/car_jack', methods=['GET'])    
-def get_red_lepanka():
+def get_carjack():
     return render_template("carjack.html")
 
 @app.route('/ego_bias', methods=['GET'])    
-def get_red_lepanka():
+def get_ego_bias():
     return render_template("ego.html")
 
 app.run(host='0.0.0.0', port=80)
