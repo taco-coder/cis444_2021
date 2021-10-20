@@ -108,7 +108,7 @@ def create_creds():
     credsForm = request.form
     cur.execute("select * from users where username = '" + credsForm['username'] + "';")
     if cur.fetchone() is None:
-        cur.execute("insert into users (username, password) values ('" + credsForm['username'] + "', '" + credsForm['password'] + "');")
+        cur.execute("insert into users (username, password) values ('" + credsForm['username'] + "', '" + jwt.encode(credsForm['password'], JWT_SECRET, algorithm="HS256") + "');")
         db.commit()
         return check_signup(True)
     else:
@@ -117,11 +117,15 @@ def create_creds():
 @app.route('/check_creds', methods=['POST'])
 def check_creds():
     cur = db.cursor()
-    cur.execute("select * from users where username = '" + request.form['username'] + "' and password = '" + request.form['password'] + "';")
+    cur.execute("select * from users where username = '" + request.form['username'] + "';")
     if cur.fetchone() is None:
         return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
-    else:
+    jwt_pass = cur.fetchone()[3]
+    decode_pass = jwt.decode(jwt_pass, JWT_SECRET, algorithms=["HS256"])
+    if request.form['password'] == decode_pass:
         return current_app.send_static_file("mainpage.html")
+    else:
+        return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
 
 @app.route('/main_store')
 def main_page():
@@ -130,5 +134,3 @@ def main_page():
     return json_response(books = cur.fetchall())
 
 app.run(host='0.0.0.0', port=80)
-
-#ssh -i "cis444.pem" ubuntu@ec2-23-21-164-56.compute-1.amazonaws.com
