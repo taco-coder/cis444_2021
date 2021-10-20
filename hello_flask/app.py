@@ -125,7 +125,9 @@ def check_creds():
     else:
         cur.execute("select * from users where username = '" + request.form['username'] + "';")        
         jwt_pass = cur.fetchone()[2]
+        print(jwt_pass)
         decode_pass = jwt.decode(jwt_pass, JWT_SECRET, algorithms=["HS256"])
+        print(decode_pass)
         if request.form['password'] == decode_pass:
             return current_app.send_static_file("mainpage.html")
         else:
