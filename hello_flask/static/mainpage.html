@@ -89,9 +89,9 @@
     <div id="myDIV">
       <button class="btn active" onclick="showAll();">All Genres</button>
       <button class="btn" onclick="onlyThriller();">Thriller</button>
-      <button class="btn">Romance</button>
-      <button class="btn">Sci-Fi</button>
-      <button class="btn">Self-Help</button>
+      <button class="btn" onclick="onlyRomance();">Romance</button>
+      <button class="btn" onclick="onlyScifi();">Sci-Fi</button>
+      <button class="btn" onclick="onlySelfhelp();">Self-Help</button>
     </div>
     <div id="container">
       <div id="book_column_one">
@@ -155,8 +155,26 @@
         $('#book_row_two_column_two').hide();
         $('#book_row_two_column_one').hide();
       }
+      function onlyRomance(){
+        $('#book_row_one_column_one').hide();
+        $('#book_row_one_column_two').hide();
+        $('#book_row_two_column_one').hide();
+      }
+      function onlyScifi(){
+        $('#book_row_one_column_one').hide();
+        $('#book_row_two_column_two').hide();
+        $('#book_row_two_column_one').hide();
+      }  
+      function onlySelfhelp(){
+        $('#book_row_one_column_two').hide();
+        $('#book_row_two_column_two').hide();
+        $('#book_row_row_column_one').hide();
+      }                
       function showAll(){
-        $('#container').show();
+        $('#book_row_one_column_one').show();
+        $('#book_row_one_column_two').show();
+        $('#book_row_two_column_two').show();
+        $('#book_row_two_column_one').show();
       }
     </script>
 </html>
