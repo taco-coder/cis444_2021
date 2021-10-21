@@ -6,6 +6,7 @@ from flask_json import FlaskJSON, JsonError, json_response, as_json
 import jwt
 import datetime
 import random
+import bcrypt
 
 from db_con import get_db_instance, get_db
 
@@ -108,8 +109,8 @@ def create_creds():
     credsForm = request.form
     cur.execute("select * from users where username = '" + credsForm['username'] + "';")
     if cur.fetchone() is None:
-        jwt_pass = jwt.encode({"password" :credsForm['password']}, JWT_SECRET, algorithm="HS256")
-        cur.execute("insert into users (username, password) values ('" + credsForm['username'] + "', '" + jwt_pass + "');")
+        salted_pwd = bcrypt.hashpw( bytes(credsForm['password'], 'utf-8'),  bcrypt.gensalt(12))
+        cur.execute("insert into users (username, password) values ('" + credsForm['username'] + "', '" + salted_pwd + "');")
         db.commit()
         return check_signup(True)
     else:
@@ -123,9 +124,8 @@ def check_creds():
         return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
     else:
         cur.execute("select * from users where username = '" + request.form['username'] + "';")        
-        jwt_pass = cur.fetchone()[2]
-        decode_pass = jwt.decode(jwt_pass, JWT_SECRET, algorithms=["HS256"])
-        if request.form['password'] == decode_pass['password']:
+        hashed_pass = cur.fetchone()[2]
+        if bcrypt.checkpw(request.form['password'], hashed_pass):
             return current_app.send_static_file("mainpage.html")
         else:
             return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
