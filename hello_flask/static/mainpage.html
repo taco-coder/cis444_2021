@@ -57,6 +57,9 @@
         width: 160px;
         height: 160px;
       }
+      #cart_btn{
+        margin-left: 90%;
+      }
       .btn {
         border: none;
         outline: none;
@@ -94,7 +97,7 @@
       <button class="btn" onclick="onlyScifi();">Sci-Fi</button>
       <button class="btn" onclick="onlySelfhelp();">Self-Help</button>
     </div>
-      <form action="/cart" method="get">
+      <form id = "cart_btn" action="/cart" method="get">
         <input type="submit" class="btn" value="Cart &#128722">
       </form>    
     <div id="container">
