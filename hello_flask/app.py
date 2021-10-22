@@ -107,11 +107,10 @@ def check_signup(value):
 def create_creds():
     cur = db.cursor()
     credsForm = request.form
-    cur.execute("select * from users where username = '" + credsForm['username'] + "';")
+    cur.execute("select * from users where username = '" + jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256") + "';")
     if cur.fetchone() is None:
         jwt_user = jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256")
         salted_pwd = bcrypt.hashpw( bytes(credsForm['password'], 'utf-8'),  bcrypt.gensalt(12))
-        print(salted_pwd.decode('utf-8'))
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
         return check_signup(True)
@@ -155,5 +154,8 @@ def get_carjack():
 @app.route('/ego_bias', methods=['GET'])    
 def get_ego_bias():
     return render_template("ego.html")
+@app.route('/cart', methods=['GET'])    
+def get_ego_bias():
+    return render_template("cart.html")
 
 app.run(host='0.0.0.0', port=80)
