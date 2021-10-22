@@ -154,6 +154,7 @@ def get_carjack():
 @app.route('/ego_bias', methods=['GET'])    
 def get_ego_bias():
     return render_template("ego.html")
+    
 @app.route('/cart', methods=['GET'])    
 def get_ego_bias():
     return render_template("cart.html")
