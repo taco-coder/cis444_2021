@@ -111,7 +111,8 @@ def create_creds():
     if cur.fetchone() is None:
         jwt_user = jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256")
         salted_pwd = bcrypt.hashpw( bytes(credsForm['password'], 'utf-8'),  bcrypt.gensalt(12))
-        cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd + "');")
+        print(salted_pwd.decode('utf-8'))
+        cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
         return check_signup(True)
     else:
@@ -127,7 +128,7 @@ def check_creds():
     else:
         cur.execute("select * from users where username = '" + jwt_user + "';")        
         hashed_pass = cur.fetchone()[2]
-        if bcrypt.checkpw(request.form['password'], hashed_pass):
+        if bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), bytes(hashed_pass, 'utf-8')):
             return current_app.send_static_file("mainpage.html")
         else:
             return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
