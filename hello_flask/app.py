@@ -143,26 +143,26 @@ def main_page():
 def get_red_lepanka():
     cur = db.cursor()
     cur.execute("select * from books where id = 1;")
-    return render_template("redlepanka.html", bookname=cur.fetchone[1], price=cur.fetchone[2])
+    return render_template("redlepanka.html", bookname=cur.fetchone()[1], price=cur.fetchone()[2])
 
 @app.route('/become_taco', methods=['GET'])    
 def get_taco():
     cur = db.cursor()
     cur.execute("select * from books where id = 2;")    
-    return render_template("becomingtaco.html", bookname=cur.fetchone[1], price=cur.fetchone[2])
+    return render_template("becomingtaco.html", bookname=cur.fetchone()[1], price=cur.fetchone()[2])
 
 @app.route('/car_jack', methods=['GET'])    
 def get_carjack():
     cur = db.cursor()
     cur.execute("select * from books where id = 3;")    
-    return render_template("carjack.html", bookname=cur.fetchone[1], price=cur.fetchone[2])
+    return render_template("carjack.html", bookname=cur.fetchone()[1], price=cur.fetchone()[2])
 
 @app.route('/ego_bias', methods=['GET'])    
 def get_ego_bias():
     cur = db.cursor()
     cur.execute("select * from books where id = 4;")
 
-    return render_template("ego.html", bookname=cur.fetchone[1], price=cur.fetchone[2])
+    return render_template("ego.html", bookname=cur.fetchone()[1], price=cur.fetchone()[2])
 
 @app.route('/cart', methods=['GET'])    
 def get_cart():
