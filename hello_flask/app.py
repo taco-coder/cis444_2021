@@ -144,11 +144,7 @@ def get_red_lepanka():
     cur = db.cursor()
     cur.execute("select * from books where id = 1;")
     bResult = cur.fetchone()
-    print(bResult)
-    print(bResult[0])
-    print(bResult[1])
-    print(bResult[2])
-    return render_template("redlepanka.html", bookname="bookname", price="book price")
+    return render_template("redlepanka.html", bookname=bResult[1], price=bResult[2])
 
 @app.route('/become_taco', methods=['GET'])    
 def get_taco():
