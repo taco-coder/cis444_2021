@@ -3,7 +3,14 @@
     <head>
         <!-- head definitions go here -->
     </head>
-    <body>
-	    <h1>Red lepanka time</h1>
+    <body>	
+        <div class="ui-grid-a">
+            <div class="ui-block-a"><img width="250px" height="450px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/></div>
+            <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px">{{bookname}}</div></div>
+            <div class="ui-block-b">
+                <div class="ui-bar ui-bar-a" style="height:60px">{{price}}</div>
+                <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
+            </div>
+        </div><!-- /grid-a -->
     </body>
 </html>
