@@ -115,7 +115,7 @@
     <script>
         var user_reviews = {{reviews | tojson}}
         for(let i = 0; i < Object.keys(user_reviews).length; i++){
-            $("#user-review").append(user_reviews[i][1])
+            $("#user-review").append("Rated: "+ user_reviews[i][2] + "/5 - " + user_reviews[i][1])
             $("#user-review").append("<br><br>")
         }
     </script>
