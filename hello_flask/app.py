@@ -144,7 +144,7 @@ def get_red_lepanka():
     cur = db.cursor()
     cur.execute("select * from books where id = 1;")
     bResult = cur.fetchone()
-    cur.execute("select * from reviews where id=1;")
+    cur.execute("select * from reviews where id = 1;")
     reviews = cur.fetchall()
     return render_template("redlepanka.html", bookname=bResult[1], price=bResult[2], reviews=reviews)
 
