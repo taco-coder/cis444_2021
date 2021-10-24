@@ -58,7 +58,10 @@
             #cart_btn{
                 margin-left: 92%;
                 margin-top: -40px;
-            }                 
+            }               
+            #book-title{
+                background: red;
+            }  
         </style>
     </head>
     <body>	
@@ -72,7 +75,9 @@
             <img width="450px" height="450px" style="border-radius: 5px;" src="https://red-lepanka-images.s3.amazonaws.com/1622955044190.png"/>
         </div>
         <div id="book-details">
-            <h1 style="margin-bottom: 200px; font-size: 50px;">{{bookname}}</h1>
+            <div id="book-title">
+                <h1 style="margin-bottom: 200px; font-size: 50px;">{{bookname}}</h1>
+            </div>
             <h3 id= "price">Price: {{price}}</h3>
             <button type="button" id="buy_button">Add to Cart &#128722</button>
         </div>
