@@ -3,6 +3,9 @@
     <head>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <style>
+            body{
+                font-family: 'Courier New', Courier, monospace;
+            }
             #book-details, #book-cover{
                 display: inline-block;
             }
@@ -45,7 +48,7 @@
             <img width="450px" height="450px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
         </div>
         <div id="book-details">
-            <h1 style="margin-bottom: 150px;">{{bookname}}</h1>
+            <h1 style="margin-bottom: 150px; font-size: 24px;">{{bookname}}</h1>
             <h3 id= "price">Price: {{price}}</h3>
             <button type="button" id="buy_button">Add to Cart &#128722</button>
         </div>
