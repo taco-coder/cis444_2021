@@ -108,14 +108,16 @@
         </div>
         <div id="review-section">
                 <h2>Reviews</h2>
+                <h4 id="avg-rate"></h4>
             <hr>
             <div id="user-review">{{reviews[1][1]}}</div>
     </body>
     <script>
-        console.log({{numReviews}})
+        var num_reviews = {{num_reviews}}
         var user_reviews = {{reviews | tojson}}
-        console.log(user_reviews[1][1])
-        var i = 1;
-        console.log(user_reviews[0][i])
+        for(let i = 0; i < num_reviews; i++){
+            console.log(user_reviews[i][1])
+            console.log(user_reviews[i][2])
+        }
     </script>
 </html>
