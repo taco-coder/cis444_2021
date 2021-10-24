@@ -176,7 +176,7 @@ def get_cart():
 @app.route('/post_review', methods=['POST'])
 def post_review():
     print(request.form)
-    print(request.args)
+    print(request.form['rate'])
     return get_red_lepanka()
 
 app.run(host='0.0.0.0', port=80)
