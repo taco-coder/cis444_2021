@@ -113,7 +113,7 @@
             <div id="user-review">{{reviews[1][1]}}</div>
     </body>
     <script>
-        var num = {{num_reviews | tojson}}
+        var num = {{num_reviews | int}}
         console.log(num)    
         var user_reviews = {{reviews | tojson}}
         for(let i = 0; i < num; i++){
