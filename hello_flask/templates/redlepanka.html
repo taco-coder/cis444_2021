@@ -6,9 +6,12 @@
             body{
                 font-family: 'Courier New', Courier, monospace;
             }
-            #book-details, #book-cover{
+            #book-details, #book-cover, #testimonies{
                 display: inline-block;
                 vertical-align: middle;
+            }
+            #testimonies{
+                color: gray;
             }
             #book-details{
                 margin-left: 100px;
@@ -81,6 +84,8 @@
             <h1 style="margin-bottom: 200px; font-size: 50px;">{{bookname}}</h1>
             <h3 id= "price">Price: {{price}}</h3>
             <button type="button" id="buy_button">Add to Cart &#128722</button>
+        </div>
+        <div id="testimonies">
         </div>
         <div id="description">
             <h2>Description</h2>
