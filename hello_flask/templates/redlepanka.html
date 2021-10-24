@@ -10,6 +10,7 @@
                 display: inline-block;
             }
             #book-details{
+                margin-top: -100ps;
                 margin-left: 100px;
                 background: yellow;
             }
@@ -25,9 +26,11 @@
             <img width="450px" height="450px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
         </div>
         <div id="book-details">
-            <h1 style="margin-bottom: 50px;">{{bookname}}</h1>
-            <p>{{price}}</p>
-            <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
+            <h1 style="margin-bottom: 150px;">{{bookname}}</h1>
+            <div style="display: inline-block;">
+                <p>Price: {{price}}</p>
+                <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
+            </div>
         </div>        
     </body>
 </html>
