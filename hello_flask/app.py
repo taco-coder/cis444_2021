@@ -173,4 +173,9 @@ def get_ego_bias():
 def get_cart():
     return render_template("cart.html")
 
+@app.route('/post_review', methods=['POST'])
+def post_review():
+    print(request.form)
+    return get_red_lepanka()
+
 app.run(host='0.0.0.0', port=80)
