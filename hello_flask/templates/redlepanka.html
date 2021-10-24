@@ -108,12 +108,17 @@
         </div>
         <div id="review-section">
                 <h2>Reviews</h2>
-                <h4>Rating: 4/5</h4>
+                <h4 id="avgRate"></h4>
             <hr>
-            <div id="user-review">
-            </div>
+            <div id="user-review"></div>
     </body>
     <script>
-        console.log({{reviews[0][2]}})
+        for(let i =0; i < reviews.length; i++){
+            var $review = $("<p>Rated: " + reviews[i][2] +"/5: " + reviews[i][1] + "</p>");
+            var $totalRate += reviews[i][2];
+            $('#user-review').append($review);
+        }
+        $totalRate = $totalRate / reviews.length;
+        $('#avgRate').html("Rating: " + $totalRate + "/5") 
     </script>
 </html>
