@@ -111,7 +111,20 @@
                 <h4 id="avg-rate"></h4>
             <hr>
             <div id="user-review"></div>
-        </div>            
+            <div id="post-review">
+                <form action="/post_review" method="post">
+                    <label for="rate">Rate:</label>
+                    <select name="rate" id="rate">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                </form>
+                <textarea rows="4" cols="50" placeholder="Leave a review within 255 characters" maxlength="255"></textarea>
+            </div>
+        </div>
     </body>
     <script>
         var user_reviews = {{reviews | tojson}}
