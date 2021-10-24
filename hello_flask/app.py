@@ -185,7 +185,12 @@ def get_cart():
 def post_review():
     cur = db.cursor()
     cur.execute("insert into reviews (id, review, rating) values (" + request.form['book_id'] + ", '" + request.form.get('reviewtext') +"', " + request.form['rate'] + ");")
-    print(request.form['book_id'])
+    if request.form['book_id'] == 1:
+        print("lepanka")
+    elif request.form['book_id'] == 2:
+        print("taco")
+    elif request.form['book_id'] == 3:
+        print("carjack")
     db.commit()
     if request.form['book_id'] == 1:
         return get_red_lepanka()
