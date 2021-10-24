@@ -142,6 +142,6 @@
         console.log(avgRate)
         avgRate = avgRate / Object.keys(user_reviews).length
         console.log(avgRate)
-        $("#avg-rate").html("Rating: " + avgRate + "/5")
+        $("#avg-rate").html("Rating: " + avgRate.toFixed(1) + "/5")
     </script>
 </html>
