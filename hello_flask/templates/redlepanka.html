@@ -18,8 +18,17 @@
                 border-radius: 15px;
             }
             #buy_button, #price{
-                background: blue;
                 display: inline;
+            }
+            #buy_button{
+                border: none;
+                outline: none;
+                padding: 10px 16px;
+                background-color: coral;
+                color: white;
+                cursor: pointer;
+                font-size: 18px;
+                transition-duration: 0.3s;                
             }
         </style>
     </head>
@@ -29,7 +38,7 @@
         </div>
         <div id="book-details">
             <h1 style="margin-bottom: 150px;">{{bookname}}</h1>
-            <p id= "price">Price: {{price}}</p>
+            <h3 id= "price">Price: {{price}}</h3>
             <button type="button" id="buy_button">Add to Cart &#128722</button>
         </div>
 
