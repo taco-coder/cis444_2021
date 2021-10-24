@@ -155,31 +155,40 @@ def get_taco():
     cur = db.cursor()
     cur.execute("select * from books where id = 2;")    
     bResult = cur.fetchone()
-    return render_template("becomingtaco.html", bookname=bResult[1], price=bResult[2])
+    cur.execute("select * from reviews where id = 2;")
+    uReviews = cur.fetchall()    
+    return render_template("becomingtaco.html", bookname=bResult[1], price=bResult[2], reviews=uReviews)
 
 @app.route('/car_jack', methods=['GET'])    
 def get_carjack():
     cur = db.cursor()
     cur.execute("select * from books where id = 3;")    
     bResult = cur.fetchone()
-    return render_template("carjack.html", bookname=bResult[1], price=bResult[2])
+    cur.execute("select * from reviews where id = 3;")
+    uReviews = cur.fetchall()    
+    return render_template("carjack.html", bookname=bResult[1], price=bResult[2], reviews=uReviews)
 
 @app.route('/ego_bias', methods=['GET'])    
 def get_ego_bias():
     cur = db.cursor()
     cur.execute("select * from books where id = 4;")
     bResult = cur.fetchone()
-    return render_template("ego.html", bookname=bResult[1], price=bResult[2])
+    cur.execute("select * from reviews where id = 4;")
+    uReviews = cur.fetchall()    
+    return render_template("ego.html", bookname=bResult[1], price=bResult[2], reviews=uReviews)
 
 @app.route('/cart', methods=['GET'])    
 def get_cart():
     return render_template("cart.html")
 
-@app.route('/post_review', methods=['POST'])
+@app.route('/post_review', methods=['POST', 'GET'])
 def post_review():
     cur = db.cursor()
     cur.execute("insert into reviews (id, review, rating) values (" + request.form['book_id'] + ", '" + request.form.get('reviewtext') +"', " + request.form['rate'] + ");")
     db.commit()
-    return get_red_lepanka()
+    if(request.form['book_id'] == 1):
+        return get_red_lepanka()
+    elif(request.form['book_id'] == 2):
+        return get_taco()
 
 app.run(host='0.0.0.0', port=80)
