@@ -177,7 +177,7 @@ def get_cart():
 def post_review():
     print(request.form)
     print(request.form['book_id'])
-    print(request.form['reviewtext'])
+    print(request.form.get('reviewtext'))
     return get_red_lepanka()
 
 app.run(host='0.0.0.0', port=80)
