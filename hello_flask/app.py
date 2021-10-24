@@ -145,9 +145,9 @@ def get_red_lepanka():
     cur.execute("select * from books where id = 1;")
     bResult = cur.fetchone()
     cur.execute("select * from reviews where id = 1;")
-    reviews = cur.fetchall()
-    print(reviews)
-    return render_template("redlepanka.html", bookname=bResult[1], price=bResult[2], reviews=reviews)
+    uReviews = cur.fetchall()
+    print(uReviews)
+    return render_template("redlepanka.html", bookname=bResult[1], price=bResult[2], reviews=uReviews, numReviews = uReviews.size)
 
 @app.route('/become_taco', methods=['GET'])    
 def get_taco():
