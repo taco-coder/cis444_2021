@@ -175,7 +175,7 @@ def get_cart():
 
 @app.route('/post_review', methods=['POST'])
 def post_review():
-    print(request.form)
+    print(request.form['rate'])
     print(request.form['book_id'])
     print(request.form.get('reviewtext'))
     return get_red_lepanka()
