@@ -175,9 +175,9 @@ def get_cart():
 
 @app.route('/post_review', methods=['POST'])
 def post_review():
-    print(request.form['rate'])
-    print(request.form['book_id'])
-    print(request.form.get('reviewtext'))
+    cur = db.cursor()
+    cur.execute("insert into reviews (id, review, rating) values (" + request.form['book_id'] + ", '" + request.form.get('reviewtext') +"', " + request.form['rate'] + ");")
+    db.commit()
     return get_red_lepanka()
 
 app.run(host='0.0.0.0', port=80)
