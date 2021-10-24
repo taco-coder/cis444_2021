@@ -2,16 +2,82 @@
 <html>
     <head>
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-  
+        <style>
+            body{
+                font-family: 'Courier New', Courier, monospace;
+            }
+            #book-details, #book-cover{
+                display: inline-block;
+                vertical-align: middle;
+            }
+            #book-details{
+                margin-left: 100px;
+                padding-right: 250px;
+                width: 400px;
+                background: yellow;
+                wordwrap: normal;
+            }
+            #book-cover{
+                margin-left: 150px;
+            }
+            #buy_button, #price{
+                display: inline;
+            }
+            #buy_button{
+                margin-left: 40px;
+                border: none;
+                outline: none;
+                padding: 10px 16px;
+                border-radius:5px;
+                background-color: coral;
+                color: white;
+                cursor: pointer;
+                font-size: 18px;
+                transition-duration: 0.3s;                
+            }
+            #buy_button:hover{
+                background-color: white;
+                color: coral;
+                border: 1px solid coral; 
+            }
+            .btn {
+                border: none;
+                outline: none;
+                padding: 10px 16px;
+                border-radius:5px;
+                background-color: coral;
+                color: white;
+                cursor: pointer;
+                font-size: 18px;
+                transition-duration: 0.3s;  
+            }  
+            .btn:hover {
+                background-color: #white;
+                color: coral;
+                border-radius: 10px;
+                border: 1px solid coral;        
+            }             
+            #cart_btn{
+                margin-left: 92%;
+                margin-top: -40px;
+            }                 
+        </style>
     </head>
-    <body>
-        <div class="ui-grid-a">
-            <div class="ui-block-a"><img width="250px" height="450px" src="https://red-lepanka-images.s3.amazonaws.com/1629606332034.jpg"/></div>
-            <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px">{{bookname}}</div></div>
-            <div class="ui-block-b">
-                <div class="ui-bar ui-bar-a" style="height:60px">{{price}}</div>
-                <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
-            </div>
-        </div><!-- /grid-a -->
+    <body>	
+        <div id="myDIV">
+        <button class="btn">Go Back &#8617</button>
+        </div>
+        <form id = "cart_btn" action="/cart" method="get">
+            <input type="submit" class="btn" value="Go to Cart &#128722">
+        </form>        
+        <div id="book-cover">
+            <img width="450px" height="450px" style="border-radius: 5px;" src="https://red-lepanka-images.s3.amazonaws.com/1629606332034.jpg"/>
+        </div>
+        <div id="book-details">
+            <h1 style="margin-bottom: 200px; font-size: 50px;">{{bookname}}</h1>
+            <h3 id= "price">Price: {{price}}</h3>
+            <button type="button" id="buy_button">Add to Cart &#128722</button>
+        </div>
+
     </body>
 </html>
