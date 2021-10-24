@@ -120,6 +120,7 @@
             avgRate += user_reviews[i][2]
             $("#user-review").append("<br><br>")
         }
+        console.log(avgRate)
         avgRate = avgRate / Object.keys(user_reviews).length
         $("#avgRate").html("Rating: " + avgRate + "/5")
     </script>
