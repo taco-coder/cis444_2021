@@ -115,9 +115,10 @@
     <script>
         console.log(reviews.length)
         console.log(reviews.size)
+        var $totalRate;
         for(let i =0; i < reviews.length; i++){
             var $review = $("<p>Rated: " + reviews[i][2] +"/5: " + reviews[i][1] + "</p>");
-            var $totalRate += reviews[i][2];
+            $totalRate += reviews[i][2];
             $('#user-review').append($review);
         }
         $totalRate = $totalRate / reviews.length;
