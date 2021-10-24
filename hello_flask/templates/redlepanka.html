@@ -114,7 +114,7 @@
             <div id="post-review" style="display:inline-block;">    
             <hr>        
             <h2>Leave a review:</h2>
-                <form action="/post_review" method="post">
+                <form id="post-review" action="/post_review" method="post">
                     <label for="rate">Rate:</label>
                     <select name="rate" id="rate">
                         <option value="1">1</option>
@@ -123,9 +123,10 @@
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
+                    <input type="submit" value="Post Review">
                 </form>
                 <br>
-                <textarea rows="4" cols="100" placeholder="Leave a review within 255 characters" maxlength="255"></textarea>
+                <textarea rows="4" cols="100" placeholder="Leave a review within 255 characters" maxlength="255" form="post-review"></textarea>
             </div>
         </div>
     </body>
