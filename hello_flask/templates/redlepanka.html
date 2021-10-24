@@ -41,9 +41,36 @@
                 color: coral;
                 border: 1px solid coral; 
             }
+            .btn {
+                border: none;
+                outline: none;
+                padding: 10px 16px;
+                border-radius:5px;
+                background-color: coral;
+                color: white;
+                cursor: pointer;
+                font-size: 18px;
+                transition-duration: 0.3s;  
+            }  
+            .btn:hover {
+                background-color: #white;
+                color: coral;
+                border-radius: 10px;
+                border: 1px solid coral;        
+            }             
+            #cart_btn{
+                margin-left: 92%;
+                margin-top: -40px;
+            }                 
         </style>
     </head>
     <body>	
+        <div id="myDIV">
+        <button class="btn">Go Back &#8617</button>
+        </div>
+        <form id = "cart_btn" action="/cart" method="get">
+            <input type="submit" class="btn" value="Go to Cart &#128722">
+        </form>        
         <div id="book-cover">
             <img width="450px" height="450px" style="border-radius: 5px;" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
         </div>
