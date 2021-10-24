@@ -114,9 +114,13 @@
     </body>
     <script>
         var user_reviews = {{reviews | tojson}}
+        var avgRate = 0;
         for(let i = 0; i < Object.keys(user_reviews).length; i++){
             $("#user-review").append("Rated: "+ user_reviews[i][2] + "/5 - " + user_reviews[i][1])
+            avgRate += user_reviews[i][2]
             $("#user-review").append("<br><br>")
         }
+        avgRate = avgRate / Object.keys(user_reviews).length
+        $("#avgRate").html("Rating: " + avgRate + "/5")
     </script>
 </html>
