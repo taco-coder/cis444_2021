@@ -138,7 +138,9 @@ def main_page():
     cur.execute("select * from books;")
     db_books = cur.fetchall()
     return json_response(books = db_books)
-
+@app.route('/back_to_store')
+def go_back():
+    return current_app.send_static_file("mainpage.html")
 @app.route('/red_lepanka', methods=['GET'])    
 def get_red_lepanka():
     cur = db.cursor()
