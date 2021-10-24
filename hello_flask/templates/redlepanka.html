@@ -110,13 +110,12 @@
                 <h2>Reviews</h2>
                 <h4 id="avg-rate"></h4>
             <hr>
-            <div id="user-review">{{reviews[1][1]}}</div>
+            <div id="user-review"></div>
     </body>
     <script>
         var user_reviews = {{reviews | tojson}}
         for(let i = 0; i < Object.keys(user_reviews).length; i++){
-            console.log(user_reviews[i][1])
-            console.log(user_reviews[i][2])
+            $("#user-review").append(user_reviews[i][1])
         }
     </script>
 </html>
