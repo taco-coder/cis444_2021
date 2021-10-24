@@ -113,9 +113,9 @@
             <div id="user-review">{{reviews[1][1]}}</div>
     </body>
     <script>
-        var num_reviews = {{num_reviews}}
-        var user_reviews = {{reviews | tojson}}
-        for(let i = 0; i < num_reviews; i++){
+        var num = {{num_reviews}};
+        var user_reviews = {{reviews | tojson}};
+        for(let i = 0; i < num; i++){
             console.log(user_reviews[i][1])
             console.log(user_reviews[i][2])
         }
