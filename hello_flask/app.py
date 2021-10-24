@@ -188,7 +188,6 @@ def post_review():
     db.commit()
     if(request.form['book_id'] == 1):
         return get_red_lepanka()
-    elif(request.form['book_id'] == 2):
-        return get_taco()
+    return get_taco()
 
 app.run(host='0.0.0.0', port=80)
