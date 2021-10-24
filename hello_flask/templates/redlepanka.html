@@ -5,15 +5,23 @@
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <style>
+            #book-details{
+                background: yellow;
+            }
+            #book-cover{
+                background: green;
+            }
+        </style>
     </head>
     <body>	
-        <div class="ui-grid-a">
-            <div class="ui-block-a"><img width="250px" height="450px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/></div>
-            <div class="ui-block-b"><div class="ui-bar ui-bar-a">{{bookname}}</div></div>
-            <div class="ui-block-b">
-                <div class="ui-bar ui-bar-a">{{price}}</div>
-                <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
-            </div>
-        </div><!-- /grid-a -->
+        <div id="book-details">
+            <h1>{{bookname}}</h1>
+            <p>{{price}}</p>
+            <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
+        </div>
+        <div id="book-cover">
+            <img width="250px" height="450px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
+        </div>
     </body>
 </html>
