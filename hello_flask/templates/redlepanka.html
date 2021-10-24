@@ -114,6 +114,8 @@
     <script>
         console.log({{numReviews}})
         var user_reviews = {{reviews | tojson}}
-        console.log(user_reviews)
+        console.log(user_reviews[1][1])
+        var i = 0;
+        console.log(user_reviews[0][1])
     </script>
 </html>
