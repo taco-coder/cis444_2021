@@ -111,8 +111,9 @@
                 <h4 id="avg-rate"></h4>
             <hr>
             <div id="user-review"></div>
-            <div id="post-review" style="display:inline-block;">            
-            <h5>Leave a review:</h5>
+            <div id="post-review" style="display:inline-block;">    
+            <hr>        
+            <h2>Leave a review:</h2>
                 <form action="/post_review" method="post">
                     <label for="rate">Rate:</label>
                     <select name="rate" id="rate">
@@ -123,6 +124,7 @@
                         <option value="5">5</option>
                     </select>
                 </form>
+                <br>
                 <textarea rows="4" cols="100" placeholder="Leave a review within 255 characters" maxlength="255"></textarea>
             </div>
         </div>
