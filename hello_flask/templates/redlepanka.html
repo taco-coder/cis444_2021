@@ -92,8 +92,8 @@
             <h1 style="margin-bottom: 200px; font-size: 50px;">{{bookname}}</h1>
             <h3 id= "price">Price: {{price}}</h3>
             <form action="/add_to_cart" method="post">
-                <input type="hidden" id="bookname" name="book_name" value="">
-                <input type="hidden" id="bookprice" name="book_price" value="">
+                <input type="hidden" id="bookname" name="book_name" value="Red Lepanka">
+                <input type="hidden" id="bookprice" name="book_price" value={{price}}>
                 <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
             </form>
         </div>
@@ -138,11 +138,6 @@
         </div>
     </body>
     <script>
-        bName = {{bookname | tojson}}
-        bPrice = {{price | tojson}}
-        console.log(bName))
-        console.log(bPrice)
-        //$('#bookname').val({{bookname}});
         $('#bookprice').val(books.books[0][2]);    
         var user_reviews = {{reviews | tojson}}
         var avgRate = 0;
