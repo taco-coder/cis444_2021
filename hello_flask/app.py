@@ -29,6 +29,7 @@ db = get_db()
 
 with open("mysecret", "r") as f:
     JWT_SECRET = f.read()
+    session['key'] = f.read() #probably bad practice but whatever
 
 @app.route('/') #endpoint
 def index():
