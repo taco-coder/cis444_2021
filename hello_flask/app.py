@@ -189,13 +189,13 @@ def get_cart():
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
     cur = db.cursor()
-    cur.execute("insert into cart (id, bookname, price) values (" + CURRENT_USER + ", '" + request.form['book_name'] + "', '" + request.form['book_price'] + "');")
+    cur.execute("insert into cart (id, bookname, price) values (" + str(CURRENT_USER) + ", '" + request.form['book_name'] + "', '" + request.form['book_price'] + "');")
     return redirect(request.referrer)
 
 @app.route('/post_review', methods=['POST', 'GET'])
 def post_review():
     cur = db.cursor()
-    cur.execute("select * from users where id = " + CURRENT_USER + ";")
+    cur.execute("select * from users where id = " + str(CURRENT_USER) + ";")
     user = cur.fetchone()[1]
     cur.execute("insert into reviews (id, review, rating, user_id) values (" + request.form['book_id'] + ", '" + request.form.get('reviewtext') +"', " + request.form['rate'] + ", " + user + ");")
     db.commit()
