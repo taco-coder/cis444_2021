@@ -92,6 +92,7 @@ def hello_db():
 #assignment 3 fullstack stuff
 @app.route('/get_store')
 def get_store():
+    session.clear()
     return render_template("bookstore.html")
 
 @app.route('/get_signup', methods=['POST', 'GET'])
@@ -193,6 +194,7 @@ def add_to_cart():
     else:
         session['book_name'] = request.form['book_name']
     print(session['book_name'])
+    print(session['user'])
     if request.referrer == "http://23.21.164.56/check_creds": #throws bad proxy error when I added the session code; on signin stays in /check_cred endpoint
         return redirect("/to_store")
     else:
