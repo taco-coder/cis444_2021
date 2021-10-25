@@ -187,7 +187,7 @@ def get_cart():
 def add_to_cart():
     print(request.form['book_name'])
     print(request.form['book_price'])
-    return redirect(request.url)
+    return redirect(request.referrer)
 
 @app.route('/post_review', methods=['POST', 'GET'])
 def post_review():
