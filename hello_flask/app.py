@@ -11,6 +11,7 @@ import bcrypt
 from db_con import get_db_instance, get_db
 
 app = Flask(__name__)
+app.secret_key = "please don't hack my server"
 FlaskJSON(app)
 
 USER_PASSWORDS = { "cjardin": "strong password"}
@@ -29,7 +30,7 @@ db = get_db()
 
 with open("mysecret", "r") as f:
     JWT_SECRET = f.read()
-    app.secret_key = f.read() #probably bad practice but whatever
+
 
 @app.route('/') #endpoint
 def index():
