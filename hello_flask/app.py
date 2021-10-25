@@ -119,7 +119,7 @@ def create_creds():
     else:
         return check_signup(False)
 
-@app.route('/check_creds', methods=['POST'])
+@app.route('/check_creds', methods=['POST', 'GET'])
 def check_creds():
     cur = db.cursor()
     jwt_user = jwt.encode({'username':request.form['username']}, JWT_SECRET, algorithm="HS256")
