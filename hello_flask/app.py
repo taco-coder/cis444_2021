@@ -138,9 +138,11 @@ def main_page():
     cur.execute("select * from books;")
     db_books = cur.fetchall()
     return json_response(books = db_books)
+
 @app.route('/back_to_store')
 def go_back():
     return current_app.send_static_file("mainpage.html")
+
 @app.route('/red_lepanka', methods=['GET'])    
 def get_red_lepanka():
     cur = db.cursor()
@@ -181,6 +183,12 @@ def get_ego_bias():
 def get_cart():
     return render_template("cart.html")
 
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    print(request.form['book_name'])
+    print(request.form['book_price'])
+    return go_back()
+    
 @app.route('/post_review', methods=['POST', 'GET'])
 def post_review():
     cur = db.cursor()

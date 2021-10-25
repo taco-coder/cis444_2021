@@ -109,7 +109,11 @@
           </form>
           <h2 id="book_name1"></h2>
           <p id="book_price1" class="inner"></p>
-          <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
+          <form action="/add_to_cart" method="post">
+            <input type="hidden" id="book1name" name="book_name" value="">
+            <input type="hidden" id="book1price" name="book_price" value="">
+            <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+          </form>
         </div>
         <div id="book_row_two_column_one" >
           <form action="/become_taco" method="get">
@@ -117,7 +121,11 @@
           </form>
           <h2 id="book_name2" onclick()=""></h2>
           <p id="book_price2" class="inner"></p>
-          <button type="button" class="inner" id="buy_button">Add to Cart &#128722</button>
+          <form action="/add_to_cart" method="post">
+            <input type="hidden" id="book2name" name="book_name" value="">
+            <input type="hidden" id="book2price" name="book_price" value="">
+            <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+          </form>
         </div>
       </div>
       <div id="book_column_two">
@@ -129,7 +137,11 @@
           </div>
           <h2 id="book_name3"></h2>
           <p id="book_price3" class="inner"></p>
-          <button type="button" id="buy_button" class="inner">Add to Cart &#128722</button>
+          <form action="/add_to_cart" method="post">
+            <input type="hidden" id="book3name" name="book_name" value="">
+            <input type="hidden" id="book3price" name="book_price" value="">
+            <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+          </form>
         </div>
         <div id="book_row_two_column_two" >
           <div id="image_column_two">
@@ -139,7 +151,11 @@
           </div>
           <h2 id="book_name4"></h2>
           <p id="book_price4" class="inner"></p>
-          <button type="button" id="buy_button" class="inner">Add to Cart &#128722</button>
+          <form action="/add_to_cart" method="post">
+            <input type="hidden" id="book4name" name="book_name" value="">
+            <input type="hidden" id="book4price" name="book_price" value="">
+            <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+          </form>
         </div>               
       </div> 
   </div>        
@@ -155,7 +171,14 @@
             $('#book_price3').html(books.books[2][2]);
             $('#book_name4').html(books.books[3][1]);
             $('#book_price4').html(books.books[3][2]);            
-            console.log(books.books[0]);
+            $('#book1name').val(books.books[0][1]);
+            $('#book1price').val(books.books[0][2]);
+            $('#book2name').val(books.books[1][1]);
+            $('#book2price').val(books.books[1][2]);
+            $('#book3name').val(books.books[3][1]);
+            $('#book3price').val(books.books[3][2]);
+            $('#book4name').val(books.books[4][1]);
+            $('#book4price').val(books.books[4][2]);
         })
       var header = document.getElementById("myDIV");
       var btns = header.getElementsByClassName("btn");
