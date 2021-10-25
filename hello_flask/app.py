@@ -131,7 +131,7 @@ def check_creds():
         hashed_pass = cur.fetchone()[2]
         if bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), bytes(hashed_pass, 'utf-8')):
             session['user'] = jwt_user
-            return to_store()
+            return current_app.send_static_file("mainpage.html")
         else:
             return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
 
@@ -193,7 +193,10 @@ def add_to_cart():
     else:
         session['book_name'] = request.form['book_name']
     print(request.referrer)
-    return redirect(request.referrer)
+    if request.referrer == "http://23.21.164.56/check_creds": #throws bad proxy error when I added the session code; on signin stays in /check_cred endpoint
+        return redirect("/to_store")
+    else:
+        return redirect(request.referrer)
 
 @app.route('/post_review', methods=['POST', 'GET'])
 def post_review():
