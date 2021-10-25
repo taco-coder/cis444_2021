@@ -82,6 +82,9 @@
             <input type="submit" class="btn" value="Go Back &#8617">
         </form>
         </div>
+        <form style = "margin-left: 85%; margin-top: -40px;" action="/get_store" method="get">
+            <input type="submit" class="btn" value="Sign Out">
+        </form>           
         <form id = "cart_btn" action="/cart" method="get">
             <input type="submit" class="btn" value="Go to Cart &#128722">
         </form>        
@@ -141,7 +144,7 @@
         var user_reviews = {{reviews | tojson}}
         var avgRate = 0;
         for(let i = 0; i < Object.keys(user_reviews).length; i++){
-            $("#user-review").append("Rated: "+ user_reviews[i][2] + "/5 - " + user_reviews[i][1])
+            $("#user-review").append(user_reviews[i][3] + " rated: "+ user_reviews[i][2] + "/5 - " + user_reviews[i][1])
             avgRate += user_reviews[i][2]
             $("#user-review").append("<br><br>")
         }
