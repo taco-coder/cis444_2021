@@ -202,8 +202,8 @@ def post_review():
     rate = request.form['rate']
     user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
     print(user)
-    print(user[0])
-    cur.execute(f"insert into reviews (id, review, rating, review_user) values ( {id}, '{text}', {rate}, '{user[0]}');")
+    print(user['username'])
+    cur.execute(f"insert into reviews (id, review, rating, review_user) values ( {id}, '{text}', {rate}, '{user['username']}');")
     db.commit()
     if int(request.form['book_id']) == 1:
         return get_red_lepanka()
