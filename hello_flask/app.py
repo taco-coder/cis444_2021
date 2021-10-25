@@ -187,8 +187,8 @@ def get_cart():
 def add_to_cart():
     print(request.form['book_name'])
     print(request.form['book_price'])
-    return go_back()
-    
+    return redirect(request.url)
+
 @app.route('/post_review', methods=['POST', 'GET'])
 def post_review():
     cur = db.cursor()
