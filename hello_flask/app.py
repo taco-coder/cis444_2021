@@ -131,7 +131,7 @@ def check_creds():
         hashed_pass = cur.fetchone()[2]
         if bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), bytes(hashed_pass, 'utf-8')):
             session['user'] = jwt_user
-            return current_app.send_static_file("mainpage.html")
+            return to_store()
         else:
             return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
 
@@ -142,8 +142,8 @@ def main_page():
     db_books = cur.fetchall()
     return json_response(books = db_books)
 
-@app.route('/back_to_store')
-def go_back():
+@app.route('/to_store')
+def to_store():
     return current_app.send_static_file("mainpage.html")
 
 @app.route('/red_lepanka', methods=['GET'])    
