@@ -138,8 +138,8 @@
         </div>
     </body>
     <script>
-        bName = {{bookname}}
-        bPrice = {{price}}
+        bName = {{bookname | tojson}}
+        bPrice = {{price | tojson}}
         console.log(bName))
         console.log(bPrice)
         //$('#bookname').val({{bookname}});
