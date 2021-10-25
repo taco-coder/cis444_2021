@@ -131,6 +131,7 @@ def check_creds():
         if bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), bytes(hashed_pass, 'utf-8')):
             cur.execute("select * from users where username = '" + jwt_user + "';")
             CURRENT_USER = cur.fetchone()[0]
+            print(CURRENT_USER)
             return current_app.send_static_file("mainpage.html")
         else:
             return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
