@@ -1,4 +1,4 @@
-from flask import Flask,render_template,request, redirect
+from flask import Flask,render_template,request, redirect, session
 from flask.globals import current_app
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 
@@ -24,7 +24,7 @@ IMGS_URL = {
 CUR_ENV = "PRD"
 
 JWT_SECRET = None
-
+CURRENT_USER = None
 db = get_db()
 
 with open("mysecret", "r") as f:
@@ -128,6 +128,7 @@ def check_creds():
         cur.execute("select * from users where username = '" + jwt_user + "';")
         hashed_pass = cur.fetchone()[2]
         if bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), bytes(hashed_pass, 'utf-8')):
+            session['user'] = jwt_user
             return current_app.send_static_file("mainpage.html")
         else:
             return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
@@ -185,15 +186,18 @@ def get_cart():
 
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
-    cur = db.cursor()
-    cur.execute("insert into cart (bookname, price) values ( '" + request.form['book_name'] + "', '" + request.form['book_price'] + "');")
-    db.commit()
+    session['book_name'] = session.get('book_name') + request.form['book_name']
     return redirect(request.referrer)
 
 @app.route('/post_review', methods=['POST', 'GET'])
 def post_review():
     cur = db.cursor()
-    cur.execute("insert into reviews (id, review, rating) values (" + request.form['book_id'] + ", '" + request.form.get('reviewtext') +"', " + request.form['rate'] + ");")
+    id = request.form['book_id']
+    text = request.form.get('reviewtext')
+    rate = request.form['rate']
+    user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
+    print(user)
+    cur.execute(f"insert into reviews (id, review, rating, review_user) values ( {id}, '{text}', {rate}, '{user}');")
     db.commit()
     if int(request.form['book_id']) == 1:
         return get_red_lepanka()
