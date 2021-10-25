@@ -138,8 +138,10 @@
         </div>
     </body>
     <script>
-        console.log({{bookname}})
-        console.log({{price}})
+        bName = {{bookname}}
+        bPrice = {{price}}
+        console.log(bName))
+        console.log(bPrice)
         //$('#bookname').val({{bookname}});
         $('#bookprice').val(books.books[0][2]);    
         var user_reviews = {{reviews | tojson}}
