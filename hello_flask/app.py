@@ -192,6 +192,7 @@ def add_to_cart():
         session['book_name'] = session.get('book_name') + request.form['book_name']
     else:
         session['book_name'] = request.form['book_name']
+    print(request.referrer)
     return redirect(request.referrer)
 
 @app.route('/post_review', methods=['POST', 'GET'])
