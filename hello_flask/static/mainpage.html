@@ -163,6 +163,7 @@
 
     <script>
         $.getJSON("/main_store", function(books){
+            //load names and prices
             $('#book_name1').html(books.books[0][1]);
             $('#book_price1').html(books.books[0][2]);
             $('#book_name2').html(books.books[1][1]);
@@ -170,15 +171,16 @@
             $('#book_name3').html(books.books[2][1]);
             $('#book_price3').html(books.books[2][2]);
             $('#book_name4').html(books.books[3][1]);
-            $('#book_price4').html(books.books[3][2]);            
+            $('#book_price4').html(books.books[3][2]);  
+            //hidden attr          
             $('#book1name').val(books.books[0][1]);
             $('#book1price').val(books.books[0][2]);
             $('#book2name').val(books.books[1][1]);
             $('#book2price').val(books.books[1][2]);
-            $('#book3name').val(books.books[3][1]);
-            $('#book3price').val(books.books[3][2]);
-            $('#book4name').val(books.books[4][1]);
-            $('#book4price').val(books.books[4][2]);
+            $('#book3name').val(books.books[2][1]);
+            $('#book3price').val(books.books[2][2]);
+            $('#book4name').val(books.books[3][1]);
+            $('#book4price').val(books.books[3][2]);
         })
       var header = document.getElementById("myDIV");
       var btns = header.getElementsByClassName("btn");
