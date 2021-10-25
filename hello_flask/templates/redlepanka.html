@@ -91,7 +91,11 @@
         <div id="book-details">
             <h1 style="margin-bottom: 200px; font-size: 50px;">{{bookname}}</h1>
             <h3 id= "price">Price: {{price}}</h3>
-            <button type="button" id="buy_button">Add to Cart &#128722</button>
+            <form action="/add_to_cart" method="post">
+                <input type="hidden" id="bookname" name="book_name" value={{bookname}}>
+                <input type="hidden" id="bookprice" name="book_price" value={{price}}>
+                <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+            </form>
         </div>
         <div id="testimonies">
             <p class="quote"><q>The girlboss story of the decade.</q> - Reshma Saujani, Founder of Girls Who Code</p>
