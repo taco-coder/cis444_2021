@@ -93,6 +93,7 @@ def hello_db():
 @app.route('/get_store')
 def get_store():
     session.clear()
+    print(session)
     return render_template("bookstore.html")
 
 @app.route('/get_signup', methods=['POST', 'GET'])
