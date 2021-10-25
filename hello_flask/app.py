@@ -192,7 +192,7 @@ def add_to_cart():
         session['book_name'] = session.get('book_name') + request.form['book_name']
     else:
         session['book_name'] = request.form['book_name']
-    print(request.referrer)
+    print(session['book_name'])
     if request.referrer == "http://23.21.164.56/check_creds": #throws bad proxy error when I added the session code; on signin stays in /check_cred endpoint
         return redirect("/to_store")
     else:
