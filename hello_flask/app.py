@@ -187,6 +187,7 @@ def get_cart():
 def add_to_cart():
     cur = db.cursor()
     cur.execute("insert into cart (bookname, price) values ( '" + request.form['book_name'] + "', '" + request.form['book_price'] + "');")
+    db.commit()
     return redirect(request.referrer)
 
 @app.route('/post_review', methods=['POST', 'GET'])
