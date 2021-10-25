@@ -183,7 +183,7 @@ def get_ego_bias():
 def get_cart():
     return render_template("cart.html")
 
-@app.route('/add_to_cart', methods=['POST'])
+@app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
     print(request.form['book_name'])
     print(request.form['book_price'])
