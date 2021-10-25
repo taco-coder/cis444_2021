@@ -25,6 +25,7 @@ CUR_ENV = "PRD"
 
 JWT_SECRET = None
 
+CURRENT_USER = None
 db = get_db()
 
 with open("mysecret", "r") as f:
@@ -125,9 +126,11 @@ def check_creds():
     if cur.fetchone() is None:
         return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
     else:
-        cur.execute("select * from users where username = '" + jwt_user + "';")        
+        cur.execute("select * from users where username = '" + jwt_user + "';")
         hashed_pass = cur.fetchone()[2]
         if bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), bytes(hashed_pass, 'utf-8')):
+            cur.execute("select * from users where username = '" + jwt_user + "';")
+            CURRENT_USER = cur.fetchone()[0]
             return current_app.send_static_file("mainpage.html")
         else:
             return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
@@ -185,14 +188,16 @@ def get_cart():
 
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
-    print(request.form['book_name'])
-    print(request.form['book_price'])
+    cur = db.cursor()
+    cur.execute("insert into cart (id, bookname, price) values (" + CURRENT_USER + ", '" + request.form['book_name'] + "', '" + request.form['book_price'] + "');")
     return redirect(request.referrer)
 
 @app.route('/post_review', methods=['POST', 'GET'])
 def post_review():
     cur = db.cursor()
-    cur.execute("insert into reviews (id, review, rating) values (" + request.form['book_id'] + ", '" + request.form.get('reviewtext') +"', " + request.form['rate'] + ");")
+    cur.execute("select * from users where id = " + CURRENT_USER + ";")
+    user = cur.fetchone()[1]
+    cur.execute("insert into reviews (id, review, rating, user_id) values (" + request.form['book_id'] + ", '" + request.form.get('reviewtext') +"', " + request.form['rate'] + ", " + user + ");")
     db.commit()
     if int(request.form['book_id']) == 1:
         return get_red_lepanka()
