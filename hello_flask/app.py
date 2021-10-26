@@ -186,6 +186,8 @@ def get_ego_bias():
 
 @app.route('/cart', methods=['GET'])    
 def get_cart():
+    print(session['book_name'])
+    print(session['book_name'][0])
     return render_template("cart.html")
 
 @app.route('/add_to_cart', methods=['POST', 'GET'])
@@ -195,6 +197,7 @@ def add_to_cart():
     else:
         session['book_name'] = request.form['book_name']
     print(session['book_name'])
+    print(request.form['book_price'])
     print(session['user'])
     if request.referrer == "http://23.21.164.56/check_creds": #throws bad proxy error when I added the session code; on signin stays in /check_cred endpoint
         return redirect("/to_store")
