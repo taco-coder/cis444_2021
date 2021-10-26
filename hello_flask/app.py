@@ -193,10 +193,10 @@ def get_cart():
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
     if 'book_name' in session:
-        session['book_name'].append(request.form['book_name'])
+        session['book_name'] = session.get('book_name') + ";" + request.form['book_name'] 
     else:
         session['book_name'] = request.form['book_name']
-    print(session['book_name'])
+    #print(session['book_name'])
     #print(request.form['book_price'])
     #print(session['user'])
     if request.referrer == "http://23.21.164.56/check_creds": #throws bad proxy error when I added the session code; on signin stays in /check_cred endpoint
