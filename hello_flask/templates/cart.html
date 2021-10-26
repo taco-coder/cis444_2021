@@ -10,8 +10,8 @@
 	    <h1>Red cart time</h1>
     </body>
     <script>
-        var bNames = {{books}}
-        var bPrices = {{prices}}
+        var bNames = {{books | tojson}};
+        var bPrices = {{prices | tojson}};
         console.log(bNames)
         console.log(bPrices)
 
