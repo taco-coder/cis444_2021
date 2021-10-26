@@ -191,6 +191,7 @@ def get_cart():
     print(session['book_name'])
     print("\n----------\n")
     print(cart_items)
+    print(cart_items[3])
     return render_template("cart.html")
 
 @app.route('/add_to_cart', methods=['POST', 'GET'])
