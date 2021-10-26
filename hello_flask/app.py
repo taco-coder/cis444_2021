@@ -1,3 +1,4 @@
+from logging import exception
 from flask import Flask,render_template,request, redirect, session
 from flask.globals import current_app
 from flask.json import jsonify
@@ -187,12 +188,15 @@ def get_ego_bias():
 
 @app.route('/cart', methods=['GET'])    
 def get_cart():
-    cart_items = session['book_name'].split(";")
-    print(session['book_name'])
-    print("\n----------\n")
-    print(cart_items)
-    print(cart_items[3])
-    return render_template("cart.html")
+    try:
+        cart_items = session['book_name'].split(";")
+        print(session['book_name'])
+        print("\n----------\n")
+        print(cart_items)
+        return render_template("cart.html")
+    except Exception as e:
+        print("empty cart")
+        return render_template("cart.html")
 
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
