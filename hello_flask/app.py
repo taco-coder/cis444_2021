@@ -191,6 +191,8 @@ def get_cart():
     try:
         cart_books = session['book_name'].split(";")
         cart_prices = session['book_price'].split(";")
+        print(cart_books)
+        print(cart_prices)
         return render_template("cart.html", books = cart_books, prices = cart_prices)
     except Exception as e:
         print("empty cart")
@@ -206,7 +208,7 @@ def add_to_cart():
         session['book_price'] = session.get('book_price') + ";" + request.form['book_price'] 
     else:
         session['book_price'] = request.form['book_price']        
-        
+
     if request.referrer == "http://23.21.164.56/check_creds": #throws bad proxy error when I added the session code; on signin stays in /check_cred endpoint
         return redirect("/to_store")
     else:
