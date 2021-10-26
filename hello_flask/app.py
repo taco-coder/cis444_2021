@@ -189,11 +189,9 @@ def get_ego_bias():
 @app.route('/cart', methods=['GET'])    
 def get_cart():
     try:
-        cart_items = session['book_name'].split(";")
-        print(session['book_name'])
-        print("\n----------\n")
-        print(cart_items)
-        return render_template("cart.html")
+        cart_books = session['book_name'].split(";")
+        cart_prices = session['book_price'].split(";")
+        return render_template("cart.html", books = cart_books, prices = cart_prices)
     except Exception as e:
         print("empty cart")
         return render_template("cart.html")
@@ -204,6 +202,10 @@ def add_to_cart():
         session['book_name'] = session.get('book_name') + ";" + request.form['book_name'] 
     else:
         session['book_name'] = request.form['book_name']
+    if 'book_price' in session:
+        session['book_price'] = session.get('book_price') + ";" + request.form['book_price'] 
+    else:
+        session['book_price'] = request.form['book_price']        
     #print(session['book_name'])
     #print(request.form['book_price'])
     #print(session['user'])
