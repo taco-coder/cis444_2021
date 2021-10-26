@@ -1,5 +1,6 @@
 from flask import Flask,render_template,request, redirect, session
 from flask.globals import current_app
+from flask.json import jsonify
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 
 
@@ -187,7 +188,7 @@ def get_ego_bias():
 @app.route('/cart', methods=['GET'])    
 def get_cart():
     print(session['book_name'])
-    #print(session['book_name'][0])
+    print(jsonify(session['book_name']))
     return render_template("cart.html")
 
 @app.route('/add_to_cart', methods=['POST', 'GET'])
