@@ -108,9 +108,9 @@ def create_creds():
         salted_pwd = bcrypt.hashpw( bytes(credsForm['password'], 'utf-8'),  bcrypt.gensalt(12))
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
-        return json_response(create_status="Successfully created new account.")
+        return redirect(request.referrer)
     else:
-        return json_response(create_status="This username is already taken. Try another one.")
+        return redirect(request.referrer)
 
 @app.route('/check_creds', methods=['POST', 'GET'])
 def check_creds():
