@@ -95,9 +95,9 @@ def hello_db():
 #assignment 3 fullstack stuff
 @app.route('/get_create_status')
 def status():
-    if session['status'] is True:
+    if session['status'] == 2:
         return json_response(status = "Successfully created account.")
-    elif session['status'] is False:
+    elif session['status'] == 1:
         return json_response(status = "Username already taken. Try another one.")
     else:
         return json_response(status="")
@@ -106,17 +106,16 @@ def status():
 def create_creds():
     cur = db.cursor()
     credsForm = request.form
-    print(session['status'])
     cur.execute("select * from users where username = '" + jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256") + "';")
     if cur.fetchone() is None:
         jwt_user = jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256")
         salted_pwd = bcrypt.hashpw( bytes(credsForm['password'], 'utf-8'),  bcrypt.gensalt(12))
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
-        session['status'] = True
+        session['status'] = 2
         return current_app.send_static_file("index.html")
     else:
-        session['status'] = False
+        session['status'] = 1
         return current_app.send_static_file("index.html")
 
 @app.route('/check_creds', methods=['POST', 'GET'])
