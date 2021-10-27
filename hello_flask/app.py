@@ -113,10 +113,10 @@ def create_creds():
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
         session['status'] = 2
-        return status()
+        return ('', 204)
     else:
         session['status'] = 1
-        return status()
+        return ('', 204)
 
 @app.route('/check_creds', methods=['POST', 'GET'])
 def check_creds():
