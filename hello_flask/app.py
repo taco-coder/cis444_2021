@@ -103,7 +103,7 @@ def status():
         return json_response(status="")
 @app.route('/prime_page')
 def prime():
-    if session['page'] == 'Create Account':
+    if session['current_page'] == 'Create Account':
         return json_response(page="SignUpPage")
     else:
         return json_response(page="LoginPage")
@@ -118,11 +118,11 @@ def create_creds():
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
         session['status'] = 2
-        session['page'] = 'Create Account'
+        session['current_page'] = 'Create Account'
         return redirect(request.referrer)
     else:
         session['status'] = 1
-        session['page'] = 'Create Account'
+        session['current_page'] = 'Create Account'
         return redirect(request.referrer)
 
 @app.route('/check_creds', methods=['POST', 'GET'])
