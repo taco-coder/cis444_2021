@@ -44,10 +44,10 @@
         $('#signupForm').toggle();
     }
     function get_create_status(){
-        $.getJSON("/create_status", function(status)){
+        $.getJSON("/create_status", function(status){
             console.log(status)
             $('#create_status').html(status['status'])
-        }
+        })
     }
     
   </script>
