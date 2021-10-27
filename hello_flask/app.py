@@ -1,5 +1,6 @@
 from logging import exception
 from flask import Flask,render_template,request, redirect, session
+from flask import json
 from flask.globals import current_app
 from flask.json import jsonify
 from flask_json import FlaskJSON, JsonError, json_response, as_json
@@ -92,11 +93,14 @@ def hello_db():
     return json_response(a = first, b = second, c = third)
 
 #assignment 3 fullstack stuff
-@app.route('/get_store')
-def get_store():
-    session.clear()
-    print(session)
-    return render_template("bookstore.html")
+@app.route('/get_create_status')
+def status():
+    if session['status'] is True:
+        return json_response(status = "Successfully created account.")
+    elif session['status'] is False:
+        return json_response(status = "Username already taken. Try another one.")
+    else:
+        return json_response(status="")
 
 @app.route('/create_creds', methods=['POST', 'GET'])
 def create_creds():
@@ -109,10 +113,10 @@ def create_creds():
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
         session['status'] = True
-        return json_response(status ='Successfully created account.')
+        return current_app.send_static_file("index.html")
     else:
         session['status'] = False
-        return json_response(status = 'Account already exists. Try another username.')
+        return current_app.send_static_file("index.html")
 
 @app.route('/check_creds', methods=['POST', 'GET'])
 def check_creds():

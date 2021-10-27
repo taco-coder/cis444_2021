@@ -45,13 +45,9 @@
         $('#loginForm').toggle();
         $('#signupForm').toggle();
     }
-    function get_create_status(){
-        console.log("this is being called")
-        $.getJSON("/create_creds", function(status){
-            console.log(status)
-            $('#create_status').html(status['status'])
-        })
-        return 0
+    $.getJSON("/create_creds", function(status){
+        console.log(status)
+        $('#create_status').html(status)
     }
     
   </script>
