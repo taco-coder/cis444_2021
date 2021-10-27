@@ -97,11 +97,14 @@ def hello_db():
 #assignment 3 fullstack stuff
 @app.route('/prime_page')
 def prime():
-    if session['status'] == 'Create Account':
-        return json_response(page="SignUpPage")
-    elif session['status'] == 'Success':
-        return json_response(page="AllBookPage")
-    else:
+    try:
+        if session['status'] == 'Create Account':
+            return json_response(page="SignUpPage")
+        elif session['status'] == 'Success':
+            return json_response(page="AllBookPage")
+        else:
+            return json_response(page="LoginPage")
+    except Exception as e:
         return json_response(page="LoginPage")
 
 @app.route('/get_create_status')
@@ -169,9 +172,9 @@ def main_page():
 
 @app.route('/logout')
 def logout():
+    print(session)
     session.clear() #clear all session info
     print(session)
-    session['status'] = "Logged Out" #need this cause /prime_page is throwing an error
     global ACCOUNT_STATUS
     ACCOUNT_STATUS = 0
     return redirect(request.referrer)
