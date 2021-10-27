@@ -106,6 +106,7 @@ def status():
 def create_creds():
     cur = db.cursor()
     credsForm = request.form
+    print(session['status'])
     cur.execute("select * from users where username = '" + jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256") + "';")
     if cur.fetchone() is None:
         jwt_user = jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256")

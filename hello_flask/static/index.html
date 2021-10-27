@@ -22,7 +22,7 @@
           <button type="button" id="signBtn" onclick="swaplogin();">Sign Up</button>
           <button type="submit" id="credBtn">Login</button>
         </form>
-        <p></p>
+        <p id="create_status"></p>
       </div>
       <div id = "signupForm"> <!--signupForm start-->
         <p>Create a unique username and password.</p>
@@ -33,13 +33,11 @@
         <input type="password" id="pwd" name="password" required><br><br>
         <input type="submit" value="Create Account" id="Btn" >
         </form>          
-        <p id="create_status"></p>
         <button id="Btn" type="button" onclick="swaplogin()">Return to Login</button>
       </div> <!--signupForm end-->      
   </body>
   <script>
     $('#signupForm').hide();
-    console.log("going through")
     function swaplogin(){
         console.log("swapping")
         $('#loginForm').toggle();
