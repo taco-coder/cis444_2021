@@ -4,6 +4,9 @@
     <!-- head definitions go here -->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <style>
+    body{
+        font-family: 'Courier New', Courier, monospace;
+    }    
       #loginForm, #signupForm{
           padding-left: 45%;
           margin-top: 100px;
@@ -93,6 +96,74 @@
         border: 1px solid coral;        
       }         
       /*------------------Red Lepanka Style------------------*/
+            #book-details, #book-cover, #testimonies{
+                display: inline-block;
+                vertical-align: middle;
+            }
+            #testimonies{
+                width: 300px;
+                height: 300px;
+            }
+            .quote{
+                background: lightgray;
+                border: 1px solid black;        
+                border-radius: 20px;
+                padding: 10px;
+            }
+            #book-details{
+                margin-left: 100px;
+                padding-right: 250px;
+                width: 400px;
+                wordwrap: normal;
+            }
+            #book-cover{
+                margin-left: 150px;
+            }
+            #buy_button, #price{
+                display: inline;
+            }
+            #buy_button{
+                margin-left: 40px;
+                border: none;
+                outline: none;
+                padding: 10px 16px;
+                border-radius:5px;
+                background-color: coral;
+                color: white;
+                cursor: pointer;
+                font-size: 18px;
+                transition-duration: 0.3s;                
+            }
+            #buy_button:hover{
+                background-color: white;
+                color: coral;
+                border: 1px solid coral; 
+            }
+            .btn {
+                border: none;
+                outline: none;
+                padding: 10px 16px;
+                border-radius:5px;
+                background-color: coral;
+                color: white;
+                cursor: pointer;
+                font-size: 18px;
+                transition-duration: 0.3s;  
+            }  
+            .btn:hover {
+                background-color: white;
+                color: coral;
+                border-radius: 10px;
+                border: 1px solid coral;        
+            }             
+            #cart_btn{
+                margin-left: 92%;
+                margin-top: -42px;
+            }
+            #description, #review-section{
+                margin-left: 150px;
+                margin-right: 150px;
+            }      
     </style>
   </head>
   <body>
@@ -141,7 +212,7 @@
         <div id="book-container">
             <div id="book_column_one">
                 <div id="book_row_one_column_one" >
-                <button id="book_image" onclick="alert('red lepanka');">
+                <button id="book_image" onclick="swapRedLepankaPage();">
                     <img width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png">
                 </button>
                 <h2 id="book_name1"></h2>
@@ -196,7 +267,71 @@
                 </div>               
             </div> 
         </div>
-    </div>           
+    </div>     
+    <!--___________________red lepanka page____________________-->
+    <div id="red_lepanka_page">
+        <div id="myDIV">
+            <form action="/to_store" method="get">
+                <input type="submit" class="btn" value="Go Back &#8617">
+            </form>
+        </div>
+        <form style = "margin-left: 85%; margin-top: -40px;" action="/get_store" method="get">
+            <input type="submit" class="btn" value="Sign Out">
+        </form>           
+        <form id = "cart_btn" action="/cart" method="get">
+            <input type="submit" class="btn" value="Go to Cart &#128722">
+        </form>        
+        <div id="book-cover">
+            <img width="450px" height="450px" style="border-radius: 5px;" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
+        </div>
+        <div id="book-details">
+            <h1 style="margin-bottom: 200px; font-size: 50px;">{{bookname}}</h1>
+            <h3 id= "price">Price: {{price}}</h3>
+            <form action="/add_to_cart" method="post">
+                <input type="hidden" id="bookname" name="book_name" value="Red Lepanka">
+                <input type="hidden" id="bookprice" name="book_price" value={{price}}>
+                <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+            </form>
+        </div>
+        <div id="testimonies">
+            <p class="quote"><q>The girlboss story of the decade.</q> - Reshma Saujani, Founder of Girls Who Code</p>
+            <br>
+            <p class="quote"><q>James Bond just met his female match.</q> - The New York Times</p>
+        </div>
+        <div id="description">
+            <h2>Description</h2>
+            <hr>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam varius ipsum tristique, dignissim quam ut, tempus ex. 
+                Morbi pulvinar purus ut odio rutrum aliquam. Aliquam non volutpat odio, sit amet pharetra lorem. 
+                Ut vehicula elementum nulla, sit amet sodales nisl finibus varius. Donec eu sollicitudin nunc, non auctor nibh.
+                Ut ultricies finibus elit ut scelerisque. Nam nec tincidunt massa, quis molestie massa. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                Nunc ligula enim, dictum eget nunc eu, egestas tempor lacus. In et hendrerit velit. Praesent ac egestas libero.
+                Maecenas convallis felis quis ex posuere malesuada. Mauris id nisi vel nunc maximus efficitur in vel sem. </p>
+        </div>
+        <div id="review-section">
+            <h2>Reviews</h2>
+            <h4 id="avg-rate"></h4>
+            <hr>
+            <div id="user-review"></div>
+            <div id="post-review" style="display:inline-block;">    
+                <hr>        
+                <h2>Leave a review:</h2>
+                <form id="post-review" action="/post_review" method="post">
+                    <label for="rate" style="font-size: 18px;">Rate:</label>
+                    <select class="btn" name="rate" id="rate">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="hidden" name="book_id" value="1">
+                    <input class ="btn" type="submit" value="Post Review">
+                    <textarea rows="6" cols="195" placeholder="Leave a review within 255 characters" maxlength="255" name="reviewtext" required></textarea>                    
+                </form>
+            </div>
+        </div>    
+    </div>
   </body>
   <script>
     //keeps current page when getting returned on create_cred
@@ -205,18 +340,21 @@
             $('#signupForm').show()
             $('#loginForm').hide()
             $('#book-page').hide();
+            $('#red_lepanka_page').hide();
             console.log("signup")
         }
         else if(page['page'] == "LoginPage"){
             $('#loginForm').show()
             $('#signupForm').hide();
-            $('#book-page').hide();            
+            $('#book-page').hide();       
+            $('#red_lepanka_page').hide();     
             console.log("login")
         }
         else if(page['page'] == "AllBookPage"){
             $('#loginForm').hide()
             $('#signupForm').hide();
-            $('#book-page').show();            
+            $('#book-page').show();       
+            $('#red_lepanka_page').hide();
             console.log("book page")
         }
     })
@@ -293,6 +431,10 @@
         $('#book_row_one_column_two').show();
         $('#book_row_two_column_two').show();
         $('#book_row_two_column_one').show();
-    }    
+    }
+    function swapRedLepankaPage(){
+        $('#book-page').toggle();
+        $('#red_lepanka_page').toggle();
+    }
   </script>
 </html>
