@@ -171,7 +171,6 @@ def main_page():
 def logout():
     session.clear() #clear all session info
     print(session)
-    print(session['status'])
     session['status'] = "Logged Out" #need this cause /prime_page is throwing an error
     global ACCOUNT_STATUS
     ACCOUNT_STATUS = 0
