@@ -97,13 +97,7 @@ def get_store():
     session.clear()
     print(session)
     return render_template("bookstore.html")
-@app.route('/create_status')
-def get_status():
-    print("this is being called")
-    if session['status'] is True:
-        return json_response(status = {'status': 'Successfully created account.'})
-    else:
-        return json_response(status = {'status': 'Account already exists. Try another username.'})
+
 @app.route('/create_creds', methods=['POST', 'GET'])
 def create_creds():
     cur = db.cursor()
@@ -115,10 +109,10 @@ def create_creds():
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
         session['status'] = True
-        return redirect(request.referrer)
+        return json_response(status = {'status': 'Successfully created account.'})
     else:
         session['status'] = False
-        return redirect(request.referrer)
+        return json_response(status = {'status': 'Account already exists. Try another username.'})
 
 @app.route('/check_creds', methods=['POST', 'GET'])
 def check_creds():
