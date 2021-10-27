@@ -141,7 +141,7 @@ def check_creds():
     cur.execute("select * from users where username = '" + jwt_user + "';")
     if cur.fetchone() is None:
         session['status'] = 'Failed'
-        ACCOUNT_STATUS = 1
+        ACCOUNT_STATUS = 3
         return redirect(request.referrer)
     else:
         cur.execute("select * from users where username = '" + jwt_user + "';")
@@ -153,11 +153,11 @@ def check_creds():
             return redirect(request.referrer)
         else:
             session['status'] = 'Failed'
-            ACCOUNT_STATUS = 1
+            ACCOUNT_STATUS = 3
             return redirect(request.referrer)
 @app.route('/login_status')
 def logStatus():
-    if ACCOUNT_STATUS == 1:
+    if ACCOUNT_STATUS == 3:
         return json_response(login="Incorrect username/password. Please try again.")
 @app.route('/main_store')
 def main_page():
