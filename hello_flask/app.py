@@ -134,14 +134,17 @@ def check_creds():
     jwt_user = jwt.encode({'username':request.form['username']}, JWT_SECRET, algorithm="HS256")
     cur.execute("select * from users where username = '" + jwt_user + "';")
     if cur.fetchone() is None:
+        session['status'] = 'Failed'
         return json_response(login="Incorrect username/password. Please try again.")
     else:
         cur.execute("select * from users where username = '" + jwt_user + "';")
         hashed_pass = cur.fetchone()[2]
         if bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), bytes(hashed_pass, 'utf-8')):
             session['user'] = jwt_user
-            return current_app.send_static_file("mainpage.html")
+            session['status'] = 'Success'
+            return redirect(request.referrer)
         else:
+            session['status'] = 'Failed'
             return json_response(login="Incorrect username/password. Please try again.")
 
 @app.route('/main_store')

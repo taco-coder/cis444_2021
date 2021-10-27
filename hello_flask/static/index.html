@@ -21,6 +21,7 @@
           <input type="password" id="pwd" name="password"><br><br>
           <button type="button" id="signBtn" onclick="swaplogin();">Sign Up</button>
           <button type="submit" id="credBtn">Login</button>
+          <p id="login_status"></p>
         </form>
         
       </div>
@@ -35,7 +36,6 @@
         </form>
         <p id="create_status"></p>
         <button id="Btn" type="button" onclick="swaplogin()">Return to Login</button>
-        
       </div> <!--signupForm end-->
       
     <!--books list-->
@@ -115,14 +115,15 @@
         }
     })
     function swaplogin(){
-        console.log("swapping")
         $('#loginForm').toggle();
         $('#signupForm').toggle();
     }
     //check and get create status
     $.getJSON("/get_create_status", function(status){
-        console.log(status['status'])
         $('#create_status').html(status['status'])
+    })
+    $.getJSON("/check_creds", function(login){
+        $('#login_status').html(login['login'])
     })
     //get books
     $.getJSON("/main_store", function(books){
