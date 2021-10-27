@@ -99,6 +99,7 @@ def get_store():
     return render_template("bookstore.html")
 @app.route('/create_status')
 def get_status():
+    print("this is being called")
     if session['status'] is True:
         return json_response(status = {'status': 'Successfully created account.'})
     else:
