@@ -30,7 +30,7 @@ CUR_ENV = "PRD"
 JWT_SECRET = None
 CURRENT_USER = None
 
-CREATE_STATUS = None
+ACCOUNT_STATUS = None
 db = get_db()
 
 with open("mysecret", "r") as f:
@@ -95,58 +95,70 @@ def hello_db():
     return json_response(a = first, b = second, c = third)
 
 #assignment 3 fullstack stuff
-@app.route('/get_create_status')
-def status():
-    if CREATE_STATUS == 2:
-        return json_response(status = "Successfully created account.")
-    elif CREATE_STATUS == 1:
-        return json_response(status = "Username already taken. Try another one.")
-    else:
-        return json_response(status="")
 @app.route('/prime_page')
 def prime():
     if session['status'] == 'Create Account':
         return json_response(page="SignUpPage")
+    elif session['status'] == 'Success':
+        return json_response(page="AllBookPage")
     else:
         return json_response(page="LoginPage")
+
+@app.route('/get_create_status')
+def status():
+    if ACCOUNT_STATUS == 2:
+        return json_response(status = "Successfully created account.")
+    elif ACCOUNT_STATUS == 1:
+        return json_response(status = "Username already taken. Try another one.")
+    else:
+        return json_response(status="")
+
+
 @app.route('/create_creds', methods=['POST', 'GET'])
 def create_creds():
     cur = db.cursor()
     credsForm = request.form
-    global CREATE_STATUS
+    global ACCOUNT_STATUS
     cur.execute("select * from users where username = '" + jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256") + "';")
     if cur.fetchone() is None:
         jwt_user = jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256")
         salted_pwd = bcrypt.hashpw( bytes(credsForm['password'], 'utf-8'),  bcrypt.gensalt(12))
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
-        CREATE_STATUS = 2
+        ACCOUNT_STATUS = 2
         session['status'] = 'Create Account'
         return redirect(request.referrer)
     else:
-        CREATE_STATUS = 1
+        ACCOUNT_STATUS = 1
         session['status'] = 'Create Account'
         return redirect(request.referrer)
 
 @app.route('/check_creds', methods=['POST', 'GET'])
 def check_creds():
     cur = db.cursor()
+    global ACCOUNT_STATUS
     jwt_user = jwt.encode({'username':request.form['username']}, JWT_SECRET, algorithm="HS256")
     cur.execute("select * from users where username = '" + jwt_user + "';")
     if cur.fetchone() is None:
         session['status'] = 'Failed'
-        return json_response(login="Incorrect username/password. Please try again.")
+        ACCOUNT_STATUS = 1
+        return redirect(request.referrer)
     else:
         cur.execute("select * from users where username = '" + jwt_user + "';")
         hashed_pass = cur.fetchone()[2]
         if bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), bytes(hashed_pass, 'utf-8')):
             session['user'] = jwt_user
             session['status'] = 'Success'
+            ACCOUNT_STATUS = None
             return redirect(request.referrer)
         else:
             session['status'] = 'Failed'
-            return json_response(login="Incorrect username/password. Please try again.")
-
+            ACCOUNT_STATUS = 1
+            return redirect(request.referrer)
+@app.route('/login_status')
+def logStatus():
+    if ACCOUNT_STATUS == 1:
+        return json_response(login="Incorrect username/password. Please try again.")
 @app.route('/main_store')
 def main_page():
     cur = db.cursor()

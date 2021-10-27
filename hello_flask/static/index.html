@@ -113,16 +113,24 @@
             $('#book-list').hide();            
             console.log("login")
         }
+        else if(page['page'] == "AllBookPage"){
+            $('#loginForm').hide()
+            $('#signupForm').hide();
+            $('#book-list').show();            
+            console.log("login")
+        }
     })
+    //swaps login and signup forms
     function swaplogin(){
         $('#loginForm').toggle();
         $('#signupForm').toggle();
     }
-    //check and get create status
+    //checks create status
     $.getJSON("/get_create_status", function(status){
         $('#create_status').html(status['status'])
     })
-    $.getJSON("/check_creds", function(login){
+    //checks login status
+    $.getJSON("/login_status", function(login){
         $('#login_status').html(login['login'])
     })
     //get books
