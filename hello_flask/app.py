@@ -98,7 +98,7 @@ def get_store():
     print(session)
     return render_template("bookstore.html")
 
-@app.route('/create_creds', methods=['POST'])
+@app.route('/create_creds', methods=['POST', 'GET'])
 def create_creds():
     cur = db.cursor()
     credsForm = request.form
