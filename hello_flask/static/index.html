@@ -22,7 +22,7 @@
           <button type="button" id="signBtn" onclick="swaplogin();">Sign Up</button>
           <button type="submit" id="credBtn">Login</button>
         </form>
-        <p id="create_status"></p>
+        
       </div>
       <div id = "signupForm"> <!--signupForm start-->
         <p>Create a unique username and password.</p>
@@ -33,13 +33,13 @@
         <input type="password" id="pwd" name="password" required><br><br>
         <input type="submit" value="Create Account" id="Btn" >
         </form>
-        <br>
+        <p id="create_status"></p>
         <button id="Btn" type="button" onclick="swaplogin()">Return to Login</button>
         
       </div> <!--signupForm end-->
       
     <!--books list-->
-    <div id="container">
+    <div id="book-list">
       <div id="book_column_one">
         <div id="book_row_one_column_one" >
           <form action="/red_lepanka" method="get">
@@ -99,19 +99,18 @@
     </div>           
   </body>
   <script>
-
-    function prime_page(){
-        console.log("prime page")
-        $('#signupForm').hide();
-        $('#container').hide();
-    }
+    //keeps current page when getting returned on create_cred
     $.getJSON("/prime_page", function(page){
         if(page['page'] == "SignUpPage"){
+            $('#signupForm').show()
+            $('#loginForm').hide()
+            $('#book-list').hide();
             console.log("signup")
         }
         else if(page['page'] == "LoginPage"){
+            $('#loginForm').show()
             $('#signupForm').hide();
-            $('#container').hide();            
+            $('#book-list').hide();            
             console.log("login")
         }
     })
