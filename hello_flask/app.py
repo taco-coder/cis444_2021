@@ -33,7 +33,8 @@ db = get_db()
 
 with open("mysecret", "r") as f:
     JWT_SECRET = f.read()
-
+#need this for the get_signup_status
+session['status'] = 0
 
 @app.route('/') #endpoint
 def index():
