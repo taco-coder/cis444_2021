@@ -113,7 +113,6 @@ def status():
     else:
         return json_response(status="")
 
-
 @app.route('/create_creds', methods=['POST', 'GET'])
 def create_creds():
     cur = db.cursor()
@@ -155,11 +154,12 @@ def check_creds():
             session['status'] = 'Failed'
             ACCOUNT_STATUS = 3
             return redirect(request.referrer)
-            
+
 @app.route('/login_status')
 def logStatus():
     if ACCOUNT_STATUS == 3:
         return json_response(login="Incorrect username/password. Please try again.")
+
 @app.route('/main_store')
 def main_page():
     cur = db.cursor()
@@ -167,9 +167,10 @@ def main_page():
     db_books = cur.fetchall()
     return json_response(books = db_books)
 
-@app.route('/to_store')
-def to_store():
-    return current_app.send_static_file("mainpage.html")
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(request.referrer)
 
 @app.route('/red_lepanka', methods=['GET'])    
 def get_red_lepanka():
