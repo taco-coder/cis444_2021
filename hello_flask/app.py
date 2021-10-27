@@ -113,10 +113,10 @@ def create_creds():
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
         session['status'] = 2
-        return current_app.send_static_file("index.html")
+        return status()
     else:
         session['status'] = 1
-        return current_app.send_static_file("index.html")
+        return status()
 
 @app.route('/check_creds', methods=['POST', 'GET'])
 def check_creds():
@@ -124,7 +124,7 @@ def check_creds():
     jwt_user = jwt.encode({'username':request.form['username']}, JWT_SECRET, algorithm="HS256")
     cur.execute("select * from users where username = '" + jwt_user + "';")
     if cur.fetchone() is None:
-        return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
+        return json_response(login="Incorrect username/password. Please try again.")
     else:
         cur.execute("select * from users where username = '" + jwt_user + "';")
         hashed_pass = cur.fetchone()[2]
@@ -132,7 +132,7 @@ def check_creds():
             session['user'] = jwt_user
             return current_app.send_static_file("mainpage.html")
         else:
-            return render_template("bookstore.html", account_status = "Incorrect username/password. Please try again.")
+            return json_response(login="Incorrect username/password. Please try again.")
 
 @app.route('/main_store')
 def main_page():
