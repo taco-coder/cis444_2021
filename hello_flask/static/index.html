@@ -12,7 +12,7 @@
       .inner, #book_column_one, #book_column_two{
         display: inline-block;
       }
-      #container{
+      #book-container{
         padding-left:100px;
         margin-left: 400px;
         margin-top: 125px;
@@ -39,9 +39,61 @@
       #book_name4, #book_price4, #book_price3{
         padding-left: 100px;
       }      
+      #buy_button{
+        padding: 10px;
+        background-color: white;
+        color: coral;
+        transition-duration: 0.2s;
+        border: 1px solid coral;
+        border-radius: 15px;
+        cursor: pointer;
+      }
+      #buy_button:hover{
+        background-color: coral;
+        color: white;
+      }
+      #book_image{
+        border-radius: 10px;
+        border: 1px solid coral;
+        transition-duration: 0.3s;
+      }
+      #book_image:hover{
+        box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+        width: 160px;
+        height: 160px;
+      }
+      #cart_btn{
+        margin-left: 92%;
+        margin-top: -42px;
+      }
+      .btn {
+        border: none;
+        outline: none;
+        padding: 10px 16px;
+        background-color: coral;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        transition-duration: 0.3s;
+      }
+
+      /* Style the active class, and buttons on mouse-over */
+      .active {
+        background-color: white;
+        color: coral;
+        border-radius: 10px;
+        border: 1px solid coral;        
+      }      
+      .btn:hover {
+        background-color: #DCDCDC;
+        color: coral;
+        border-radius: 10px;
+        border: 1px solid coral;        
+      }         
     </style>
   </head>
   <body>
+      <!--____________________login page___________________-->
       <div id="loginForm">
         <p >Sign into your account.</p>
         <form action="/check_creds" method="post" >
@@ -53,9 +105,9 @@
           <button type="submit" id="credBtn">Login</button>
           <p id="login_status"></p>
         </form>
-        
       </div>
-      <div id = "signupForm"> <!--signupForm start-->
+      <!--____________________signup page____________________-->
+      <div id = "signupForm"> 
         <p>Create a unique username and password.</p>
         <form action="/create_creds" method="post" id="signup">
         <label for="username" id="creds">Username:</label>
@@ -66,66 +118,81 @@
         </form>
         <p id="create_status"></p>
         <button id="Btn" type="button" onclick="swaplogin()">Return to Login</button>
-      </div> <!--signupForm end-->
-      
-    <!--books list-->
-    <div id="book-list">
-      <div id="book_column_one">
-        <div id="book_row_one_column_one" >
-          <form action="/red_lepanka" method="get">
-          <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
-          </form>
-          <h2 id="book_name1"></h2>
-          <p id="book_price1" class="inner"></p>
-          <form action="/add_to_cart" method="post">
-            <input type="hidden" id="book1name" name="book_name" value="">
-            <input type="hidden" id="book1price" name="book_price" value="">
-            <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
-          </form>
-        </div>
-        <div id="book_row_two_column_one" >
-          <form action="/become_taco" method="get">
-            <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629606332034.jpg"/>           
-          </form>
-          <h2 id="book_name2"></h2>
-          <p id="book_price2" class="inner"></p>
-          <form action="/add_to_cart" method="post">
-            <input type="hidden" id="book2name" name="book_name" value="">
-            <input type="hidden" id="book2price" name="book_price" value="">
-            <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
-          </form>
-        </div>
-      </div>
-      <div id="book_column_two">
-        <div id="book_row_one_column_two" >
-          <div id="image_column_two">
-            <form action="/car_jack" method="get">
-              <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1622955044190.png"/>
-            </form>
-          </div>
-          <h2 id="book_name3"></h2>
-          <p id="book_price3" class="inner"></p>
-          <form style="padding-left: 100px;" action="/add_to_cart" method="post">
-            <input type="hidden" id="book3name" name="book_name" value="">
-            <input type="hidden" id="book3price" name="book_price" value="">
-            <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
-          </form>
-        </div>
-        <div id="book_row_two_column_two" >
-          <div id="image_column_two">
-            <form action="/ego_bias" method="get">
-              <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1622954694581.jpg"/>
-            </form>
-          </div>
-          <h2 id="book_name4"></h2>
-          <p id="book_price4" class="inner"></p>
-          <form style="padding-left: 100px;" action="/add_to_cart" method="post">
-            <input type="hidden" id="book4name" name="book_name" value="">
-            <input type="hidden" id="book4price" name="book_price" value="">
-            <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
-          </form>
-        </div>               
       </div> 
+      
+    <!--___________________books page____________________-->
+    <div id="book-page">
+        <div id="myDIV">
+        <button class="btn active" onclick="showAll();">All Genres</button>
+        <button class="btn" onclick="onlyThriller();">Thriller</button>
+        <button class="btn" onclick="onlyRomance();">Romance</button>
+        <button class="btn" onclick="onlyScifi();">Sci-Fi</button>
+        <button class="btn" onclick="onlySelfhelp();">Self-Help</button>
+        </div>
+        <form style = "margin-left: 85%; margin-top: -40px;" action="/get_store" method="get">
+            <input type="submit" class="btn" value="Sign Out">
+        </form>    
+        <form id = "cart_btn" action="/cart" method="get">
+            <input type="submit" class="btn" value="Go to Cart &#128722">
+        </form>      
+        <div id="book-container">
+            <div id="book_column_one">
+                <div id="book_row_one_column_one" >
+                <form action="/red_lepanka" method="get">
+                <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
+                </form>
+                <h2 id="book_name1"></h2>
+                <p id="book_price1" class="inner"></p>
+                <form action="/add_to_cart" method="post">
+                    <input type="hidden" id="book1name" name="book_name" value="">
+                    <input type="hidden" id="book1price" name="book_price" value="">
+                    <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+                </form>
+                </div>
+                <div id="book_row_two_column_one" >
+                <form action="/become_taco" method="get">
+                    <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629606332034.jpg"/>           
+                </form>
+                <h2 id="book_name2"></h2>
+                <p id="book_price2" class="inner"></p>
+                <form action="/add_to_cart" method="post">
+                    <input type="hidden" id="book2name" name="book_name" value="">
+                    <input type="hidden" id="book2price" name="book_price" value="">
+                    <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+                </form>
+                </div>
+            </div>
+            <div id="book_column_two">
+                <div id="book_row_one_column_two" >
+                <div id="image_column_two">
+                    <form action="/car_jack" method="get">
+                    <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1622955044190.png"/>
+                    </form>
+                </div>
+                <h2 id="book_name3"></h2>
+                <p id="book_price3" class="inner"></p>
+                <form style="padding-left: 100px;" action="/add_to_cart" method="post">
+                    <input type="hidden" id="book3name" name="book_name" value="">
+                    <input type="hidden" id="book3price" name="book_price" value="">
+                    <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+                </form>
+                </div>
+                <div id="book_row_two_column_two" >
+                <div id="image_column_two">
+                    <form action="/ego_bias" method="get">
+                    <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1622954694581.jpg"/>
+                    </form>
+                </div>
+                <h2 id="book_name4"></h2>
+                <p id="book_price4" class="inner"></p>
+                <form style="padding-left: 100px;" action="/add_to_cart" method="post">
+                    <input type="hidden" id="book4name" name="book_name" value="">
+                    <input type="hidden" id="book4price" name="book_price" value="">
+                    <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+                </form>
+                </div>               
+            </div> 
+        </div>
     </div>           
   </body>
   <script>
@@ -134,20 +201,20 @@
         if(page['page'] == "SignUpPage"){
             $('#signupForm').show()
             $('#loginForm').hide()
-            $('#book-list').hide();
+            $('#book-page').hide();
             console.log("signup")
         }
         else if(page['page'] == "LoginPage"){
             $('#loginForm').show()
             $('#signupForm').hide();
-            $('#book-list').hide();            
+            $('#book-page').hide();            
             console.log("login")
         }
         else if(page['page'] == "AllBookPage"){
             $('#loginForm').hide()
             $('#signupForm').hide();
-            $('#book-list').show();            
-            console.log("login")
+            $('#book-page').show();            
+            console.log("book page")
         }
     })
     //swaps login and signup forms
@@ -184,6 +251,45 @@
         $('#book4name').val(books.books[3][1]);
         $('#book4price').val(books.books[3][2]);
     })    
-    
+    //book genre logic
+    var header = document.getElementById("genre-bar");
+    var btns = header.getElementsByClassName("btn");
+    for (var i = 0; i < btns.length; i++) {
+        btns[i].addEventListener("click", function() {
+        var current = document.getElementsByClassName("active");
+        current[0].className = current[0].className.replace(" active", "");
+        this.className += " active";
+    });
+    }
+    function onlyThriller(){
+        $('#book_row_one_column_one').show();
+        $('#book_row_one_column_two').hide();
+        $('#book_row_two_column_two').hide();
+        $('#book_row_two_column_one').hide();
+    }
+    function onlyRomance(){
+        $('#book_row_two_column_two').show();
+        $('#book_row_one_column_one').hide();
+        $('#book_row_one_column_two').hide();
+        $('#book_row_two_column_one').hide();
+    }
+    function onlyScifi(){
+        $('#book_row_one_column_two').show();
+        $('#book_row_one_column_one').hide();
+        $('#book_row_two_column_two').hide();
+        $('#book_row_two_column_one').hide();
+    }  
+    function onlySelfhelp(){
+        $('#book_row_two_column_one').show();
+        $('#book_row_one_column_two').hide();
+        $('#book_row_two_column_two').hide();
+        $('#book_row_one_column_one').hide();
+    }                
+    function showAll(){
+        $('#book_row_one_column_one').show();
+        $('#book_row_one_column_two').show();
+        $('#book_row_two_column_two').show();
+        $('#book_row_two_column_one').show();
+    }    
   </script>
 </html>
