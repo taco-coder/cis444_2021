@@ -353,7 +353,6 @@
             $('#signupForm').hide();
             $('#book-page').show();       
             $('#red_lepanka_page').hide();
-            console.log("book page")
         }
     })
     //swaps login and signup forms
@@ -438,7 +437,7 @@
     //get red lepanka reviews
     $.getJSON('/red_lepanka', function(value){
         console.log(value)
-        console.log(value['bookname'])
+        console.log(value[0])
         console.log(value['reviews'])
     })
   </script>
