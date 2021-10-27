@@ -101,7 +101,8 @@ def prime():
         return json_response(page="SignUpPage")
     elif session['status'] == 'Success':
         return json_response(page="AllBookPage")
-    return json_response(page="LoginPage")
+    else:
+        return json_response(page="LoginPage")
 
 @app.route('/get_create_status')
 def status():
@@ -169,6 +170,9 @@ def main_page():
 @app.route('/logout')
 def logout():
     session.clear() #clear all session info
+    print(session)
+    print(session['status'])
+    session['status'] = "Logged Out" #need this cause /prime_page is throwing an error
     global ACCOUNT_STATUS
     ACCOUNT_STATUS = 0
     return redirect(request.referrer)
