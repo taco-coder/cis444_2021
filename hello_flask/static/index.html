@@ -34,7 +34,7 @@
         <input type="submit" value="Create Account" id="Btn" onclick="get_create_status()">
         </form>          
         <p id="create_status"></p>
-        <button id="Btn" type="button" onclick="swaplogin();">Return to Login</button>
+        <button id="Btn" type="button" onclick="swaplogin()">Return to Login</button>
       </div> <!--signupForm end-->      
   </body>
   <script>
@@ -44,7 +44,9 @@
         $('#signupForm').toggle();
     }
     function get_create_status(){
- 
+        $.getJSON("/create_status", function(status)){
+            $('#create_status').html(status['status'])
+        }
     }
     
   </script>
