@@ -9,6 +9,7 @@
           margin-top: 100px;
           font-family: 'Courier New', Courier, monospace;
       } 
+      /*---------------main page style----------*/
       .inner, #book_column_one, #book_column_two{
         display: inline-block;
       }
@@ -90,6 +91,7 @@
         border-radius: 10px;
         border: 1px solid coral;        
       }         
+      /*------------------Red Lepanka Style------------------*/
     </style>
   </head>
   <body>
@@ -139,7 +141,7 @@
             <div id="book_column_one">
                 <div id="book_row_one_column_one" >
                 <form action="/red_lepanka" method="get">
-                <input id="book_image" type="image" width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
+                <button id="book_image"><img width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"></button>
                 </form>
                 <h2 id="book_name1"></h2>
                 <p id="book_price1" class="inner"></p>
@@ -230,7 +232,7 @@
     $.getJSON("/login_status", function(login){
         $('#login_status').html(login['login'])
     })
-    //get books
+    //get books on main store page
     $.getJSON("/main_store", function(books){
         //load names and prices
         $('#book_name1').html(books.books[0][1]);

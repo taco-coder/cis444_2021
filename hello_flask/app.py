@@ -124,7 +124,7 @@ def create_creds():
     if cur.fetchone() is None:
         jwt_user = jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256")
         salted_pwd = bcrypt.hashpw( bytes(credsForm['password'], 'utf-8'),  bcrypt.gensalt(12))
-        cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
+        cur.execute(f"insert into users (username, password) values ('{jwt_user}', '{salted_pwd.decode('utf-8')}');")
         db.commit()
         ACCOUNT_STATUS = 2
         session['status'] = 'Create Account'
