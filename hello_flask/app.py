@@ -101,8 +101,7 @@ def prime():
         return json_response(page="SignUpPage")
     elif session['status'] == 'Success':
         return json_response(page="AllBookPage")
-    else:
-        return json_response(page="LoginPage")
+    return json_response(page="LoginPage")
 
 @app.route('/get_create_status')
 def status():
@@ -110,8 +109,7 @@ def status():
         return json_response(status = "Successfully created account.")
     elif ACCOUNT_STATUS == 1:
         return json_response(status = "Username already taken. Try another one.")
-    else:
-        return json_response(status="")
+    return json_response(status="")
 
 @app.route('/create_creds', methods=['POST', 'GET'])
 def create_creds():
@@ -169,7 +167,7 @@ def main_page():
 
 @app.route('/logout')
 def logout():
-    session.clear()
+    session.clear() #clear all session info
     global ACCOUNT_STATUS
     ACCOUNT_STATUS = 0
     return redirect(request.referrer)
