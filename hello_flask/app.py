@@ -29,6 +29,8 @@ CUR_ENV = "PRD"
 
 JWT_SECRET = None
 CURRENT_USER = None
+
+CREATE_STATUS = None
 db = get_db()
 
 with open("mysecret", "r") as f:
@@ -95,15 +97,15 @@ def hello_db():
 #assignment 3 fullstack stuff
 @app.route('/get_create_status')
 def status():
-    if session['status'] == 2:
+    if CREATE_STATUS == 2:
         return json_response(status = "Successfully created account.")
-    elif session['status'] == 1:
+    elif CREATE_STATUS == 1:
         return json_response(status = "Username already taken. Try another one.")
     else:
         return json_response(status="")
 @app.route('/prime_page')
 def prime():
-    if session['current_page'] == 'Create Account':
+    if session['status'] == 'Create Account':
         return json_response(page="SignUpPage")
     else:
         return json_response(page="LoginPage")
@@ -111,18 +113,19 @@ def prime():
 def create_creds():
     cur = db.cursor()
     credsForm = request.form
+    global CREATE_STATUS
     cur.execute("select * from users where username = '" + jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256") + "';")
     if cur.fetchone() is None:
         jwt_user = jwt.encode({'username':credsForm['username']}, JWT_SECRET, algorithm="HS256")
         salted_pwd = bcrypt.hashpw( bytes(credsForm['password'], 'utf-8'),  bcrypt.gensalt(12))
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
-        session['status'] = 2
-        session['current_page'] = 'Create Account'
+        CREATE_STATUS = 2
+        session['status'] = 'Create Account'
         return redirect(request.referrer)
     else:
-        session['status'] = 1
-        session['current_page'] = 'Create Account'
+        CREATE_STATUS = 1
+        session['status'] = 'Create Account'
         return redirect(request.referrer)
 
 @app.route('/check_creds', methods=['POST', 'GET'])
