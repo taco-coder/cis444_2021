@@ -184,7 +184,7 @@ def get_red_lepanka():
     bResult = cur.fetchone()
     cur.execute("select * from reviews where id = 1;")
     uReviews = cur.fetchall()
-    return render_template("redlepanka.html", bookname=bResult[1], price=bResult[2], reviews=uReviews)
+    return json_response(data = {'bookname' : bResult[1], 'price' : bResult[2], 'reviews': uReviews} )
 
 @app.route('/become_taco', methods=['GET'])    
 def get_taco():
@@ -245,8 +245,6 @@ def post_review():
     text = request.form.get('reviewtext')
     rate = request.form['rate']
     user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
-    print(user)
-    print(user['username'])
     cur.execute(f"insert into reviews (id, review, rating, review_user) values ( {id}, '{text}', {rate}, '{user['username']}');")
     db.commit()
     if int(request.form['book_id']) == 1:

@@ -271,9 +271,7 @@
     <!--___________________red lepanka page____________________-->
     <div id="red_lepanka_page">
         <div id="myDIV">
-            <form action="/to_store" method="get">
-                <input type="submit" class="btn" value="Go Back &#8617">
-            </form>
+            <button class="btn" onclick="swapRedLepankaPage();">Go Back &#8617</button>
         </div>
         <form style = "margin-left: 85%; margin-top: -40px;" action="/get_store" method="get">
             <input type="submit" class="btn" value="Sign Out">
@@ -432,9 +430,16 @@
         $('#book_row_two_column_two').show();
         $('#book_row_two_column_one').show();
     }
+    //navigate to and from red_lepanka_page
     function swapRedLepankaPage(){
         $('#book-page').toggle();
         $('#red_lepanka_page').toggle();
     }
+    //get red lepanka reviews
+    $.getJSON('/red_lepanka', function(value){
+        console.log(value)
+        console.log(value['bookname'])
+        console.log(value['reviews'])
+    })
   </script>
 </html>
