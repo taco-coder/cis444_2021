@@ -45,7 +45,7 @@
         $('#loginForm').toggle();
         $('#signupForm').toggle();
     }
-    $.getJSON("/create_creds", function(status){
+    $.getJSON("/get_create_status", function(status){
         console.log(status)
         $('#create_status').html(status)
     })
