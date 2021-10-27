@@ -109,10 +109,10 @@ def create_creds():
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
         session['status'] = True
-        return json_response(status = {'status': 'Successfully created account.'})
+        return json_response(status ='Successfully created account.')
     else:
         session['status'] = False
-        return json_response(status = {'status': 'Account already exists. Try another username.'})
+        return json_response(status = 'Account already exists. Try another username.')
 
 @app.route('/check_creds', methods=['POST', 'GET'])
 def check_creds():
