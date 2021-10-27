@@ -157,6 +157,7 @@ def check_creds():
 def logStatus():
     if ACCOUNT_STATUS == 3:
         return json_response(login="Incorrect username/password. Please try again.")
+    return json_response(login = "")
 
 @app.route('/main_store')
 def main_page():
