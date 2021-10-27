@@ -11,7 +11,7 @@
       } 
     </style>
   </head>
-  <body onload="prime_page()">
+  <body>
       <div id="loginForm">
         <p >Sign into your account.</p>
         <form action="/check_creds" method="post" >
@@ -105,6 +105,14 @@
         $('#signupForm').hide();
         $('#container').hide();
     }
+    $.getJSON("/prime_page", function(page){
+        if(page['page'] == "SignUpPage"){
+            console.log("signup")
+        }
+        else if(page['page'] == "LoginPage"){
+            console.log("login")
+        }
+    })
     function swaplogin(){
         console.log("swapping")
         $('#loginForm').toggle();
