@@ -155,6 +155,7 @@ def check_creds():
             session['status'] = 'Failed'
             ACCOUNT_STATUS = 3
             return redirect(request.referrer)
+            
 @app.route('/login_status')
 def logStatus():
     if ACCOUNT_STATUS == 3:
