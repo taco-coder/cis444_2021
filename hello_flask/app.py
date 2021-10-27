@@ -172,9 +172,7 @@ def main_page():
 
 @app.route('/logout')
 def logout():
-    print(session)
     session.clear() #clear all session info
-    print(session)
     global ACCOUNT_STATUS
     ACCOUNT_STATUS = 0
     return redirect(request.referrer)
