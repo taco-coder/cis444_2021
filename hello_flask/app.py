@@ -98,17 +98,6 @@ def get_store():
     print(session)
     return render_template("bookstore.html")
 
-@app.route('/get_signup', methods=['POST', 'GET'])
-def get_signup():
-    return render_template("signup.html")
-
-@app.route('/check_signup')
-def check_signup(value):
-    if value is True:
-        return render_template('signup.html', create_status="Successfully created new account.")
-    else:
-        return render_template('signup.html', create_status="This username is already taken. Try another one.")
-
 @app.route('/create_creds', methods=['POST'])
 def create_creds():
     cur = db.cursor()
@@ -119,9 +108,9 @@ def create_creds():
         salted_pwd = bcrypt.hashpw( bytes(credsForm['password'], 'utf-8'),  bcrypt.gensalt(12))
         cur.execute("insert into users (username, password) values ('" + jwt_user + "', '" + salted_pwd.decode('utf-8') + "');")
         db.commit()
-        return check_signup(True)
+        return json_response(create_status="Successfully created new account.")
     else:
-        return check_signup(False)
+        return json_response(create_status="This username is already taken. Try another one.")
 
 @app.route('/check_creds', methods=['POST', 'GET'])
 def check_creds():
