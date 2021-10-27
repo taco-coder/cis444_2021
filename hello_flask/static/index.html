@@ -45,8 +45,8 @@
         $('#signupForm').toggle();
     }
     $.getJSON("/get_create_status", function(status){
-        console.log(status)
-        $('#create_status').html(status)
+        console.log(status['status'])
+        $('#create_status').html(status['status'])
     })
     
   </script>
