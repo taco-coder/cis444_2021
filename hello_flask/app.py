@@ -170,6 +170,8 @@ def main_page():
 @app.route('/logout')
 def logout():
     session.clear()
+    global ACCOUNT_STATUS
+    ACCOUNT_STATUS = 0
     return redirect(request.referrer)
 
 @app.route('/red_lepanka', methods=['GET'])    
