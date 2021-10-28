@@ -283,8 +283,8 @@
             <img width="450px" height="450px" style="border-radius: 5px;" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
         </div>
         <div id="book-details">
-            <h1 style="margin-bottom: 200px; font-size: 50px;" id="name"></h1>
-            <h3 id= "price"></h3>
+            <h1 style="margin-bottom: 200px; font-size: 50px;" id="name1"></h1>
+            <h3 id= "price1"></h3>
             <form action="/add_to_cart" method="post">
                 <input type="hidden" id="bookname" name="book_name" value="Red Lepanka">
                 <input type="hidden" id="bookprice" name="book_price" value={{price}}>
@@ -310,7 +310,7 @@
             <h2>Reviews</h2>
             <h4 id="avg-rate"></h4>
             <hr>
-            <div id="user-review"></div>
+            <div id="user-review1"></div>
             <div id="post-review" style="display:inline-block;">    
                 <hr>        
                 <h2>Leave a review:</h2>
@@ -442,12 +442,19 @@
         $('#red_lepanka_page').show();
         //get red lepanka and data reviews
         $.getJSON('/red_lepanka', function(value){
-            $('#name').html(value.data['bookname'])
-            $('#price').html(value.data['price'])
+            $('#name1').html(value.data['bookname'])
+            $('#price1').html(value.data['price'])
             var reviews = value.data['reviews']
             console.log("review: " + reviews[0][1])
             console.log("rate: " + reviews[0][2])
             console.log("name: " + reviews[0][3])
+            for(let i = 0; i < reviews.length; i++){
+                $("#user-review1").append(reviews[i][3] + " rated: "+ reviews[i][2] + "/5 - " + reviews[i][1])
+                avgRate += reviews[i][2]
+                $("#user-review1").append("<br><br>")
+            }
+            avgRate = avgRate / reviews.length
+            $("#avg-rate").html("Rating: " + avgRate.toFixed(1) + "/5")
         })
     }
     //navigate back to store
