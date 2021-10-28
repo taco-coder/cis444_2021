@@ -445,7 +445,7 @@
             console.log(value.data['bookname'])
             $('#name').html(value.data['bookname'])
             $('#price').html(value.data['price'])
-            console.log(value.data['reviews'][0])
+            console.log(value.data['reviews'][0][2])
             console.log(value.data['reviews'].length)
         })
     }
@@ -453,6 +453,8 @@
     function backToMain(){
         $('#book-page').show();
         $('#red_lepanka_page').hide();
+
+        $.post('/set_main_store', {'status' : 'Success'})
     }
 
   </script>

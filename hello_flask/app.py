@@ -100,10 +100,13 @@ def prime():
     try:
         if session['status'] == 'Create Account':
             return json_response(page="SignUpPage")
+
         elif session['status'] == 'Success':
             return json_response(page="AllBookPage")
+
         elif session['status'] == 'Red Lepanka':
             return json_response(page="RedLepanka")
+
         else:
             return json_response(page="LoginPage")
     except Exception as e:
@@ -171,6 +174,10 @@ def main_page():
     cur.execute("select * from books;")
     db_books = cur.fetchall()
     return json_response(books = db_books)
+    
+@app.route('/set_main_store')
+def set_main():
+    session['status'] = request.form['status']
 
 @app.route('/logout')
 def logout():
