@@ -283,8 +283,8 @@
             <img width="450px" height="450px" style="border-radius: 5px;" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png"/>
         </div>
         <div id="book-details">
-            <h1 style="margin-bottom: 200px; font-size: 50px;">{{bookname}}</h1>
-            <h3 id= "price">Price: {{price}}</h3>
+            <h1 style="margin-bottom: 200px; font-size: 50px;" id="name"></h1>
+            <h3 id= "price"></h3>
             <form action="/add_to_cart" method="post">
                 <input type="hidden" id="bookname" name="book_name" value="Red Lepanka">
                 <input type="hidden" id="bookprice" name="book_price" value={{price}}>
@@ -443,7 +443,10 @@
         $.getJSON('/red_lepanka', function(value){
             console.log(value.data)
             console.log(value.data['bookname'])
-            console.log(value.data['reviews'][2])
+            $('#name').html(value.data['bookname'])
+            $('#price').html(value.data['price'])
+            console.log(value.data['reviews'][0])
+            console.log(value.data['reviews'].length)
         })
     }
     //navigate back to store
