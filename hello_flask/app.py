@@ -178,7 +178,7 @@ def main_page():
 @app.route('/set_main_store', methods=['POST'])
 def set_main():
     session['status'] = request.form['status']
-    
+    return redirect(request.referrer)
 
 @app.route('/logout')
 def logout():
