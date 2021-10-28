@@ -442,13 +442,12 @@
         $('#red_lepanka_page').show();
         //get red lepanka and data reviews
         $.getJSON('/red_lepanka', function(value){
-            console.log(value.data)
-            console.log(value.data['bookname'])
             $('#name').html(value.data['bookname'])
             $('#price').html(value.data['price'])
             var reviews = value.data['reviews']
-            console.log(reviews[0][1])
-            console.log(value.data['reviews'].length)
+            console.log("review: " + reviews[0][1])
+            console.log("rate: " + reviews[0][2])
+            console.log("name: " + reviews[0][3])
         })
     }
     //navigate back to store
@@ -456,7 +455,7 @@
         $('#book-page').show();
         $('#red_lepanka_page').hide();
 
-        $.post('/set_main_store', {'status' : 'Success'})
+        $.post('/set_page', {'status' : 'Success'})
     }
 
   </script>
