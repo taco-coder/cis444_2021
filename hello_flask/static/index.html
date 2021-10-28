@@ -437,6 +437,7 @@
     }
     //navigate gets and sets red_lepanka_page
     function getRedLepankaPage(){
+        var avgRate = 0;
         $('#book-page').hide();
         $('#red_lepanka_page').show();
         //get red lepanka and data reviews
@@ -445,6 +446,8 @@
             console.log(value.data['bookname'])
             $('#name').html(value.data['bookname'])
             $('#price').html(value.data['price'])
+            var reviews = value.data['reviews']
+            console.log(reviews[0][1])
             console.log(value.data['reviews'][0][2])
             console.log(value.data['reviews'][0][1])
             console.log(value.data['reviews'].length)
