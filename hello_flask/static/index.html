@@ -212,7 +212,7 @@
         <div id="book-container">
             <div id="book_column_one">
                 <div id="book_row_one_column_one" >
-                <button id="book_image" onclick="swapRedLepankaPage();">
+                <button id="book_image" onclick="getRedLepankaPage();">
                     <img width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1629591299654.png">
                 </button>
                 <h2 id="book_name1"></h2>
@@ -271,7 +271,7 @@
     <!--___________________red lepanka page____________________-->
     <div id="red_lepanka_page">
         <div id="myDIV">
-            <button class="btn" onclick="swapRedLepankaPage();">Go Back &#8617</button>
+            <button class="btn" onclick="backToMain();">Go Back &#8617</button>
         </div>
         <form style = "margin-left: 85%; margin-top: -40px;" action="/get_store" method="get">
             <input type="submit" class="btn" value="Sign Out">
@@ -445,6 +445,11 @@
             console.log(value.data['bookname'])
             console.log(value.data['reviews'][2])
         })
+    }
+    //navigate back to store
+    function backToMain(){
+        $('#book-page').show();
+        $('#red_lepanka_page').hide();
     }
 
   </script>
