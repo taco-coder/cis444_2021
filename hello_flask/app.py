@@ -102,6 +102,8 @@ def prime():
             return json_response(page="SignUpPage")
         elif session['status'] == 'Success':
             return json_response(page="AllBookPage")
+        elif session['status'] == 'Red Lepanka':
+            return json_response(page="RedLepanka")
         else:
             return json_response(page="LoginPage")
     except Exception as e:
@@ -180,6 +182,7 @@ def logout():
 @app.route('/red_lepanka', methods=['GET'])    
 def get_red_lepanka():
     cur = db.cursor()
+    session['status'] = 'Red Lepanka'
     cur.execute("select * from books where id = 1;")
     bResult = cur.fetchone()
     cur.execute("select * from reviews where id = 1;")

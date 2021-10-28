@@ -354,6 +354,12 @@
             $('#book-page').show();       
             $('#red_lepanka_page').hide();
         }
+        else if(page['page'] == "RedLepanka"){
+            $('#loginForm').hide()
+            $('#signupForm').hide();
+            $('#book-page').hide();       
+            $('#red_lepanka_page').show();
+        }        
     })
     //swaps login and signup forms
     function swaplogin(){
@@ -429,16 +435,17 @@
         $('#book_row_two_column_two').show();
         $('#book_row_two_column_one').show();
     }
-    //navigate to and from red_lepanka_page
-    function swapRedLepankaPage(){
-        $('#book-page').toggle();
-        $('#red_lepanka_page').toggle();
+    //navigate gets and sets red_lepanka_page
+    function getRedLepankaPage(){
+        $('#book-page').hide();
+        $('#red_lepanka_page').show();
+        //get red lepanka and data reviews
+        $.getJSON('/red_lepanka', function(value){
+            console.log(value.data)
+            console.log(value.data['bookname'])
+            console.log(value.data['reviews'][2])
+        })
     }
-    //get red lepanka reviews
-    $.getJSON('/red_lepanka', function(value){
-        console.log(value.data)
-        console.log(value.data['bookname'])
-        console.log(value.data['reviews'])
-    })
+
   </script>
 </html>
