@@ -174,10 +174,11 @@ def main_page():
     cur.execute("select * from books;")
     db_books = cur.fetchall()
     return json_response(books = db_books)
-    
+
 @app.route('/set_main_store')
 def set_main():
     session['status'] = request.form['status']
+    return redirect(request.referrer)
 
 @app.route('/logout')
 def logout():
