@@ -175,7 +175,7 @@ def main_page():
     db_books = cur.fetchall()
     return json_response(books = db_books)
 
-@app.route('/set_main_store')
+@app.route('/set_main_store', method=['POST'])
 def set_main():
     session['status'] = request.form['status']
     return redirect(request.referrer)
