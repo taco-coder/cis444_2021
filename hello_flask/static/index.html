@@ -273,7 +273,7 @@
         <div id="myDIV">
             <button class="btn" onclick="backToMain();">Go Back &#8617</button>
         </div>
-        <form style = "margin-left: 85%; margin-top: -40px;" action="/get_store" method="get">
+        <form style = "margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
             <input type="submit" class="btn" value="Sign Out">
         </form>           
         <form id = "cart_btn" action="/cart" method="get">
@@ -308,7 +308,7 @@
         </div>
         <div id="review-section">
             <h2>Reviews</h2>
-            <h4 id="avg-rate"></h4>
+            <h4 id="avg-rate1"></h4>
             <hr>
             <div id="user-review1"></div>
             <div id="post-review" style="display:inline-block;">    
@@ -435,30 +435,32 @@
         $('#book_row_two_column_two').show();
         $('#book_row_two_column_one').show();
     }
+
     //navigate gets and sets red_lepanka_page
     function getRedLepankaPage(){
-        var avgRate = 0;
         $('#book-page').hide();
         $('#red_lepanka_page').show();
-        //get red lepanka and data reviews
-        $.getJSON('/red_lepanka', function(value){
-            $('#name1').html(value.data['bookname'])
-            $('#price1').html(value.data['price'])
-            $('#bookpage_name1').val(value.data['bookname'])
-            $('#bookpage_price1').val(value.data['price'])
-            var reviews = value.data['reviews']
-            console.log("review: " + reviews[0][1])
-            console.log("rate: " + reviews[0][2])
-            console.log("name: " + reviews[0][3])
-            for(let i = 0; i < reviews.length; i++){
-                $("#user-review1").append(reviews[i][3] + " rated: "+ reviews[i][2] + "/5 - " + reviews[i][1])
-                avgRate += reviews[i][2]
-                $("#user-review1").append("<br><br>")
-            }
-            avgRate = avgRate / reviews.length
-            $("#avg-rate").html("Rating: " + avgRate.toFixed(1) + "/5")
-        })
     }
+    //get red lepanka and data reviews
+    $.getJSON('/red_lepanka', function(value){
+        var avgRate = 0;
+        $('#name1').html(value.data['bookname'])
+        $('#price1').html(value.data['price'])
+        $('#bookpage_name1').val(value.data['bookname'])
+        $('#bookpage_price1').val(value.data['price'])
+        var reviews = value.data['reviews']
+        console.log("review: " + reviews[0][1])
+        console.log("rate: " + reviews[0][2])
+        console.log("name: " + reviews[0][3])
+        for(let i = 0; i < reviews.length; i++){
+            $("#user-review1").append(reviews[i][3] + " rated: "+ reviews[i][2] + "/5 - " + reviews[i][1])
+            avgRate += reviews[i][2]
+            $("#user-review1").append("<br><br>")
+        }
+        avgRate = avgRate / reviews.length
+        $("#avg-rate1").html("Rating: " + avgRate.toFixed(1) + "/5")
+    })    
+    
     //navigate back to store
     function backToMain(){
         $('#book-page').show();
