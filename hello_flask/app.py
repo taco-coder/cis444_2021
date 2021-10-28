@@ -259,7 +259,7 @@ def post_review():
     cur.execute(f"insert into reviews (id, review, rating, review_user) values ( {id}, '{text}', {rate}, '{user['username']}');")
     db.commit()
     if int(request.form['book_id']) == 1:
-        return get_red_lepanka()
+        return redirect(request.referrer)
     elif int(request.form['book_id']) == 2:
         return get_taco()
     elif int(request.form['book_id']) == 3:
