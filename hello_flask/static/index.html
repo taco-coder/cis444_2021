@@ -460,12 +460,11 @@
         avgRate = avgRate / reviews.length
         $("#avg-rate1").html("Rating: " + avgRate.toFixed(1) + "/5")
     })    
-    
+
     //navigate back to store
     function backToMain(){
         $('#book-page').show();
         $('#red_lepanka_page').hide();
-
         $.post('/set_page', {'status' : 'Success'})
     }
 
