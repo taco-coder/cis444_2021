@@ -113,6 +113,9 @@ def prime():
 
         elif session['status'] == 'Car Jack':
             return json_response(page="Carjack")
+            
+        elif session['status'] == 'Ego Bias':
+            return json_response(page="EgoBias")
 
         else:
             return json_response(page="LoginPage")
@@ -228,7 +231,7 @@ def get_ego_bias():
     bResult = cur.fetchone()
     cur.execute("select * from reviews where id = 4;")
     uReviews = cur.fetchall()    
-    return render_template("ego.html", bookname=bResult[1], price=bResult[2], reviews=uReviews)
+    return json_response(data ={'bookname' : bResult[1], 'price' : bResult[2], 'reviews' : uReviews})
 
 @app.route('/cart', methods=['GET'])    
 def get_cart():
@@ -237,10 +240,10 @@ def get_cart():
         cart_prices = session['book_price'].split(";")
         print(cart_books)
         print(cart_prices)
-        return render_template("cart.html", books = cart_books, prices = cart_prices)
+        return json_response(books = cart_books, prices = cart_prices)
     except Exception as e:
         print("empty cart")
-        return render_template("cart.html")
+        return json_response(error = "Empty cart.")
 
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():

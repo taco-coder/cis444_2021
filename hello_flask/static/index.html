@@ -454,6 +454,69 @@
             </div>
         </div>    
     </div>
+    <!--___________________ego bias page____________________-->
+    <div id="ego_bias_page">
+        <div id="myDIV">
+            <button class="btn" onclick="backToMain();">Go Back &#8617</button>
+        </div>
+        <form style = "margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
+            <input type="submit" class="btn" value="Sign Out">
+        </form>         
+        <form id = "cart_btn" action="/cart" method="get">
+            <input type="submit" class="btn" value="Go to Cart &#128722">
+        </form>        
+        <div id="book-cover">
+            <img width="450px" height="450px" style="border-radius: 5px;" src="https://red-lepanka-images.s3.amazonaws.com/1622954694581.jpg"/>
+        </div>
+        <div id="book-details">
+            <h1 style="margin-bottom: 200px; font-size: 50px;" id="name4"></h1>
+            <h3 id= "price4"></h3>
+            <form action="/add_to_cart" method="post">
+                <input type="hidden" id="bookname" name="book_name" value="Ego and Bias">
+                <input type="hidden" id="bookprice" name="book_price" value={{price}}>
+                <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+            </form>
+        </div>
+        <div id="testimonies">
+            <p class="quote"><q>I'm a sucker for a good love story.</q> - Jay-Z</p>
+            <br>
+            <p class="quote"><q>My husband cannot put this book down.</q> - Beyonce</p>
+        </div>
+        <div id="description">
+            <h2>Description</h2>
+            <hr>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam varius ipsum tristique, dignissim quam ut, tempus ex. 
+            Morbi pulvinar purus ut odio rutrum aliquam. Aliquam non volutpat odio, sit amet pharetra lorem. 
+            Ut vehicula elementum nulla, sit amet sodales nisl finibus varius. Donec eu sollicitudin nunc, non auctor nibh.
+            Ut ultricies finibus elit ut scelerisque. Nam nec tincidunt massa, quis molestie massa. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+             Nunc ligula enim, dictum eget nunc eu, egestas tempor lacus. In et hendrerit velit. Praesent ac egestas libero.
+             Maecenas convallis felis quis ex posuere malesuada. Mauris id nisi vel nunc maximus efficitur in vel sem. </p>
+        </div>
+        <div id="review-section">
+                <h2>Reviews</h2>
+                <h4 id="avg-rate4"></h4>
+            <hr>
+            <div id="user-review4"></div>
+            <div id="post-review" style="display:inline-block;">    
+            <hr>        
+            <h2>Leave a review:</h2>
+                <form id="post-review" action="/post_review" method="post">
+                    <label for="rate" style="font-size: 18px;">Rate:</label>
+                    <select class="btn" name="rate" id="rate">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="hidden" name="book_id" value="4">
+                    <input class ="btn" type="submit" value="Post Review">
+                    <textarea rows="6" cols="195" placeholder="Leave a review within 255 characters" maxlength="255" name="reviewtext" required></textarea>                    
+                </form>
+
+            </div>
+        </div>
+    </div>
   </body>
   <script>
     //keeps current page when getting returned on create_cred
@@ -472,7 +535,8 @@
             $('#book-page').hide();       
             $('#become_taco_page').hide();
             $('#car_jack_page').hide();
-            $('#red_lepanka_page').hide();     
+            $('#red_lepanka_page').hide();  
+            $('#ego_bias_page').hide();   
         }
         else if(page['page'] == "AllBookPage"){
             $('#loginForm').hide()
@@ -481,6 +545,7 @@
             $('#book-page').show();       
             $('#car_jack_page').hide();
             $('#red_lepanka_page').hide();
+            $('#ego_bias_page').hide();
         }
         else if(page['page'] == "RedLepanka"){
             $('#loginForm').hide()
@@ -489,6 +554,7 @@
             $('#become_taco_page').hide();
             $('#car_jack_page').hide();
             $('#red_lepanka_page').show();
+            $('#ego_bias_page').hide();
         }
         else if(page['page'] == "BecomeTaco"){
             $('#loginForm').hide()
@@ -497,6 +563,7 @@
             $('#become_taco_page').show();
             $('#red_lepanka_page').hide();
             $('#car_jack_page').hide();
+            $('#ego_bias_page').hide();
         }        
         else if(page['page'] == "Carjack"){
             $('#loginForm').hide()
@@ -505,7 +572,17 @@
             $('#become_taco_page').hide();
             $('#red_lepanka_page').hide();
             $('#car_jack_page').show();
-        }            
+            $('#ego_bias_page').hide();
+        }
+        else if(page['page'] == "EgoBias"){
+            $('#loginForm').hide()
+            $('#signupForm').hide();
+            $('#book-page').hide();       
+            $('#become_taco_page').hide();
+            $('#red_lepanka_page').hide();
+            $('#car_jack_page').hide();
+            $('#ego_bias_page').show();
+        }           
     })
     //swaps login and signup forms
     function swaplogin(){
@@ -655,12 +732,38 @@
         $("#avg-rate3").html("Rating: " + avgRate.toFixed(1) + "/5")
     })          
 
+    //navigate gets and sets carjack
+    function getEgoBiasPage(){
+        $('#book-page').hide();
+        $.post('/set_page', {'status' : 'Ego Bias'})
+        $('#ego_bias_page').show();
+    }
+    //get becom taco and data reviews
+    $.getJSON('/ego_bias', function(value){
+        var avgRate = 0;
+        $('#name4').html(value.data['bookname'])
+        $('#price4').html(value.data['price'])
+        $('#bookpage_name4').val(value.data['bookname'])
+        $('#bookpage_price4').val(value.data['price'])
+
+        var reviews = value.data['reviews']
+
+        for(let i = 0; i < reviews.length; i++){
+            $("#user-review4").append(reviews[i][3] + " rated: "+ reviews[i][2] + "/5 - " + reviews[i][1])
+            avgRate += reviews[i][2]
+            $("#user-review4").append("<br><br>")
+        }
+        avgRate = avgRate / reviews.length
+        $("#avg-rate4").html("Rating: " + avgRate.toFixed(1) + "/5")
+    })      
+
     //navigate back to store
     function backToMain(){
         $('#book-page').show();
         $('#red_lepanka_page').hide();
         $('#become_taco_page').hide();
         $('#car_jack_page').hide();
+        $('#ego_bias_page').hide();
         $.post('/set_page', {'status' : 'MainPage'})
     }
 
