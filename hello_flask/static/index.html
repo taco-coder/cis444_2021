@@ -253,7 +253,7 @@
                 </div>
                 <div id="book_row_two_column_two" >
                 <div id="image_column_two">
-                    <button id="book_image" onclick="">
+                    <button id="book_image" onclick="getEgoBiasPage();">
                     <img width="150px" height = "150px" src="https://red-lepanka-images.s3.amazonaws.com/1622954694581.jpg"/>
                     </button>
                 </div>
@@ -688,7 +688,7 @@
         $.post('/set_page', {'status' : 'Become Taco'})
         $('#become_taco_page').show();
     }
-    //get becom taco and data reviews
+    //get become taco and data reviews
     $.getJSON('/become_taco', function(value){
         var avgRate = 0;
         $('#name2').html(value.data['bookname'])
@@ -713,7 +713,7 @@
         $.post('/set_page', {'status' : 'Car Jack'})
         $('#car_jack_page').show();
     }
-    //get becom taco and data reviews
+    //get carjack and data reviews
     $.getJSON('/car_jack', function(value){
         var avgRate = 0;
         $('#name3').html(value.data['bookname'])
@@ -732,13 +732,13 @@
         $("#avg-rate3").html("Rating: " + avgRate.toFixed(1) + "/5")
     })          
 
-    //navigate gets and sets carjack
+    //navigate gets and sets ego bias
     function getEgoBiasPage(){
         $('#book-page').hide();
         $.post('/set_page', {'status' : 'Ego Bias'})
         $('#ego_bias_page').show();
     }
-    //get becom taco and data reviews
+    //get ego bias and data reviews
     $.getJSON('/ego_bias', function(value){
         var avgRate = 0;
         $('#name4').html(value.data['bookname'])
