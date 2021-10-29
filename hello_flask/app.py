@@ -98,6 +98,7 @@ def hello_db():
 @app.route('/prime_page')
 def prime():
     try:
+        print(f"prime_page: {session['status']}")
         if session['status'] == 'Create Account':
             return json_response(page="SignUpPage")
 
@@ -193,7 +194,9 @@ def logout():
 @app.route('/red_lepanka', methods=['GET'])    
 def get_red_lepanka():
     cur = db.cursor()
+    print(f"before red: {session['status']}")
     session['status'] = 'Red Lepanka'
+    print(f"after red: {session['status']}")
     cur.execute("select * from books where id = 1;")
     bResult = cur.fetchone()
     cur.execute("select * from reviews where id = 1;")
@@ -203,7 +206,9 @@ def get_red_lepanka():
 @app.route('/become_taco', methods=['GET'])    
 def get_taco():
     cur = db.cursor()
+    print(f"before taco: {session['status']}")
     session['status'] = 'Become Taco'
+    print(f"after taco: {session['status']}")
     cur.execute("select * from books where id = 2;")    
     bResult = cur.fetchone()
     cur.execute("select * from reviews where id = 2;")
