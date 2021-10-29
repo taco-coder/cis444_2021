@@ -563,8 +563,7 @@
             $('#red_lepanka_page').show();
             $('#ego_bias_page').hide();
             $('#cart_page').hide();
-
-            getRedLepankaPage(); //reinitialize data on reload
+            getRedLepankaPage();
         }
         else if(page['page'] == "BecomeTaco"){
             $('#loginForm').hide()
@@ -781,8 +780,8 @@
         $("#avg-rate4").html("Rating: " + avgRate.toFixed(1) + "/5")
     })      
 
-    //navigate gets and sets red_lepanka_page
-    function getRedLepankaPage(){
+    //navigate gets and sets cart page
+    function getCartPage(){
         $.post('/set_page', {'status' : 'Cart'})
         $('#cart_page').show();
     }    
