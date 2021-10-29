@@ -96,74 +96,70 @@
         border: 1px solid coral;        
       }         
       /*------------------Red Lepanka Style------------------*/
-            #book-details, #book-cover, #testimonies{
-                display: inline-block;
-                vertical-align: middle;
-            }
-            #testimonies{
-                width: 300px;
-                height: 300px;
-            }
-            .quote{
-                background: lightgray;
-                border: 1px solid black;        
-                border-radius: 20px;
-                padding: 10px;
-            }
-            #book-details{
-                margin-left: 100px;
-                padding-right: 250px;
-                width: 400px;
-                wordwrap: normal;
-            }
-            #book-cover{
-                margin-left: 150px;
-            }
-            #buy_button, #price{
-                display: inline;
-            }
-            #buy_button{
-                margin-left: 40px;
-                border: none;
-                outline: none;
-                padding: 10px 16px;
-                border-radius:5px;
-                background-color: coral;
-                color: white;
-                cursor: pointer;
-                font-size: 18px;
-                transition-duration: 0.3s;                
-            }
-            #buy_button:hover{
-                background-color: white;
-                color: coral;
-                border: 1px solid coral; 
-            }
-            .btn {
-                border: none;
-                outline: none;
-                padding: 10px 16px;
-                border-radius:5px;
-                background-color: coral;
-                color: white;
-                cursor: pointer;
-                font-size: 18px;
-                transition-duration: 0.3s;  
-            }  
-            .btn:hover {
-                background-color: white;
-                color: coral;
-                border-radius: 10px;
-                border: 1px solid coral;        
-            }             
-            #cart_btn{
-                margin-left: 92%;
-                margin-top: -42px;
-            }
-            #description, #review-section{
-                margin-left: 150px;
-                margin-right: 150px;
-            }      
+    #book-details, #book-cover, #testimonies{
+        display: inline-block;
+        vertical-align: middle;
+    }
+    #testimonies{
+        width: 300px;
+        height: 300px;
+    }
+    .quote{
+        background: lightgray;
+        border: 1px solid black;        
+        border-radius: 20px;
+        padding: 10px;
+    }
+    #book-details{
+        margin-left: 100px;
+        padding-right: 250px;
+        width: 400px;
+        wordwrap: normal;
+    }
+    #book-cover{
+        margin-left: 150px;
+    }
+    #buy_button, #price{
+        display: inline;
+    }
+    #buy_button{
+        margin-left: 40px;
+        border: none;
+        outline: none;
+        padding: 10px 16px;
+        border-radius:5px;
+        background-color: coral;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        transition-duration: 0.3s;                
+    }
+    #buy_button:hover{
+        background-color: white;
+        color: coral;
+        border: 1px solid coral; 
+    }
+    .btn {
+        border: none;
+        outline: none;
+        padding: 10px 16px;
+        border-radius:5px;
+        background-color: coral;
+        color: white;
+        cursor: pointer;
+        font-size: 18px;
+        transition-duration: 0.3s;  
+    }  
+    .btn:hover {
+        background-color: white;
+        color: coral;
+        border-radius: 10px;
+        border: 1px solid coral;        
+    }             
+    #description, #review-section{
+        margin-left: 150px;
+        margin-right: 150px;
+    }      
     </style>
   </head>
   <body>
@@ -206,9 +202,7 @@
         <form style = "margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
             <input type="submit" class="btn" value="Sign Out">
         </form>
-        <form id = "cart_btn">
-            <button class="btn" onclick="getCartPage();">Go to Cart &#128722</button>
-        </form>              
+        <button id = "cart_btn" class="btn" onclick="getCartPage();">Go to Cart &#128722</button>
         
         <div id="book-container">
             <div id="book_column_one">
