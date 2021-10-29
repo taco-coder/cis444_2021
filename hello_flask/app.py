@@ -106,6 +106,9 @@ def prime():
 
         elif session['status'] == 'Red Lepanka':
             return json_response(page="RedLepanka")
+        
+        elif session['status'] == 'Become Taco':
+            return json_response(page="BecomeTaco")
 
         else:
             return json_response(page="LoginPage")
@@ -200,11 +203,12 @@ def get_red_lepanka():
 @app.route('/become_taco', methods=['GET'])    
 def get_taco():
     cur = db.cursor()
+    session['status'] = 'Become Taco'
     cur.execute("select * from books where id = 2;")    
     bResult = cur.fetchone()
     cur.execute("select * from reviews where id = 2;")
     uReviews = cur.fetchall()    
-    return render_template("becomingtaco.html", bookname=bResult[1], price=bResult[2], reviews=uReviews)
+    return json_response(data ={'bookname' : bResult[1], 'price' : bResult[2], 'reviews' : uReviews})
 
 @app.route('/car_jack', methods=['GET'])    
 def get_carjack():
@@ -261,7 +265,7 @@ def post_review():
     if int(request.form['book_id']) == 1:
         return redirect(request.referrer)
     elif int(request.form['book_id']) == 2:
-        return get_taco()
+        return redirect(request.referrer)
     elif int(request.form['book_id']) == 3:
         return get_carjack()
     else:
