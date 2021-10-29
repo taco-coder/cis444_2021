@@ -265,7 +265,7 @@
         </div>
     </div>     
     <!--___________________red lepanka page____________________-->
-    <div id="red_lepanka_page" onload="getRedLepankaPage();">
+    <div id="red_lepanka_page">
         <div id="myDIV">
             <button class="btn" onclick="backToMain();">Go Back &#8617</button>
         </div>
@@ -282,8 +282,8 @@
             <h1 style="margin-bottom: 200px; font-size: 50px;" id="name1"></h1>
             <h3 id= "price1"></h3>
             <form action="/add_to_cart" method="post">
-                <input type="hidden" id="bookname" name="bookpage_name1" value="">
-                <input type="hidden" id="bookprice" name="bookpage_price1" value="">
+                <input type="hidden" id="bookname1" name="book_name" value="">
+                <input type="hidden" id="bookprice1" name="book_price" value="">
                 <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
             </form>
         </div>
@@ -343,8 +343,8 @@
             <h1 style="margin-bottom: 200px; font-size: 50px;" id="name2"></h1>
             <h3 id= "price2"></h3>
             <form action="/add_to_cart" method="post">
-                <input type="hidden" id="bookname" name="book_name2" value=""> 
-                <input type="hidden" id="bookprice" name="book_price2" value="">
+                <input type="hidden" id="bookname2" name="book_name" value=""> 
+                <input type="hidden" id="bookprice2" name="book_price" value="">
                 <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
             </form>
         </div>
@@ -406,8 +406,8 @@
             <h1 style="margin-bottom: 200px; font-size: 50px;" id="name3"></h1>
             <h3 id= "price3"></h3>
             <form action="/add_to_cart" method="post">
-                <input type="hidden" id="bookname" name="book_name" value="">
-                <input type="hidden" id="bookprice" name="book_price" value="">
+                <input type="hidden" id="bookname3" name="book_name" value="">
+                <input type="hidden" id="bookprice3" name="book_price" value="">
                 <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
             </form>
         </div>
@@ -468,8 +468,8 @@
             <h1 style="margin-bottom: 200px; font-size: 50px;" id="name4"></h1>
             <h3 id= "price4"></h3>
             <form action="/add_to_cart" method="post">
-                <input type="hidden" id="bookname" name="book_name" value="Ego and Bias">
-                <input type="hidden" id="bookprice" name="book_price" value={{price}}>
+                <input type="hidden" id="bookname4" name="book_name" value="">
+                <input type="hidden" id="bookprice4" name="book_price" value="">
                 <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
             </form>
         </div>
@@ -688,8 +688,8 @@
         var avgRate = 0;
         $('#name1').html(value.data['bookname'])
         $('#price1').html(value.data['price'])
-        $('#bookpage_name1').val(value.data['bookname'])
-        $('#bookpage_price1').val(value.data['price'])
+        $('#bookname1').val(value.data['bookname'])
+        $('#bookprice1').val(value.data['price'])
         var reviews = value.data['reviews']
         for(let i = 0; i < reviews.length; i++){
             $("#user-review1").append(reviews[i][3] + " rated: "+ reviews[i][2] + "/5 - " + reviews[i][1])
@@ -711,8 +711,8 @@
         var avgRate = 0;
         $('#name2').html(value.data['bookname'])
         $('#price2').html(value.data['price'])
-        $('#bookpage_name2').val(value.data['bookname'])
-        $('#bookpage_price2').val(value.data['price'])
+        $('#bookname2').val(value.data['bookname'])
+        $('#bookprice2').val(value.data['price'])
 
         var reviews = value.data['reviews']
 
@@ -736,8 +736,8 @@
         var avgRate = 0;
         $('#name3').html(value.data['bookname'])
         $('#price3').html(value.data['price'])
-        $('#bookpage_name3').val(value.data['bookname'])
-        $('#bookpage_price3').val(value.data['price'])
+        $('#bookname3').val(value.data['bookname'])
+        $('#bookprice3').val(value.data['price'])
 
         var reviews = value.data['reviews']
 
@@ -761,8 +761,8 @@
         var avgRate = 0;
         $('#name4').html(value.data['bookname'])
         $('#price4').html(value.data['price'])
-        $('#bookpage_name4').val(value.data['bookname'])
-        $('#bookpage_price4').val(value.data['price'])
+        $('#bookname4').val(value.data['bookname'])
+        $('#bookprice4').val(value.data['price'])
 
         var reviews = value.data['reviews']
 
