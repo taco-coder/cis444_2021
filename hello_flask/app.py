@@ -269,8 +269,8 @@ def post_review():
     elif int(request.form['book_id']) == 2:
         return redirect(request.referrer)
     elif int(request.form['book_id']) == 3:
-        return get_carjack()
+        return redirect(request.referrer)
     else:
-        return get_ego_bias()
+        return redirect(request.referrer)
 
 app.run(host='0.0.0.0', port=80)
