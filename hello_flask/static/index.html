@@ -71,7 +71,7 @@
         margin-left: 92%;
         margin-top: -42px;
       }
-      .btn {
+      .btn, .genrebtn {
         border: none;
         outline: none;
         padding: 10px 16px;
@@ -89,7 +89,7 @@
         border-radius: 10px;
         border: 1px solid coral;        
       }      
-      .btn:hover {
+      .btn:hover, .genrebtn:hover {
         background-color: #DCDCDC;
         color: coral;
         border-radius: 10px;
@@ -197,11 +197,11 @@
     <!--___________________books page____________________-->
     <div id="book-page">
         <div id="genre-bar">
-            <button class="btn active" onclick="showAll();">All Genres</button>
-            <button class="btn" onclick="onlyThriller();">Thriller</button>
-            <button class="btn" onclick="onlyRomance();">Romance</button>
-            <button class="btn" onclick="onlyScifi();">Sci-Fi</button>
-            <button class="btn" onclick="onlySelfhelp();">Self-Help</button>
+            <button class="genrebtn active" onclick="showAll();">All Genres</button>
+            <button class="genrebtn" onclick="onlyThriller();">Thriller</button>
+            <button class="genrebtn" onclick="onlyRomance();">Romance</button>
+            <button class="genrebtn" onclick="onlyScifi();">Sci-Fi</button>
+            <button class="genrebtn" onclick="onlySelfhelp();">Self-Help</button>
         </div>
         <form style = "margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
             <input type="submit" class="btn" value="Sign Out">
@@ -517,7 +517,7 @@
     </div>
   </body>
   <script>
-    //keeps current page when getting returned on create_cred
+    //keeps current page 
     $.getJSON("/prime_page", function(page){
         if(page['page'] == "SignUpPage"){
             $('#signupForm').show()
@@ -618,7 +618,7 @@
     })    
     //book genre logic
     var header = document.getElementById("genre-bar");
-    var btns = header.getElementsByClassName("btn");
+    var btns = header.getElementsByClassName("genrebtn");
     for (var i = 0; i < btns.length; i++) {
         btns[i].addEventListener("click", function() {
         var current = document.getElementsByClassName("active");
