@@ -518,6 +518,7 @@
     </div>
     <!--___________________cart page page____________________-->
     <div id="cart_page">
+        <h1>Red cart time</h1>
     </div>
   </body>
   <script>
@@ -530,6 +531,8 @@
             $('#car_jack_page').hide();
             $('#red_lepanka_page').hide();
             $('#become_taco_page').hide();
+            $('#ego_bias_page').show();
+            $('#cart_page').hide();
         }
         else if(page['page'] == "LoginPage"){
             $('#loginForm').show()
@@ -539,6 +542,7 @@
             $('#car_jack_page').hide();
             $('#red_lepanka_page').hide();  
             $('#ego_bias_page').hide();   
+            $('#cart_page').hide();
         }
         else if(page['page'] == "AllBookPage"){
             $('#loginForm').hide()
@@ -548,6 +552,7 @@
             $('#car_jack_page').hide();
             $('#red_lepanka_page').hide();
             $('#ego_bias_page').hide();
+            $('#cart_page').hide();
         }
         else if(page['page'] == "RedLepanka"){
             $('#loginForm').hide()
@@ -557,6 +562,9 @@
             $('#car_jack_page').hide();
             $('#red_lepanka_page').show();
             $('#ego_bias_page').hide();
+            $('#cart_page').hide();
+
+            getRedLepankaPage(); //reinitialize data on reload
         }
         else if(page['page'] == "BecomeTaco"){
             $('#loginForm').hide()
@@ -566,6 +574,7 @@
             $('#red_lepanka_page').hide();
             $('#car_jack_page').hide();
             $('#ego_bias_page').hide();
+            $('#cart_page').hide();
         }        
         else if(page['page'] == "Carjack"){
             $('#loginForm').hide()
@@ -575,6 +584,7 @@
             $('#red_lepanka_page').hide();
             $('#car_jack_page').show();
             $('#ego_bias_page').hide();
+            $('#cart_page').hide();
         }
         else if(page['page'] == "EgoBias"){
             $('#loginForm').hide()
@@ -584,7 +594,18 @@
             $('#red_lepanka_page').hide();
             $('#car_jack_page').hide();
             $('#ego_bias_page').show();
-        }           
+            $('#cart_page').hide();
+        }
+        else if(page['page'] == "Cart"){
+            $('#loginForm').hide()
+            $('#signupForm').hide();
+            $('#book-page').hide();       
+            $('#become_taco_page').hide();
+            $('#red_lepanka_page').hide();
+            $('#car_jack_page').hide();
+            $('#ego_bias_page').hide();
+            $('#cart_page').show();
+        }          
     })
     //swaps login and signup forms
     function swaplogin(){
@@ -666,23 +687,24 @@
         $('#book-page').hide();
         $.post('/set_page', {'status' : 'Red Lepanka'})
         $('#red_lepanka_page').show();
+        //get red lepanka and data reviews
+        $.getJSON('/red_lepanka', function(value){
+            var avgRate = 0;
+            $('#name1').html(value.data['bookname'])
+            $('#price1').html(value.data['price'])
+            $('#bookpage_name1').val(value.data['bookname'])
+            $('#bookpage_price1').val(value.data['price'])
+            var reviews = value.data['reviews']
+            for(let i = 0; i < reviews.length; i++){
+                $("#user-review1").append(reviews[i][3] + " rated: "+ reviews[i][2] + "/5 - " + reviews[i][1])
+                avgRate += reviews[i][2]
+                $("#user-review1").append("<br><br>")
+            }
+            avgRate = avgRate / reviews.length
+            $("#avg-rate1").html("Rating: " + avgRate.toFixed(1) + "/5")
+        })          
     }
-    //get red lepanka and data reviews
-    $.getJSON('/red_lepanka', function(value){
-        var avgRate = 0;
-        $('#name1').html(value.data['bookname'])
-        $('#price1').html(value.data['price'])
-        $('#bookpage_name1').val(value.data['bookname'])
-        $('#bookpage_price1').val(value.data['price'])
-        var reviews = value.data['reviews']
-        for(let i = 0; i < reviews.length; i++){
-            $("#user-review1").append(reviews[i][3] + " rated: "+ reviews[i][2] + "/5 - " + reviews[i][1])
-            avgRate += reviews[i][2]
-            $("#user-review1").append("<br><br>")
-        }
-        avgRate = avgRate / reviews.length
-        $("#avg-rate1").html("Rating: " + avgRate.toFixed(1) + "/5")
-    })  
+
 
     //navigate gets and sets become_taco_page
     function getBecomeTacoPage(){
@@ -759,6 +781,12 @@
         $("#avg-rate4").html("Rating: " + avgRate.toFixed(1) + "/5")
     })      
 
+    //navigate gets and sets red_lepanka_page
+    function getRedLepankaPage(){
+        $.post('/set_page', {'status' : 'Cart'})
+        $('#cart_page').show();
+    }    
+
     //navigate back to store
     function backToMain(){
         $('#book-page').show();
@@ -766,6 +794,7 @@
         $('#become_taco_page').hide();
         $('#car_jack_page').hide();
         $('#ego_bias_page').hide();
+        $('#cart_page').hide();
         $.post('/set_page', {'status' : 'MainPage'})
     }
 

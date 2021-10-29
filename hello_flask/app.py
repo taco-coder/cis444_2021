@@ -117,6 +117,9 @@ def prime():
         elif session['status'] == 'Ego Bias':
             return json_response(page="EgoBias")
 
+        elif session['status'] == 'Cart':
+            return json_response(page="Cart")
+
         else:
             return json_response(page="LoginPage")
     except Exception as e:
