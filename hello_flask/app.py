@@ -111,6 +111,9 @@ def prime():
         elif session['status'] == 'Become Taco':
             return json_response(page="BecomeTaco")
 
+        elif session['status'] == 'Car Jack':
+            return json_response(page="Carjack")
+
         else:
             return json_response(page="LoginPage")
     except Exception as e:
@@ -216,7 +219,7 @@ def get_carjack():
     bResult = cur.fetchone()
     cur.execute("select * from reviews where id = 3;")
     uReviews = cur.fetchall()    
-    return render_template("carjack.html", bookname=bResult[1], price=bResult[2], reviews=uReviews)
+    return json_response(data ={'bookname' : bResult[1], 'price' : bResult[2], 'reviews' : uReviews})
 
 @app.route('/ego_bias', methods=['GET'])    
 def get_ego_bias():

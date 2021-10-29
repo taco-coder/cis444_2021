@@ -392,6 +392,68 @@
             </div>
         </div>
     </div>
+    <!--___________________car jack page____________________-->
+    <div id="car_jack_page">
+        <div id="myDIV">
+            <button class="btn" onclick="backToMain();">Go Back &#8617</button>
+        </div>
+        <form style = "margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
+            <input type="submit" class="btn" value="Sign Out">
+        </form>           
+        <form id = "cart_btn" action="/cart" method="get">
+            <input type="submit" class="btn" value="Go to Cart &#128722">
+        </form>        
+        <div id="book-cover">
+            <img width="450px" height="450px" style="border-radius: 5px;" src="https://red-lepanka-images.s3.amazonaws.com/1622955044190.png"/>
+        </div>
+        <div id="book-details">
+            <h1 style="margin-bottom: 200px; font-size: 50px;" id="name3"></h1>
+            <h3 id= "price3"></h3>
+            <form action="/add_to_cart" method="post">
+                <input type="hidden" id="bookname" name="book_name" value="">
+                <input type="hidden" id="bookprice" name="book_price" value="">
+                <input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722">
+            </form>
+        </div>
+        <div id="testimonies">
+            <p class="quote"><q>Absolute masterpiece.</q> - Rolling Stone</p>
+            <br>
+            <p class="quote"><q>A must-read for everyone.</q> - Time Magazine</p>
+        </div>
+        <div id="description">
+            <h2>Description</h2>
+            <hr>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam varius ipsum tristique, dignissim quam ut, tempus ex. 
+            Morbi pulvinar purus ut odio rutrum aliquam. Aliquam non volutpat odio, sit amet pharetra lorem. 
+            Ut vehicula elementum nulla, sit amet sodales nisl finibus varius. Donec eu sollicitudin nunc, non auctor nibh.
+            Ut ultricies finibus elit ut scelerisque. Nam nec tincidunt massa, quis molestie massa. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+             Nunc ligula enim, dictum eget nunc eu, egestas tempor lacus. In et hendrerit velit. Praesent ac egestas libero.
+             Maecenas convallis felis quis ex posuere malesuada. Mauris id nisi vel nunc maximus efficitur in vel sem. </p>
+        </div>
+        <div id="review-section">
+                <h2>Reviews</h2>
+                <h4 id="avg-rate3"></h4>
+            <hr>
+            <div id="user-review3"></div>
+            <div id="post-review" style="display:inline-block;">    
+            <hr>        
+            <h2>Leave a review:</h2>
+                <form id="post-review" action="/post_review" method="post">
+                    <label for="rate" style="font-size: 18px;">Rate:</label>
+                    <select class="btn" name="rate" id="rate">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <input type="hidden" name="book_id" value="3">
+                    <input class ="btn" type="submit" value="Post Review">
+                    <textarea rows="6" cols="195" placeholder="Leave a review within 255 characters" maxlength="255" name="reviewtext" required></textarea>                    
+                </form>
+            </div>
+        </div>    
+    </div>
   </body>
   <script>
     //keeps current page when getting returned on create_cred
@@ -400,6 +462,7 @@
             $('#signupForm').show()
             $('#loginForm').hide()
             $('#book-page').hide();
+            $('#car_jack_page').hide();
             $('#red_lepanka_page').hide();
             $('#become_taco_page').hide();
         }
@@ -408,6 +471,7 @@
             $('#signupForm').hide();
             $('#book-page').hide();       
             $('#become_taco_page').hide();
+            $('#car_jack_page').hide();
             $('#red_lepanka_page').hide();     
         }
         else if(page['page'] == "AllBookPage"){
@@ -415,6 +479,7 @@
             $('#signupForm').hide();
             $('#become_taco_page').hide();
             $('#book-page').show();       
+            $('#car_jack_page').hide();
             $('#red_lepanka_page').hide();
         }
         else if(page['page'] == "RedLepanka"){
@@ -422,8 +487,8 @@
             $('#signupForm').hide();
             $('#book-page').hide();       
             $('#become_taco_page').hide();
+            $('#car_jack_page').hide();
             $('#red_lepanka_page').show();
-            console.log('red')
         }
         else if(page['page'] == "BecomeTaco"){
             $('#loginForm').hide()
@@ -431,8 +496,15 @@
             $('#book-page').hide();       
             $('#become_taco_page').show();
             $('#red_lepanka_page').hide();
-            console.log("taco")
+            $('#car_jack_page').hide();
         }        
+        else if(page['page'] == "Carjack"){
+            $('#loginForm').hide()
+            $('#signupForm').hide();
+            $('#book-page').hide();       
+            $('#become_taco_page').hide();
+            $('#red_lepanka_page').show();
+        }            
     })
     //swaps login and signup forms
     function swaplogin(){
@@ -523,9 +595,6 @@
         $('#bookpage_name1').val(value.data['bookname'])
         $('#bookpage_price1').val(value.data['price'])
         var reviews = value.data['reviews']
-        console.log("review: " + reviews[0][1])
-        console.log("rate: " + reviews[0][2])
-        console.log("name: " + reviews[0][3])
         for(let i = 0; i < reviews.length; i++){
             $("#user-review1").append(reviews[i][3] + " rated: "+ reviews[i][2] + "/5 - " + reviews[i][1])
             avgRate += reviews[i][2]
@@ -548,10 +617,9 @@
         $('#price2').html(value.data['price'])
         $('#bookpage_name2').val(value.data['bookname'])
         $('#bookpage_price2').val(value.data['price'])
+
         var reviews = value.data['reviews']
-        console.log("review: " + reviews[0][1])
-        console.log("rate: " + reviews[0][2])
-        console.log("name: " + reviews[0][3])
+
         for(let i = 0; i < reviews.length; i++){
             $("#user-review2").append(reviews[i][3] + " rated: "+ reviews[i][2] + "/5 - " + reviews[i][1])
             avgRate += reviews[i][2]
@@ -559,6 +627,31 @@
         }
         avgRate = avgRate / reviews.length
         $("#avg-rate2").html("Rating: " + avgRate.toFixed(1) + "/5")
+    })      
+
+    //navigate gets and sets carjack
+    function getCarjackerPage(){
+        $('#book-page').hide();
+        $.post('/set_page', {'status' : 'Car Jack'})
+        $('#car_jack_page').show();
+    }
+    //get becom taco and data reviews
+    $.getJSON('/car_jack', function(value){
+        var avgRate = 0;
+        $('#name3').html(value.data['bookname'])
+        $('#price3').html(value.data['price'])
+        $('#bookpage_name3').val(value.data['bookname'])
+        $('#bookpage_price3').val(value.data['price'])
+
+        var reviews = value.data['reviews']
+
+        for(let i = 0; i < reviews.length; i++){
+            $("#user-review3").append(reviews[i][3] + " rated: "+ reviews[i][2] + "/5 - " + reviews[i][1])
+            avgRate += reviews[i][2]
+            $("#user-review3").append("<br><br>")
+        }
+        avgRate = avgRate / reviews.length
+        $("#avg-rate3").html("Rating: " + avgRate.toFixed(1) + "/5")
     })          
 
     //navigate back to store
@@ -566,6 +659,7 @@
         $('#book-page').show();
         $('#red_lepanka_page').hide();
         $('#become_taco_page').hide();
+        $('#car_jack_page').hide();
         $.post('/set_page', {'status' : 'MainPage'})
     }
 
