@@ -67,10 +67,10 @@
         width: 160px;
         height: 160px;
       }
-      #cart_btn{
+      #cart_btn_container{
         margin-left: 92%;
         margin-top: -42px;
-        background: green;
+        background-color: green;
       }
       .btn, .genrebtn {
         border: none;
@@ -203,8 +203,9 @@
         <form style = "margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
             <input type="submit" class="btn" value="Sign Out">
         </form>
-        <button id = "cart_btn" class="btn" onclick="getCartPage();">Go to Cart &#128722</button>
-        
+        <div id="cart_btn_container">
+            <button id = "cart_btn" class="btn" onclick="getCartPage();">Go to Cart &#128722</button>
+        </div>
         <div id="book-container">
             <div id="book_column_one">
                 <div id="book_row_one_column_one" >
@@ -778,6 +779,11 @@
     //navigate gets and sets cartpage
     function getCartPage(){
         $.post('/set_page', {'status' : 'Cart'})
+        $('#book-page').hide();       
+        $('#become_taco_page').hide();
+        $('#red_lepanka_page').hide();
+        $('#car_jack_page').hide();
+        $('#ego_bias_page').hide();
         $('#cart_page').show();
     }    
 
