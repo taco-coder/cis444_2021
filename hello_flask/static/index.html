@@ -512,6 +512,7 @@
     //navigate gets and sets red_lepanka_page
     function getRedLepankaPage(){
         $('#book-page').hide();
+        $.post('/set_page', {'status' : 'Red Lepanka'})
         $('#red_lepanka_page').show();
     }
     //get red lepanka and data reviews
@@ -537,6 +538,7 @@
     //navigate gets and sets become_taco_page
     function getBecomeTacoPage(){
         $('#book-page').hide();
+        $.post('/set_page', {'status' : 'Become Taco'})
         $('#become_taco_page').show();
     }
     //get becom taco and data reviews
@@ -564,7 +566,7 @@
         $('#book-page').show();
         $('#red_lepanka_page').hide();
         $('#become_taco_page').hide();
-        $.post('/set_page', {'status' : 'Success'})
+        $.post('/set_page', {'status' : 'MainPage'})
     }
 
   </script>

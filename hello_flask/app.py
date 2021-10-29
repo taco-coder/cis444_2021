@@ -102,7 +102,7 @@ def prime():
         if session['status'] == 'Create Account':
             return json_response(page="SignUpPage")
 
-        elif session['status'] == 'Success':
+        elif session['status'] == 'MainPage':
             return json_response(page="AllBookPage")
 
         elif session['status'] == 'Red Lepanka':
@@ -158,7 +158,7 @@ def check_creds():
         hashed_pass = cur.fetchone()[2]
         if bcrypt.checkpw(bytes(request.form['password'], 'utf-8'), bytes(hashed_pass, 'utf-8')):
             session['user'] = jwt_user
-            session['status'] = 'Success'
+            session['status'] = 'MainPage'
             ACCOUNT_STATUS = None
             return redirect(request.referrer)
         else:
@@ -194,9 +194,6 @@ def logout():
 @app.route('/red_lepanka', methods=['GET'])    
 def get_red_lepanka():
     cur = db.cursor()
-    print(f"before red: {session['status']}")
-    session['status'] = 'Red Lepanka'
-    print(f"after red: {session['status']}")
     cur.execute("select * from books where id = 1;")
     bResult = cur.fetchone()
     cur.execute("select * from reviews where id = 1;")
@@ -206,9 +203,6 @@ def get_red_lepanka():
 @app.route('/become_taco', methods=['GET'])    
 def get_taco():
     cur = db.cursor()
-    print(f"before taco: {session['status']}")
-    session['status'] = 'Become Taco'
-    print(f"after taco: {session['status']}")
     cur.execute("select * from books where id = 2;")    
     bResult = cur.fetchone()
     cur.execute("select * from reviews where id = 2;")
