@@ -251,10 +251,16 @@ def get_cart():
         return json_response(error = True)
 @app.route('/place_order')
 def place_order():
-    print(session.get('book_name'))
     if session.get('book_name'):
-        return json_response(status = "Has books.")
-    
+        cart_books = session['book_name'].split(";")
+        cart_prices = session['book_price'].split(";")
+        cart_user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
+        for book in cart_books:
+            print(book)
+        for price in cart_books:
+            print(price)
+        return json_response(status = "Order Placed!")
+
     return json_response(status = "Your cart is empty.")
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
