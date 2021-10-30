@@ -262,7 +262,11 @@ def place_order():
             currentBook = cart_books[i]
             print(f"Current index: {i} and {currentBook}")
             if i != (len(cart_books) - 1):
-                print(f"not end: {currentBook}")
+                if currentBook != cart_books[i + 1]:
+                    print(quantity)
+                    quantity = 1
+                else: 
+                    quantity += 1
             else:
                 print(currentBook)
         return json_response(status = "Order Placed!")
