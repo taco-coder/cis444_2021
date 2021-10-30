@@ -846,7 +846,7 @@
         for(let i = 0; i < books.length; i++){
             currentBook = books[i];
             if(currentBook != books[i + 1]){
-                var bookPrice = $('<div id="item-price">Price: ' + price[i] + '</div>');
+                var bookPrice = $('<div id="item-price">Price: ' + prices[i] + '</div>');
                 var bookQuantity = $('<div id="item-quantity">Quantity: ' + quantity + '</div>');
                 var bookName = $('<div id="item-title"><h1>' + currentBook + '</h1></div>')
                 $('#list-items').append('<div id="cart-item">' + bookName + bookPrice + bookQuantity + '</div>')
