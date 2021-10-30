@@ -842,6 +842,7 @@
     $.getJSON('/cart', function(cart){
         console.log("Session Cart: " + cart.data['books'])
         console.log("Session Cart: " + cart.data['prices'])
+        console.log("User: " + cart.data['user'])
         var books = cart.data['books']
         var prices = cart.data['prices']
 
