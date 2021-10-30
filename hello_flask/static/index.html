@@ -533,7 +533,7 @@
     <div id="cart_page">
         <button class="btn" onclick="backToMain();">Go Back &#8617</button>
         <button class="btn" onclick="placeOrder();">Place Order &#9951</button>
-        <button class="btn" onclick="">Clear Cart &#10060</button>
+        <button class="btn" onclick="clearCart();">Clear Cart &#10060</button>
         <div id = "list-items">
             
         </div>
@@ -841,8 +841,11 @@
         var orderMessage;
         $.getJSON('/place_order', function(message){
             orderMessage = message.status;
-            console.log(orderMessage);
+            alert(orderMessage);
         })
+    }
+    function clearCart(){
+        //get json, clear cart, then get alert
     }
     //navigate back to store
     function backToMain(){

@@ -249,6 +249,7 @@ def get_cart():
         return json_response(data = {'books' : cart_books, 'prices' :cart_prices, 'user' : cart_user['username']})
     except Exception as e:
         return json_response(error = True)
+
 @app.route('/place_order')
 def place_order():
     if session.get('book_name'):
@@ -258,14 +259,11 @@ def place_order():
         cur.execute(f"select id from users where username = '{session['user']}'")
         cart_user = cur.fetchone()
         quantity = 1
-        print(f"sorted: {cart_books}")
-        print(len(cart_books))
+
         for i in range(0, len(cart_books)):
             currentBook = cart_books[i]
-            print(f"Current index: {i} and {currentBook}")
             if i != (len(cart_books) - 1):
                 if currentBook != cart_books[i + 1]:
-                    print(f"{quantity}  book  {currentBook}")
                     cur.execute(f"insert into orders (bookname, price, userid, quantity) values ('{currentBook}, '{cart_prices[i]}', {cart_user}, {quantity});")
                     quantity = 1
                 else: 
@@ -273,8 +271,9 @@ def place_order():
             else:
                 if currentBook == cart_books[i]:
                     cur.execute(f"insert into orders (bookname, price, userid, quantity) values ('{currentBook}, '{cart_prices[i]}', {cart_user}, {quantity});")
+        session.pop('book_name') 
+        session.pop('book_price')
         return json_response(status = "Order Placed!")
-
     return json_response(status = "Your cart is empty.")
 
 
