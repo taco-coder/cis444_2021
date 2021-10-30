@@ -811,7 +811,7 @@
     //get cart items and load them in
     $.getJSON('/cart', function(cart){
         if(!cart.error){
-            var unsortedBooks = cart.data['books']
+            const unsortedBooks = cart.data['books']
             var books = unsortedBooks
             var prices = cart.data['prices']
             var quantity = 1;
