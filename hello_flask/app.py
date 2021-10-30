@@ -244,7 +244,7 @@ def get_cart():
         cart_prices = session['book_price'].split(";")
         print(cart_books)
         print(cart_prices)
-        return json_response(books = cart_books, prices = cart_prices)
+        return json_response(data = {'books' : cart_books, 'prices' :cart_prices})
     except Exception as e:
         return json_response(error = True)
 

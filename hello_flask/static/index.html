@@ -837,10 +837,10 @@
         $('#cart_page').show();
         $.post('/set_page', {'status' : 'Cart'})
     }
-    $.getJSON('/cart', function(books, prices, error){
-        console.log("Session Cart: " + books.books)
-        console.log("Session Cart: " + prices.prices)
-        console.log(error)
+    $.getJSON('/cart', function(cart){
+        console.log("Session Cart: " + cart.data['books'])
+        console.log("Session Cart: " + cart.data['prices'])
+        console.log(cart.error)
     })
 
     //navigate back to store
