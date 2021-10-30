@@ -259,7 +259,8 @@ def place_order():
         cur.execute(f"select id from users where username = '{session['user']}'")
         cart_user = cur.fetchone()
         quantity = 1
-
+        print(cart_user)
+        print(cart_user[0])
         for i in range(0, len(cart_books)):
             currentBook = cart_books[i]
             if i != (len(cart_books) - 1):
