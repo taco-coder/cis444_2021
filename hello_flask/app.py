@@ -246,7 +246,7 @@ def get_cart():
         print(cart_user['username'])
         print(cart_books)
         print(cart_prices)
-        return json_response(data = {'books' : cart_books, 'prices' :cart_prices, 'user' : cart_user})
+        return json_response(data = {'books' : cart_books, 'prices' :cart_prices, 'user' : cart_user['username']})
     except Exception as e:
         return json_response(error = True)
 
