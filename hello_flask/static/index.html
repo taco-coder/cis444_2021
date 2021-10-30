@@ -822,7 +822,7 @@
                     var bookPrice = $('<div id="item-price" style="margin-left: 15px;">Price:' + prices[i] + '</div>').html(); //style tags aint working for some reason
                     var bookQuantity = $('<div id="item-quantity" style="margin-left: 150px;">    Quantity:' + quantity + '</div>').html();
                     //var bookName = $('<div id="item-title" style="margin-left: 15px;"><h1>' + currentBook + '</h1></div>').html();
-                    $('#list-items').append('<div id="cart-item"><div id="item-title" style="margin-left: 15px;"><h1>' + currentBook + '</h1></div></div>')
+                    $('#list-items').append('<div id="cart-item"><div id="item-title" style="margin-left: 15px;"><h1>' + currentBook + '</h1></div><div id="item-price" style="margin-left: 15px;">Price:' + prices[i] + '</div></div>')
                     quantity = 1;
                 }
                 else{
