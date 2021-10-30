@@ -842,6 +842,7 @@
         $.getJSON('/place_order', function(message){
             orderMessage = message.status;
             alert(orderMessage);
+            window.location.reload(true)
         })
     }
     function clearCart(){
