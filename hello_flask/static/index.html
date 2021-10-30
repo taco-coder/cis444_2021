@@ -174,15 +174,10 @@
         width: 95%;
         height: 20%;
     }
-    #item-title, #item-price{
-        margin-left: 25px;
-    }
     #item-price, #item-quantity{
         display: inline;
     }
-    #item-quantity{
-        margin-left: 150px;
-    }
+
     </style>
   </head>
   <body>
@@ -819,7 +814,11 @@
             for(let i = 0; i < books.length; i++){
                 currentBook = books[i];
                 if(currentBook != books[i + 1]){
-                    $('#list-items').append('<div id="cart-item"><div id="item-title" style="margin-left: 15px;"><h1>' + currentBook + '</h1></div><div id="item-price" style="margin-left: 15px;">Price:' + prices[i] + '</div><div id="item-quantity" style="margin-left: 50px;">Quantity:' + quantity + '</div></div>')
+                    $('#list-items').append('<div id="cart-item">\
+                                                <div id="item-title" style="margin-left: 15px;"><h1>' + currentBook + '</h1></div>\
+                                                <div id="item-price" style="margin-left: 15px;">Price:' + prices[i] + '</div>\
+                                                <div id="item-quantity" style="margin-left: 50px;">Quantity: ' + quantity + '</div>\
+                                            </div>')
                     quantity = 1;
                 }
                 else{
