@@ -252,7 +252,7 @@ def get_cart():
 @app.route('/place_order')
 def place_order():
     print(session.get('book_name'))
-    if session.get('book_name') == True:
+    if session.get('book_name'):
         return json_response(status = "Has books.")
     
     return json_response(status = "Your cart is empty.")
