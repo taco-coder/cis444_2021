@@ -259,7 +259,7 @@ def place_order():
         print(f"sorted: {cart_books}")
         for i in range(len(cart_books)):
             currentBook = cart_books[i]
-            if currentBook != cart_books[i + 1]:
+            if currentBook != cart_books[i + 1] and currentBook != len(cart_books): #prevents out of range error
                 print(quantity)
                 quantity = 1
             else:
