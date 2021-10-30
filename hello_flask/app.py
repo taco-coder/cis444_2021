@@ -252,13 +252,16 @@ def get_cart():
 @app.route('/place_order')
 def place_order():
     if session.get('book_name'):
-        cart_books = session['book_name'].split(";")
-        cart_prices = session['book_price'].split(";")
+        cart_books = sorted(session['book_name'].split(";"))
+        cart_prices = sorted(session['book_price'].split(";"))
         cart_user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
-        for book in cart_books:
-            print(book)
-        for sortedBook in sorted(cart_books):
-            print(sortedBook)
+        quantity = 1
+        print(f"sorted: {cart_books}")
+        for sortedBook in cart_books:
+            if sortedBook != next(cart_books):
+                print(quantity)
+            else:
+                quantity += 1
         return json_response(status = "Order Placed!")
 
     return json_response(status = "Your cart is empty.")
