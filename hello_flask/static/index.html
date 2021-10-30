@@ -842,8 +842,6 @@
     $.getJSON('/cart', function(cart){
         console.log("Session Cart: " + cart.data['books'])
         console.log("Session Cart: " + cart.data['prices'])
-        console.log("Sorted Session Cart: " + cart.data['books'].sort())
-        console.log("Sorted Session Cart: " + cart.data['prices'].sort())
         var books = cart.data['books']
         var prices = cart.data['prices']
 
