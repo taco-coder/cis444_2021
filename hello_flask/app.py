@@ -272,15 +272,16 @@ def place_order():
         quantity = 1
         for i in range(0, len(cart_books)):
             currentBook = cart_books[i]
+            j = unsorted_books.index(currentBook) 
             if i != (len(cart_books) - 1):
                 if currentBook != cart_books[i + 1]:
-                    cur.execute(f"insert into orders (bookname, price, userid, quantity) values ('{currentBook}', '{cart_prices[i]}', {cart_user}, {quantity});")
+                    cur.execute(f"insert into orders (bookname, price, userid, quantity) values ('{currentBook}', '{cart_prices[j]}', {cart_user}, {quantity});")
                     quantity = 1
                 else: 
                     quantity += 1
             else:
                 if currentBook == cart_books[i]:
-                    cur.execute(f"insert into orders (bookname, price, userid, quantity) values ('{currentBook}', '{cart_prices[i]}', {cart_user}, {quantity});")
+                    cur.execute(f"insert into orders (bookname, price, userid, quantity) values ('{currentBook}', '{cart_prices[j]}', {cart_user}, {quantity});")
         session.pop('book_name') 
         session.pop('book_price')
         db.commit()
