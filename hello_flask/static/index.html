@@ -537,7 +537,30 @@
     <!--___________________cart page page____________________-->
     <div id="cart_page">
         <button class="btn" onclick="backToMain();">Go Back &#8617</button>
-        <div id = "list-items"></div>
+        <div id = "list-items">
+
+            <div id = "cart-item">
+                <div id="item-title">
+                    <h1>Red cart time</h1>
+                </div>
+                <div id="item-price">Price: #</div>
+                <div id="item-quantity">Quantity: #</div>
+            </div>
+            <div id = "cart-item">
+                <div id="item-title">
+                    <h1>Red cart time</h1>
+                </div>
+                <div id="item-price">Price</div>
+                <div id="item-quantity">Quantity: #</div>                
+            </div>
+            <div id = "cart-item">
+                <div id="item-title">
+                    <h1>Red cart time</h1>
+                </div>
+                <div id="item-price">Price</div>
+                <div id="item-quantity">Quantity: #</div>                
+            </div>                                    
+        </div>
         
     </div>
   </body>
@@ -823,9 +846,9 @@
         for(let i = 0; i < books.length; i++){
             currentBook = books[i];
             if(currentBook != books[i + 1]){
-                var bookPrice = $('<div id="item-price">Price: ' + prices[i] + '</div>');
+                var bookPrice = $('<div id="item-price">Price: ' + price[i] + '</div>');
                 var bookQuantity = $('<div id="item-quantity">Quantity: ' + quantity + '</div>');
-                var bookName = $('<div id="item-title">' + currentBook + '</div>')
+                var bookName = $('<div id="item-title"><h1>' + currentBook + '</h1></div>')
                 $('#list-items').append('<div id="cart-item">' + bookName + bookPrice + bookQuantity + '</div>')
                 console.log(books[i] + " " + quantity)
 
