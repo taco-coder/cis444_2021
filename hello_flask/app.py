@@ -257,7 +257,6 @@ def place_order():
         cart_prices = sorted(session['book_price'].split(";"))
         cur.execute(f"select id from users where username = '{session['user']}'")
         cart_user = cur.fetchone()
-        print(cart_user)
         quantity = 1
         print(f"sorted: {cart_books}")
         print(len(cart_books))
@@ -267,23 +266,28 @@ def place_order():
             if i != (len(cart_books) - 1):
                 if currentBook != cart_books[i + 1]:
                     print(f"{quantity}  book  {currentBook}")
+                    cur.execute(f"insert into orders (bookname, price, userid, quantity) values ('{currentBook}, '{cart_prices[i]}', {cart_user}, {quantity});")
                     quantity = 1
                 else: 
                     quantity += 1
             else:
                 if currentBook == cart_books[i]:
-                    print(quantity)
+                    cur.execute(f"insert into orders (bookname, price, userid, quantity) values ('{currentBook}, '{cart_prices[i]}', {cart_user}, {quantity});")
         return json_response(status = "Order Placed!")
 
     return json_response(status = "Your cart is empty.")
+
+
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
     if 'book_name' in session:
         session['book_name'] = session.get('book_name') + ";" + request.form['book_name'] 
+        print(session['book_name'])
     else:
         session['book_name'] = request.form['book_name']
     if 'book_price' in session:
         session['book_price'] = session.get('book_price') + ";" + request.form['book_price'] 
+        print(session['book_price'])
     else:
         session['book_price'] = request.form['book_price']        
     return redirect(request.referrer)
