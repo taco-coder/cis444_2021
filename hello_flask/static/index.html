@@ -838,11 +838,19 @@
         $('#cart_page').show();
         $.post('/set_page', {'status' : 'Cart'})
     }
+    //get cart items and load them in
     $.getJSON('/cart', function(cart){
         console.log("Session Cart: " + cart.data['books'])
         console.log("Session Cart: " + cart.data['prices'])
         console.log("Sorted Session Cart: " + cart.data['books'].sort())
         console.log("Sorted Session Cart: " + cart.data['prices'].sort())
+        var books = cart.data['books'].sort()
+        var prices = cart.data['prices'].sort()
+
+        var currentBook = books[0]
+        var currentPrice = books[0]
+        console.log(currentBook)
+        console.log(currentPrice)
         console.log(cart.error)
     })
 
