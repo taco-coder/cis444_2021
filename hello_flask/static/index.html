@@ -537,31 +537,7 @@
     <!--___________________cart page page____________________-->
     <div id="cart_page">
         <button class="btn" onclick="backToMain();">Go Back &#8617</button>
-        <div id = "list-items">
-
-            <div id = "cart-item">
-                <div id="item-title">
-                    <h1>Red cart time</h1>
-                </div>
-                <div id="item-price">Price: #</div>
-                <div id="item-quantity">Quantity: #</div>
-            </div>
-            <div id = "cart-item">
-                <div id="item-title">
-                    <h1>Red cart time</h1>
-                </div>
-                <div id="item-price">Price</div>
-                <div id="item-quantity">Quantity: #</div>                
-            </div>
-            <div id = "cart-item">
-                <div id="item-title">
-                    <h1>Red cart time</h1>
-                </div>
-                <div id="item-price">Price</div>
-                <div id="item-quantity">Quantity: #</div>                
-            </div>                                    
-        </div>
-        
+        <div id = "list-items"></div>        
     </div>
   </body>
   <script>
@@ -846,9 +822,9 @@
         for(let i = 0; i < books.length; i++){
             currentBook = books[i];
             if(currentBook != books[i + 1]){
-                var bookPrice = $('<div id="item-price" style="margin-left: 15px;">Price: ' + prices[i] + '</div>').html(); //style tags aint working for some reason; do it manual 
-                var bookQuantity = $('<div id="item-quantity" style="margin-left: 150px;">    Quantity: ' + quantity + '</div>').html();
-                var bookName = $('<div id="item-title" style="margin-left: 15px;">    <h1>' + currentBook + '</h1></div>').html();
+                var bookPrice = $('<div id="item-price" style="margin-left: 15px;">Price:' + prices[i] + '</div>').html(); //style tags aint working for some reason; do it manual 
+                var bookQuantity = $('<div id="item-quantity" style="margin-left: 150px;">    Quantity:' + quantity + '</div>').html();
+                var bookName = $('<div id="item-title" style="margin-left: 15px;"><h1>' + currentBook + '</h1></div>').html();
                 $('#list-items').append('<div id="cart-item">' + bookName + bookPrice + bookQuantity + '</div>')
                 console.log(books[i] + " " + quantity)
 
