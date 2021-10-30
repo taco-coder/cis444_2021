@@ -255,7 +255,7 @@ def place_order():
         cur = db.cursor()
         cart_books = sorted(session['book_name'].split(";"))
         cart_prices = sorted(session['book_price'].split(";"))
-        cart_user = cur.fetchone(cur.execute(f"select id from users where username = {session['user']}"))
+        cart_user = cur.fetchone(cur.execute(f"select id from users where username = '{session['user']}'"))
         print(cart_user)
         quantity = 1
         print(f"sorted: {cart_books}")
