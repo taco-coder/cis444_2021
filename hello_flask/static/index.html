@@ -829,14 +829,18 @@
 
     //navigate gets and sets cartpage
     function getCartPage(){
-        $.post('/set_page', {'status' : 'Cart'})
         $('#book-page').hide();       
         $('#become_taco_page').hide();
         $('#red_lepanka_page').hide();
         $('#car_jack_page').hide();
         $('#ego_bias_page').hide();
         $('#cart_page').show();
-    }    
+        $.post('/set_page', {'status' : 'Cart'})
+    }
+    $.getJSON('/cart', function(books, prices){
+        console.log("Session Cart: " + books.books)
+        console.log("Session Cart: " + prices.prices)
+    })
 
     //navigate back to store
     function backToMain(){

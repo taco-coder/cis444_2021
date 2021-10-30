@@ -191,6 +191,7 @@ def main_page():
 @app.route('/set_page', methods=['POST'])
 def set_main():
     session['status'] = request.form['status']
+    print("calling")
     return redirect(request.referrer)
 
 @app.route('/logout')
@@ -238,15 +239,11 @@ def get_ego_bias():
 
 @app.route('/cart', methods=['GET'])    
 def get_cart():
-    try:
-        cart_books = session['book_name'].split(";")
-        cart_prices = session['book_price'].split(";")
-        print(cart_books)
-        print(cart_prices)
-        return json_response(books = cart_books, prices = cart_prices)
-    except Exception as e:
-        print("empty cart")
-        return json_response(error = "Empty cart.")
+    cart_books = session['book_name'].split(";")
+    cart_prices = session['book_price'].split(";")
+    print(cart_books)
+    print(cart_prices)
+    return json_response(books = cart_books, prices = cart_prices)
 
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
