@@ -243,7 +243,7 @@ def get_cart():
         cart_books = session['book_name'].split(";")
         cart_prices = session['book_price'].split(";")
         cart_user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
-        print(cart_user)
+        print(cart_user['username'])
         print(cart_books)
         print(cart_prices)
         return json_response(data = {'books' : cart_books, 'prices' :cart_prices, 'user' : cart_user})
