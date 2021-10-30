@@ -239,11 +239,14 @@ def get_ego_bias():
 
 @app.route('/cart', methods=['GET'])    
 def get_cart():
-    cart_books = session['book_name'].split(";")
-    cart_prices = session['book_price'].split(";")
-    print(cart_books)
-    print(cart_prices)
-    return json_response(books = cart_books, prices = cart_prices)
+    try:
+        cart_books = session['book_name'].split(";")
+        cart_prices = session['book_price'].split(";")
+        print(cart_books)
+        print(cart_prices)
+        return json_response(books = cart_books, prices = cart_prices)
+    except Exception as e:
+        return json_response(error = True)
 
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
