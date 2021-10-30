@@ -813,6 +813,7 @@
         if(!cart.error){
             console.log(cart.data['books'])
             var unsortedBooks = cart.data['books']
+            console.log(unsortedBooks)
             var books = cart.data['books'].sort()
             var prices = cart.data['prices']
             var quantity = 1;
@@ -822,6 +823,7 @@
             for(let i = 0; i < books.length; i++){
                 currentBook = books[i];
                 var j = unsortedBooks.indexOf(currentBook)
+                console.log(j)
                 console.log("Price: " + prices[j] + " Book: " + unsortedBooks[j])
                 if(currentBook != books[i + 1]){
                     $('#list-items').append('<div id="cart-item">\
