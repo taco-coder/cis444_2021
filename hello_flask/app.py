@@ -249,7 +249,11 @@ def get_cart():
         return json_response(data = {'books' : cart_books, 'prices' :cart_prices, 'user' : cart_user['username']})
     except Exception as e:
         return json_response(error = True)
-
+@app.route('/place_order')
+def place_order():
+    if session.get('book_name') == True:
+        return json_response(status = "Has books")
+    return json_response(status = "Your cart is empty.")
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
     if 'book_name' in session:

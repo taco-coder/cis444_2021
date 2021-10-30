@@ -836,6 +836,14 @@
         }
     })
 
+    //place Order
+    function placeOrder(){
+        var orderMessage;
+        $.getJSON('/place_order', function(message){
+            orderMessage = message.status;
+            console.log(orderMessage);
+        })
+    }
     //navigate back to store
     function backToMain(){
         $('#book-page').show();
