@@ -810,31 +810,26 @@
     }
     //get cart items and load them in
     $.getJSON('/cart', function(cart){
-        console.log("Session Cart: " + cart.data['books'])
-        console.log("Session Cart: " + cart.data['prices'])
-        console.log("User: " + cart.data['user'])
-        var books = cart.data['books'].sort()
-        var prices = cart.data['prices'].sort()
+        if(!cart.error){
+            var books = cart.data['books'].sort()
+            var prices = cart.data['prices'].sort()
+            var currentBook = books[0];
+            var quantity = 1;
 
-        var currentBook = books[0];
-        var currentPrice = prices[0];
-        var quantity = 1;
-        for(let i = 0; i < books.length; i++){
-            currentBook = books[i];
-            if(currentBook != books[i + 1]){
-                var bookPrice = $('<div id="item-price" style="margin-left: 15px;">Price:' + prices[i] + '</div>').html(); //style tags aint working for some reason; do it manual 
-                var bookQuantity = $('<div id="item-quantity" style="margin-left: 150px;">    Quantity:' + quantity + '</div>').html();
-                var bookName = $('<div id="item-title" style="margin-left: 15px;"><h1>' + currentBook + '</h1></div>').html();
-                $('#list-items').append('<div id="cart-item">' + bookName + bookPrice + bookQuantity + '</div>')
-                console.log(books[i] + " " + quantity)
-
-                quantity = 1;
-            }
-            else{
-                quantity++;
+            for(let i = 0; i < books.length; i++){
+                currentBook = books[i];
+                if(currentBook != books[i + 1]){
+                    var bookPrice = $('<div id="item-price" style="margin-left: 15px;">Price:' + prices[i] + '</div>').html(); //style tags aint working for some reason; do it manual 
+                    var bookQuantity = $('<div id="item-quantity" style="margin-left: 150px;">    Quantity:' + quantity + '</div>').html();
+                    var bookName = $('<div id="item-title" style="margin-left: 15px;"><h1>' + currentBook + '</h1></div>').html();
+                    $('#list-items').append('<div id="cart-item">' + bookName + bookPrice + bookQuantity + '</div>')
+                    quantity = 1;
+                }
+                else{
+                    quantity++;
+                }
             }
         }
-        console.log(cart.error)
     })
 
     //navigate back to store
