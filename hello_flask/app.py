@@ -257,10 +257,10 @@ def place_order():
         cart_user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
         quantity = 1
         print(f"sorted: {cart_books}")
-        for i in range(0, len(cart_books)):
+        for i in range(0, len(cart_books) - 1):
             currentBook = cart_books[i]
             print(f"Current index: {i}")
-            if i != len(cart_books):
+            if i != (len(cart_books) - 1):
                 if currentBook != cart_books[i + 1]:
                     print(quantity)
                     quantity = 1
