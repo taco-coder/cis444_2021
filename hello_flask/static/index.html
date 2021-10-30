@@ -812,11 +812,9 @@
     $.getJSON('/cart', function(cart){
         if(!cart.error){
             var unsortedBooks = Object.freeze(cart.data['books'])
-            var books = unsortedBooks
+            var books = cart.data['books'].sort()
             var prices = cart.data['prices']
             var quantity = 1;
-            console.log(unsortedBooks)
-            books.sort()
             console.log(unsortedBooks)
             console.log(books)
             for(let i = 0; i < books.length; i++){
