@@ -252,9 +252,11 @@ def get_cart():
 @app.route('/place_order')
 def place_order():
     if session.get('book_name'):
+        cur = db.cursor()
         cart_books = sorted(session['book_name'].split(";"))
         cart_prices = sorted(session['book_price'].split(";"))
-        cart_user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
+        cart_user = cur.fetchone(cur.execute(f"select id from users where username = {session['user']}"))
+        print(cart_user)
         quantity = 1
         print(f"sorted: {cart_books}")
         print(len(cart_books))
@@ -266,7 +268,6 @@ def place_order():
                     print(f"{quantity}  book  {currentBook}")
                     quantity = 1
                 else: 
-                    print(f'increment {currentBook}')
                     quantity += 1
             else:
                 if currentBook == cart_books[i]:
