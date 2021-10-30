@@ -257,12 +257,12 @@ def place_order():
         cart_user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
         quantity = 1
         print(f"sorted: {cart_books}")
-        for currentBook, nextBook in zip(cart_books, cart_books[1:]):
-            if currentBook != nextBook or currentBook == cart_books[-1]: #handles when next book is the last element in the list
+        for i in range(cart_books):
+            currentBook = cart_books[i]
+            if currentBook != cart_books[i + 1]:
                 print(quantity)
                 quantity = 1
             else:
-                print(currentBook + " " + nextBook)
                 quantity += 1
         return json_response(status = "Order Placed!")
 
