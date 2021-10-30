@@ -260,6 +260,7 @@ def place_order():
         for currentBook, nextBook in zip(cart_books, cart_books[1:]):
             if currentBook != nextBook:
                 print(quantity)
+                quantity = 1
             else:
                 quantity += 1
         return json_response(status = "Order Placed!")
