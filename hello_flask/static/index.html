@@ -847,8 +847,8 @@
     }
     function clearCart(){
         //get json, clear cart, then get alert
-        $.getJSON('/clear_cart', function(){
-            alert(status);
+        $.getJSON('/clear_cart', function(message){
+            alert(message.status);
             window.location.reload(true);
         })
     }
