@@ -844,11 +844,11 @@
         console.log("Session Cart: " + cart.data['prices'])
         console.log("Sorted Session Cart: " + cart.data['books'].sort())
         console.log("Sorted Session Cart: " + cart.data['prices'].sort())
-        var books = cart.data['books'].sort()
-        var prices = cart.data['prices'].sort()
+        var books = cart.data['books']
+        var prices = cart.data['prices']
 
         var currentBook = books[0]
-        var currentPrice = books[0]
+        var currentPrice = prices[0]
         console.log(currentBook)
         console.log(currentPrice)
         console.log(cart.error)
