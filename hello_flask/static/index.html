@@ -843,17 +843,22 @@
         console.log("Session Cart: " + cart.data['books'])
         console.log("Session Cart: " + cart.data['prices'])
         console.log("User: " + cart.data['user'])
-        var books = cart.data['books']
+        var books = cart.data['books'].sort()
         var prices = cart.data['prices']
 
         var currentBook = books[0];
         var currentPrice = prices[0];
         var quantity = 0;
         for(let i = 0; i < books.length; i++){
-            if(currentBook == books[i])
+            currentBook = books[i];
+            if(currentBook != books[i + 1]){
+                console.log(quantity)
+                quantity = 0;
+            }
+            else{
                 quantity++;
+            }
         }
-        console.log(quantity)
         console.log(cart.error)
     })
 
