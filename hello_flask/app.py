@@ -258,7 +258,7 @@ def place_order():
         quantity = 1
         print(f"sorted: {cart_books}")
         for currentBook, nextBook in zip(cart_books, cart_books[1:]):
-            if currentBook != nextBook or nextBook == cart_books[-1]: #handles when next book is the last element in the list
+            if currentBook != nextBook or currentBook == cart_books[-1]: #handles when next book is the last element in the list
                 print(quantity)
                 quantity = 1
             else:
