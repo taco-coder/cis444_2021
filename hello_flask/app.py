@@ -242,9 +242,11 @@ def get_cart():
     try:
         cart_books = session['book_name'].split(";")
         cart_prices = session['book_price'].split(";")
+        cart_user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
+        print(cart_user)
         print(cart_books)
         print(cart_prices)
-        return json_response(data = {'books' : cart_books, 'prices' :cart_prices})
+        return json_response(data = {'books' : cart_books, 'prices' :cart_prices, 'user' : cart_user})
     except Exception as e:
         return json_response(error = True)
 
