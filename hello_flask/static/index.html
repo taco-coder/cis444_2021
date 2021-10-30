@@ -811,7 +811,7 @@
     //get cart items and load them in
     $.getJSON('/cart', function(cart){
         if(!cart.error){
-            const unsortedBooks = cart.data['books'].freeze()
+            const unsortedBooks = Object.freeze(cart.data['books'])
             let books = unsortedBooks
             var prices = cart.data['prices']
             var quantity = 1;
