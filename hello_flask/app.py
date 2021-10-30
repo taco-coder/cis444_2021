@@ -257,10 +257,10 @@ def place_order():
         cart_user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
         quantity = 1
         print(f"sorted: {cart_books}")
+        print(len(cart_books))
         for i in range(0, len(cart_books)):
             currentBook = cart_books[i]
             print(f"Current index: {i} and {currentBook}")
-    
         return json_response(status = "Order Placed!")
 
     return json_response(status = "Your cart is empty.")
