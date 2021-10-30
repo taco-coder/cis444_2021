@@ -251,8 +251,10 @@ def get_cart():
         return json_response(error = True)
 @app.route('/place_order')
 def place_order():
+    print(session.get('book_name'))
     if session.get('book_name') == True:
-        return json_response(status = "Has books")
+        return json_response(status = "Has books.")
+    
     return json_response(status = "Your cart is empty.")
 @app.route('/add_to_cart', methods=['POST', 'GET'])
 def add_to_cart():
