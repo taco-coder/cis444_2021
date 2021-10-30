@@ -811,19 +811,19 @@
     //get cart items and load them in
     $.getJSON('/cart', function(cart){
         if(!cart.error){
-            console.log(cart.data['books'])
             var unsortedBooks = cart.data['books']
-            console.log(unsortedBooks)
             var books = unsortedBooks
             var prices = cart.data['prices']
             var quantity = 1;
             console.log(unsortedBooks)
-            console.log(books.sort())
             console.log(prices)
+            books.sort()
+            console.log(books)
             for(let i = 0; i < books.length; i++){
                 currentBook = books[i];
+                print("current: " + currentBook)
                 var j = unsortedBooks.indexOf(currentBook)
-                console.log(j)
+                console.log("Index: " + j)
                 console.log("Price: " + prices[j] + " Book: " + unsortedBooks[j])
                 if(currentBook != books[i + 1]){
                     $('#list-items').append('<div id="cart-item">\
