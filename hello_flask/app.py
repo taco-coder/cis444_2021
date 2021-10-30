@@ -249,7 +249,7 @@ def get_cart():
         return json_response(data = {'books' : cart_books, 'prices' :cart_prices, 'user' : cart_user['username']})
     except Exception as e:
         return json_response(error = True)
-        
+
 @app.route('/clear_cart')
 def clear_cart():
     if 'book_name' in session:
@@ -262,10 +262,13 @@ def clear_cart():
 def place_order():
     if session.get('book_name'):
         cur = db.cursor()
+        unsorted_books = session['book_name'].split(';')
         cart_books = sorted(session['book_name'].split(";"))
-        cart_prices = sorted(session['book_price'].split(";"))
+        cart_prices = session['book_price'].split(";")
         cur.execute(f"select id from users where username = '{session['user']}'")
         cart_user = cur.fetchone()[0]
+        print(unsorted_books)
+        print(cart_prices)
         quantity = 1
         for i in range(0, len(cart_books)):
             currentBook = cart_books[i]
