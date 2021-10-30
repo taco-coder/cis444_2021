@@ -262,8 +262,12 @@ def place_order():
             if currentBook != cart_books[i + 1]:
                 print(quantity)
                 quantity = 1
+            elif i == len(cart_books) - 1:
+                quantity += 1
+                print(quantity)
             else:
                 quantity += 1
+    
         return json_response(status = "Order Placed!")
 
     return json_response(status = "Your cart is empty.")
