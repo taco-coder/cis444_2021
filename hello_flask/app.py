@@ -262,6 +262,7 @@ def place_order():
                 print(quantity)
                 quantity = 1
             else:
+                print(currentBook + " " + nextBook)
                 quantity += 1
         return json_response(status = "Order Placed!")
 
