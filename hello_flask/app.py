@@ -98,7 +98,6 @@ def hello_db():
 @app.route('/prime_page')
 def prime():
     try:
-        print(f"prime_page: {session['status']}")
         if session['status'] == 'Create Account':
             return json_response(page="SignUpPage")
 
@@ -191,7 +190,6 @@ def main_page():
 @app.route('/set_page', methods=['POST'])
 def set_main():
     session['status'] = request.form['status']
-    print("calling")
     return redirect(request.referrer)
 
 @app.route('/logout')
@@ -243,9 +241,6 @@ def get_cart():
         cart_books = session['book_name'].split(";")
         cart_prices = session['book_price'].split(";")
         cart_user = jwt.decode(session['user'], JWT_SECRET, algorithms=["HS256"])
-        print(cart_user['username'])
-        print(cart_books)
-        print(cart_prices)
         return json_response(data = {'books' : cart_books, 'prices' :cart_prices, 'user' : cart_user['username']})
     except Exception as e:
         return json_response(error = True)
@@ -267,8 +262,6 @@ def place_order():
         cart_prices = session['book_price'].split(";")
         cur.execute(f"select id from users where username = '{session['user']}'")
         cart_user = cur.fetchone()[0]
-        print(unsorted_books)
-        print(cart_prices)
         quantity = 1
         for i in range(0, len(cart_books)):
             currentBook = cart_books[i]
