@@ -1,4 +1,4 @@
-from logging import exception
+from logging import NullHandler, exception
 from flask import Flask,render_template,request, redirect, session
 from flask import json
 from flask.globals import current_app
@@ -259,7 +259,7 @@ def place_order():
         print(f"sorted: {cart_books}")
         for i in range(0, len(cart_books)):
             currentBook = cart_books[i]
-            if currentBook != cart_books[i + 1]:
+            if currentBook != cart_books[i + 1] and cart_books[i+1] is not None:
                 print(quantity)
                 quantity = 1
             else:
