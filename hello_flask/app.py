@@ -259,8 +259,6 @@ def place_order():
         cur.execute(f"select id from users where username = '{session['user']}'")
         cart_user = cur.fetchone()[0]
         quantity = 1
-        print(cart_user)
-        
         for i in range(0, len(cart_books)):
             currentBook = cart_books[i]
             if i != (len(cart_books) - 1):
@@ -272,8 +270,11 @@ def place_order():
             else:
                 if currentBook == cart_books[i]:
                     cur.execute(f"insert into orders (bookname, price, userid, quantity) values ('{currentBook}', '{cart_prices[i]}', {cart_user}, {quantity});")
+        print(session)
         session.pop('book_name') 
         session.pop('book_price')
+        print(session)
+        db.commit()
         return json_response(status = "Order Placed!")
     return json_response(status = "Your cart is empty.")
 
