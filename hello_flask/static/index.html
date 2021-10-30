@@ -842,11 +842,15 @@
         $.getJSON('/place_order', function(message){
             orderMessage = message.status;
             alert(orderMessage);
-            window.location.reload(true)
+            window.location.reload(true);
         })
     }
     function clearCart(){
         //get json, clear cart, then get alert
+        $.getJSON('/clear_cart', function(){
+            alert(status);
+            window.location.reload(true);
+        })
     }
     //navigate back to store
     function backToMain(){

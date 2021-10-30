@@ -249,6 +249,14 @@ def get_cart():
         return json_response(data = {'books' : cart_books, 'prices' :cart_prices, 'user' : cart_user['username']})
     except Exception as e:
         return json_response(error = True)
+        
+@app.route('/clear_cart')
+def clear_cart():
+    if 'book_name' in session:
+        session.pop('book_name')
+        session.pop('book_price')
+        return json_response(status = "Cart cleared!")
+    return json_response(status = "Cart already empty.")
 
 @app.route('/place_order')
 def place_order():
@@ -270,10 +278,8 @@ def place_order():
             else:
                 if currentBook == cart_books[i]:
                     cur.execute(f"insert into orders (bookname, price, userid, quantity) values ('{currentBook}', '{cart_prices[i]}', {cart_user}, {quantity});")
-        print(session)
         session.pop('book_name') 
         session.pop('book_price')
-        print(session)
         db.commit()
         return json_response(status = "Order Placed!")
     return json_response(status = "Your cart is empty.")
