@@ -811,8 +811,9 @@
     //get cart items and load them in
     $.getJSON('/cart', function(cart){
         if(!cart.error){
-            var unsortedBooks
-            $.extend(unsortedBooks, cart.data['books'] )
+            var unsortedBooks = copy(cart.data['books'])
+            console.log(cart.data['books'])
+            console.log(unsortedBooks)
             var books = cart.data['books'].sort()
             var prices = cart.data['prices']
             var quantity = 1;
@@ -841,7 +842,14 @@
             $('#list-items').append('<h1>Cart is Empty.</h1>').html()
         }
     })
-
+    //need a way to copy arrays without keeping the reference
+    function copy(arr){
+        var new_arr = arr.slice(0);
+        for(var i = new_arr.length; i--;)
+            if(new_arr[i] instanceof Array)
+                new_arr[i] = copy(new_arr[i]);
+        return new_arr;
+    }
     //place Order
     function placeOrder(){
         var orderMessage;
