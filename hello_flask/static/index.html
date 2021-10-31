@@ -374,12 +374,10 @@
         <div id="description">
             <h2>Description</h2>
             <hr>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam varius ipsum tristique, dignissim quam ut, tempus ex. 
-            Morbi pulvinar purus ut odio rutrum aliquam. Aliquam non volutpat odio, sit amet pharetra lorem. 
-            Ut vehicula elementum nulla, sit amet sodales nisl finibus varius. Donec eu sollicitudin nunc, non auctor nibh.
-            Ut ultricies finibus elit ut scelerisque. Nam nec tincidunt massa, quis molestie massa. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-             Nunc ligula enim, dictum eget nunc eu, egestas tempor lacus. In et hendrerit velit. Praesent ac egestas libero.
-             Maecenas convallis felis quis ex posuere malesuada. Mauris id nisi vel nunc maximus efficitur in vel sem. </p>
+            <p><em>Becoming Taco</em> is an interview style biography following the life of Tahwab "Taco" Noori. He explains how a simple nickname helped him in overcoming trauma, mental/emotional/spiritual hardship, 
+            and ultimately become the person he always dreamed of being. 
+            <q>"When you detach yourself from you, you can look at yourself from an outsiders perspective. Only then can you take a good, long, hard, honest look at yourself and find places to improve and grow." - Taco</q>
+            </p>
         </div>
         <div id="review-section">
                 <h2>Reviews</h2>
@@ -812,19 +810,13 @@
     $.getJSON('/cart', function(cart){
         if(!cart.error){
             var unsortedBooks = copy(cart.data['books'])
-            console.log(cart.data['books'])
-            console.log(unsortedBooks)
             var books = cart.data['books'].sort()
             var prices = cart.data['prices']
             var quantity = 1;
-            console.log(unsortedBooks)
-            console.log(books)
+
             for(let i = 0; i < books.length; i++){
                 currentBook = books[i];
-                console.log("current: " + currentBook)
                 var j = unsortedBooks.indexOf(currentBook)
-                console.log("Index: " + j)
-                console.log("Price: " + prices[j] + " Book: " + unsortedBooks[j])
                 if(currentBook != books[i + 1]){
                     $('#list-items').append('<div id="cart-item">\
                                                 <div id="item-title" style="margin-left: 15px;"><h1>' + currentBook + '</h1></div>\
