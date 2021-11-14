@@ -1,3 +1,0 @@
-secrets:
-    secret_name : "dev_cis444_jwt_flask"
-    region_name : "us-east-1"
