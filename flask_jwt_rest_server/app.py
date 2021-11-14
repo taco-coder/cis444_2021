@@ -27,6 +27,7 @@ FlaskJSON(app)
 
 #g is flask for a global var storage 
 def init_new_env():
+    logger.debug("Call to init_new_env")
     if 'db' not in g:
         g.db = get_db()
 
