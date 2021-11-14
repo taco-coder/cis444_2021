@@ -1,13 +1,20 @@
+<<<<<<< HEAD
 from logging import NullHandler, exception
 from flask import Flask,render_template,request, redirect, session
 from flask import json
 from flask.globals import current_app
 from flask.json import jsonify
 from flask_json import FlaskJSON, JsonError, json_response, as_json
+=======
+from flask import Flask,render_template,request
+from flask_json import FlaskJSON, JsonError, json_response, as_json
+import jwt
+>>>>>>> f1b88be3653e3b5dcf2d6045c81bf72789682485
 
 
 import jwt
 import datetime
+<<<<<<< HEAD
 import random
 import bcrypt
 
@@ -15,6 +22,14 @@ from db_con import get_db_instance, get_db
 
 app = Flask(__name__)
 app.secret_key = "please don't hack my server"
+=======
+import bcrypt
+
+
+from db_con import get_db_instance, get_db
+
+app = Flask(__name__)
+>>>>>>> f1b88be3653e3b5dcf2d6045c81bf72789682485
 FlaskJSON(app)
 
 USER_PASSWORDS = { "cjardin": "strong password"}
@@ -26,6 +41,13 @@ IMGS_URL = {
             }
 
 CUR_ENV = "PRD"
+JWT_SECRET = None
+
+global_db_con = get_db()
+
+
+with open("secret", "r") as f:
+    JWT_SECRET = f.read()
 
 JWT_SECRET = None
 CURRENT_USER = None
@@ -55,7 +77,19 @@ def back():
 
 @app.route('/backp',  methods=['POST']) #endpoint
 def backp():
+    print(request.form)
+    salted = bcrypt.hashpw( bytes(request.form['fname'],  'utf-8' ) , bcrypt.gensalt(10))
+    print(salted)
+
+    print(  bcrypt.checkpw(  bytes(request.form['fname'],  'utf-8' )  , salted ))
+
     return render_template('backatu.html',input_from_browser= str(request.form) )
+
+@app.route('/auth',  methods=['POST']) #endpoint
+def auth():
+        print(request.form)
+        return json_response(data=request.form)
+
 
 
 #Assigment 2
@@ -68,12 +102,46 @@ def ss1():
                                                bValue = random.randrange(0, 255),
                                                radius = random.randrange(0, 100))
 
+<<<<<<< HEAD
 #JSON stuff
 @app.route('/get_time')
 def get_time():
     return json_response(data={"serverTime":str(datetime.datetime.utcnow()),
                                 "hello":"world my name isthaipehfaepouiha"
                                 })
+=======
+@app.route('/getTime') #endpoint
+def get_time():
+    return json_response(data={"password" : request.args.get('password'),
+                                "class" : "cis44",
+                                "serverTime":str(datetime.datetime.now())
+                            }
+                )
+
+@app.route('/auth2') #endpoint
+def auth2():
+    jwt_str = jwt.encode({"username" : "cary",
+                            "age" : "so young",
+                            "books_ordered" : ['f', 'e'] } 
+                            , JWT_SECRET, algorithm="HS256")
+    #print(request.form['username'])
+    return json_response(jwt=jwt_str)
+
+@app.route('/exposejwt') #endpoint
+def exposejwt():
+    jwt_token = request.args.get('jwt')
+    print(jwt_token)
+    return json_response(output=jwt.decode(jwt_token, JWT_SECRET, algorithms=["HS256"]))
+
+
+@app.route('/hellodb') #endpoint
+def hellodb():
+    cur = global_db_con.cursor()
+    cur.execute("insert into music values( 'dsjfkjdkf', 1);")
+    global_db_con.commit()
+    return json_response(status="good")
+
+>>>>>>> f1b88be3653e3b5dcf2d6045c81bf72789682485
 
 #JWT stuff
 @app.route('/auth')                                
