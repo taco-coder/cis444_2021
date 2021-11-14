@@ -18,25 +18,11 @@
         <h2>this text</h2>
     
         <script> 
-<<<<<<< HEAD
         $.getJSON("/get_time", function(data){
             $('#mydiv').html(data.data.hello);
             console.log(data);
             alert("success");
         })
-=======
-		setInterval(function(){
-			$.getJSON( "/getTime",  { "username":"hello", "password":"1234"} ,  function( json ) {
-			$('#mydiv').html(JSON.stringify(json));
-		}).fail(function( jqxhr, textStatus, error ) {
-    				var err = textStatus + ", " + error;
-    			console.log( "Request Failed: " + err );
-		});
-		}, 500);
-
-
-
->>>>>>> f1b88be3653e3b5dcf2d6045c81bf72789682485
         </script>
 
     </body>
