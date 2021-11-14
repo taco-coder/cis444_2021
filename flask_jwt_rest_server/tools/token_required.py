@@ -11,7 +11,7 @@ from tools.get_aws_secrets import get_secrets
 def token_required(f):
     @wraps(f)
     def _verify(*args, **kwargs):
-        secrets = g.secrets
+        secrets = g.secrets[0]
         auth_headers = request.headers.get('Authorization', '').split(':')
 
         invalid_msg = {
