@@ -36,7 +36,6 @@ def init_new_env():
             g.secrets = get_secrets()
     else:
             g.secrets = {"JWT": "KxQ(S#@>\"5=m$#58SgzD,+H+a73*pzKH,g5_"}
-    logger.debug(f"Secret: {g.secrets}")
 #This gets executed by default by the browser if no page is specified
 #So.. we redirect to the endpoint we want to load the base page
 @app.route('/') #endpoint
