@@ -374,7 +374,7 @@
     </div>
 			<script>
 		function send_form(){
-			$.post("/open_api/login", { "firstname":$('#fname').val(), "password":$('#password').val()},
+			$.post("/open_api/login", { "username":$('#user').val(), "password":$('#pwd').val()},
                        		function(data, textStatus) {
 					//this gets called when browser receives response from server
 					console.log(data.token);
