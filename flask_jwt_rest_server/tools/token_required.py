@@ -11,7 +11,7 @@ from tools.get_aws_secrets import get_secrets
 def token_required(f):
     @wraps(f)
     def _verify(*args, **kwargs):
-    # secrets = g.secrets
+        secrets = get_secrets()
         auth_headers = request.headers.get('Authorization', '').split(':')
 
         invalid_msg = {
@@ -29,8 +29,7 @@ def token_required(f):
         try:
             token = auth_headers[1]
             logger.debug("Got token")
-            #data = jwt.decode(token,  secrets['JWT'], algorithms=["HS256"])
-            data = jwt.decode(token,  g.secrets['JWT'], algorithms=["HS256"])
+            data = jwt.decode(token,  secrets['JWT'], algorithms=["HS256"])
             #set global jwt_data
             g.jwt_data = data
             return f( *args, **kwargs)
@@ -41,4 +40,3 @@ def token_required(f):
             return json_response(status_=401 ,message=expired_msg)
 
     return _verify
-
