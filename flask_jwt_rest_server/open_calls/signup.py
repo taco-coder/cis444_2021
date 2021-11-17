@@ -24,6 +24,7 @@ def handle_request():
       pkey=sql.Identifier('username'))
   
     cur.execute(query, (user['sub'],))
+    print(query.as_string(cur))
     result = cur.fetchone()
     print(result)
     if result is None:
