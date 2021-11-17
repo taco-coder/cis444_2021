@@ -623,9 +623,6 @@
 
 	</div>
 	<script>
-		$('#loginForm').show();
-		$('div:not(#loginForm)').hide();
-
 		function send_login() {
 			$.post("/open_api/login", { "username": $('#user').val(), "password": $('#pwd').val() },
 				function (data, textStatus) {
@@ -641,18 +638,6 @@
 					jwt = data.token;
 					//make secure call with the jwt
 					get_books();
-				}, "json").fail(function (response) {
-					//this gets called if the server throws an error
-					console.log("error");
-					console.log(response);
-				});
-			return false;
-		}
-		function send_signup() {
-			$.post("/open_api/signup", { "username": $('#new_user').val(), "password": $('#new_pwd').val() },
-				function (textStatus) {
-					//this gets called when browser receives response from server
-					$('#create_status').html(textStatus.message)
 				}, "json").fail(function (response) {
 					//this gets called if the server throws an error
 					console.log("error");
@@ -684,12 +669,6 @@
 				$('#book' + (i + 1) + 'price').val(books.books[i][2]);
 			}
 		}
-		//swaps login and signup forms
-		function swaplogin() {
-			$('#loginForm').toggle();
-			$('#signupForm').toggle();
-		}
-
 		//$('#signupForm').hide();
 		//$('#book-page').hide();
 		//$('#become_taco_page').hide();
