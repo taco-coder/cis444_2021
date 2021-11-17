@@ -16,18 +16,14 @@ def handle_request():
     user = {
             "sub" : request.form['username'] #sub is used by pyJwt as the owner of the token
             }
-    print(user['sub'])
     #sanitize the query
     query = sql.SQL("select {field} from {table} where {pkey} = %s").format(
       field=sql.Identifier('username'),
       table=sql.Identifier('users'),
       pkey=sql.Identifier('username'))
   
-    cur.execute(query, (user['sub'],))
-    print(query.as_string(cur))
-    result = cur.fetchone()
-    print(result)
-    if result is None:
+    cur.execute(query, (user['sub'],))    
+    if cur.fetchone() is None:
         #salt pass
         salted_pwd = bcrypt.hashpw( bytes(password_from_user_form, 'utf-8'),  bcrypt.gensalt(12))
         #sanitize insert
@@ -37,9 +33,9 @@ def handle_request():
           second_field=sql.Identifier('password')
           )
         #execute
-        print(query.as_string(cur), (user['sub'], salted_pwd.decode('utf-8')))
         cur.execute(query, (user['sub'], salted_pwd.decode('utf-8')))
         db.commit()
+        
         return json_response(message = "Successfully created account.")
     else:      
         return json_response(message = "Username already taken.")

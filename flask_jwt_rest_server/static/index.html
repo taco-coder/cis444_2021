@@ -645,6 +645,7 @@
 				function (textStatus) {
 					//this gets called when browser receives response from server
 					console.log(textStatus.message)
+					$('#create_status').html(textStatus.message)
 				}, "json").fail(function (response) {
 					//this gets called if the server throws an error
 					console.log("error");
