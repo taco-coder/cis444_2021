@@ -5,6 +5,8 @@ from tools.token_tools import create_token
 
 from tools.logging import logger
 
+import bcrypt
+
 def handle_request():
     logger.debug("Signup Handle Request")
     
@@ -21,8 +23,18 @@ def handle_request():
       pkey=sql.Identifier('username'))
   
     cur.execute(query, (user['sub'],))
-    result = cur.fetchone()[0]
-    logger.debug("Result: " + result)
-    if not user:
-        return json_response(status_=401, message = 'Invalid credentials', authenticated =  False )
-    return json_response( token = create_token(user) , authenticated = False)
+
+    if cur.fetchone() is None:
+        #salt pass
+        salted_pwd = bcrypt.hashpw( bytes(password_from_user_form, 'utf-8'),  bcrypt.gensalt(12))
+        #sanitize insert
+        query = sql.SQL("insert into {table} ({first_field}, {second_field}) values (%s, %s);").format(
+          table=sql.Identifier('users'),
+          first_field=sql.Identifier('username'),
+          second_field=sql.Identifier('password')
+          )
+        #execute
+        cur.execute(query, (user['sub'], salted_pwd.decode('utf-8')))
+        return json_response(message = "Successfully created account.")
+    else:      
+        return json_response(message = "Username already taken.")
