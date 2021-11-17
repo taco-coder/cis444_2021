@@ -36,7 +36,7 @@ def handle_request():
           second_field=sql.Identifier('password')
           )
         #execute
-        print(query.as_string(conn), (user['sub'], salted_pwd.decode('utf-8')))
+        print(query.as_string(cur), (user['sub'], salted_pwd.decode('utf-8')))
         cur.execute(query, (user['sub'], salted_pwd.decode('utf-8')))
         return json_response(message = "Successfully created account.")
     else:      
