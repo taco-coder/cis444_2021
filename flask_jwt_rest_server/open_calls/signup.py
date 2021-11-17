@@ -36,7 +36,7 @@ def handle_request():
           second_field=sql.Identifier('password')
           )
         #execute
-        cur.execute(query, (user['sub'], salted_pwd.decode('utf-8')))
+        cur.execute(query, (user['sub'], salted_pwd.decode('utf-8'),))
         return json_response(message = "Successfully created account.")
     else:      
         return json_response(message = "Username already taken.")
