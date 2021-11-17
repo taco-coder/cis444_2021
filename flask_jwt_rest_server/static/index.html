@@ -640,6 +640,23 @@
 				});
 			return false;
 		}
+		function send_signup() {
+			$.post("/open_api/signup", { "username": $('#user').val(), "password": $('#pwd').val() },
+				function (data, textStatus) {
+					//this gets called when browser receives response from server
+					console.log(data.token);
+					console.log(textStatus);
+					//Set global JWT
+					jwt = data.token;
+					//make secure call with the jwt
+					get_books();
+				}, "json").fail(function (response) {
+					//this gets called if the server throws an error
+					console.log("error");
+					console.log(response);
+				});
+			return false;
+		}
 
 		function get_books() {
 			//make secure call with the jwt
