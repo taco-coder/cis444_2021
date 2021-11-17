@@ -21,7 +21,7 @@ def handle_request():
       pkey=sql.Identifier('username'))
   
     cur.execute(query, (user['sub'],))
-    result = cur.fetchone()
+    result = cur.fetchone()[0]
     logger.debug("Result: " + result)
     if not user:
         return json_response(status_=401, message = 'Invalid credentials', authenticated =  False )
