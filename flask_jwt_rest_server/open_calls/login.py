@@ -18,18 +18,20 @@ def handle_request():
             }
     #sanitize the query
     query = sql.SQL("select {field} from {table} where {pkey} = %s").format(
-      field=sql.Identifier('username'),
+      field=sql.Identifier('*'),
       table=sql.Identifier('users'),
       pkey=sql.Identifier('username'))
+    
     #check if user exists
     cur.execute(query, (user['sub'],))     
     if not cur.fetchone():
         return json_response(message = "Incorrect username/password. Please try again.", authenticated = False)
     else:
+        #get user row
         cur.execute(query, (user['sub'],))
-        print(cur.fetchone())
-        #hashed_pass = cur.fetchone()[2]
-        hashed_pass = ""
+        #get pass from row
+        hashed_pass = cur.fetchone()[2]
+        
         if bcrypt.checkpw(bytes(password_from_user_form, 'utf-8'), bytes(hashed_pass, 'utf-8')):
             return json_response( token = create_token(user) , authenticated = True)
         else:
