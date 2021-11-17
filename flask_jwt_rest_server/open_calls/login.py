@@ -26,8 +26,10 @@ def handle_request():
     if not cur.fetchone():
         return json_response(message = "Incorrect username/password. Please try again.", authenticated = False)
     else:
-        cur.execute(query, (user['sub'],)) 
-        hashed_pass = cur.fetchone()[2]
+        cur.execute(query, (user['sub'],))
+        print(cur.fetchone())
+        #hashed_pass = cur.fetchone()[2]
+        hashed_pass = ""
         if bcrypt.checkpw(bytes(password_from_user_form, 'utf-8'), bytes(hashed_pass, 'utf-8')):
             return json_response( token = create_token(user) , authenticated = True)
         else:
