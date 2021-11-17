@@ -663,8 +663,24 @@
 
 		function get_books() {
 			//make secure call with the jwt
-			secure_get_with_token("/secure_api/get_books", function (data) { console.log("got books"); console.log(data); console.log(jwt) },
-				function (err) { console.log(err) });
+			secure_get_with_token("/secure_api/get_books", function (data) {
+				console.log("got books");
+				console.log(data);
+				load_books(data.books);
+				console.log(jwt)
+			}, function (err) {
+				console.log(err)
+			});
+		}
+		function load_books(books) {
+			console.log(books.length);
+			/*
+			for (let i = 0; i < reviews.length; i++) {
+				$("#user-review4").append(reviews[i][3] + " rated: " + reviews[i][2] + "/5 - " + reviews[i][1])
+				avgRate += reviews[i][2]
+				$("#user-review4").append("<br><br>")
+			}
+			*/
 		}
 		//swaps login and signup forms
 		function swaplogin() {
