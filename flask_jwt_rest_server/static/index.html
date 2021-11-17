@@ -243,9 +243,9 @@
 		<p>Create a unique username and password.</p>
 		<form action="/create_creds" method="post" id="signup">
 			<label for="username" id="creds">Username:</label>
-			<input type="text" id="user" name="username" required><br><br>
+			<input type="text" id="new_user" name="username" required><br><br>
 			<label for="password" id="creds">Password:</label>
-			<input type="password" id="pwd" name="password" required><br><br>
+			<input type="password" id="new_pwd" name="password" required><br><br>
 			<input type="submit" value="Create Account" onclick="return send_signup();">
 		</form>
 		<p id="create_status"></p>
@@ -641,7 +641,7 @@
 			return false;
 		}
 		function send_signup() {
-			$.post("/open_api/signup", { "username": $('#user').val(), "password": $('#pwd').val() },
+			$.post("/open_api/signup", { "username": $('#new_user').val(), "password": $('#new_pwd').val() },
 				function (textStatus) {
 					//this gets called when browser receives response from server
 					console.log(textStatus.message)
