@@ -23,8 +23,9 @@ def handle_request():
       pkey=sql.Identifier('username'))
   
     cur.execute(query, (user['sub'],))
-
-    if cur.fetchone() is None:
+    result = cur.fetchone()
+    print(result)
+    if result is None:
         #salt pass
         salted_pwd = bcrypt.hashpw( bytes(password_from_user_form, 'utf-8'),  bcrypt.gensalt(12))
         #sanitize insert
