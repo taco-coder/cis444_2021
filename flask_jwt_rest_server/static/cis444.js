@@ -1,12 +1,13 @@
 var jwt = null
-function secure_get_with_token(endpoint, on_success_callback, on_fail_callback){
+function secure_get_with_token(endpoint, on_success_callback, on_fail_callback) {
 	xhr = new XMLHttpRequest();
 	function setHeader(xhr) {
-		xhr.setRequestHeader('Authorization', 'Bearer:'+jwt);
+		xhr.setRequestHeader('Authorization', 'Bearer:' + jwt);
 	}
-	function get_and_set_new_jwt(data){
+	function get_and_set_new_jwt(data) {
+		console.log("success callback")
 		console.log(data);
-		jwt  = data.token
+		jwt = data.token
 		on_success_callback(data)
 	}
 	$.ajax({
