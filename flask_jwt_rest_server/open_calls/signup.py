@@ -9,8 +9,8 @@ import bcrypt
 
 def handle_request():
     logger.debug("Signup Handle Request")
-    
-    cur = g.db.cursor()
+    db = g.db
+    cur = db.cursor()
     #use data here to auth the user
     password_from_user_form = request.form['password']
     user = {
@@ -39,6 +39,7 @@ def handle_request():
         #execute
         print(query.as_string(cur), (user['sub'], salted_pwd.decode('utf-8')))
         cur.execute(query, (user['sub'], salted_pwd.decode('utf-8')))
+        db.commit()
         return json_response(message = "Successfully created account.")
     else:      
         return json_response(message = "Username already taken.")
