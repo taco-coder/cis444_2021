@@ -672,15 +672,17 @@
 				console.log(err)
 			});
 		}
+
 		function load_books(books) {
-			console.log(books.length);
-			/*
-			for (let i = 0; i < reviews.length; i++) {
-				$("#user-review4").append(reviews[i][3] + " rated: " + reviews[i][2] + "/5 - " + reviews[i][1])
-				avgRate += reviews[i][2]
-				$("#user-review4").append("<br><br>")
+			//go through books array
+			for (let i = 0; i < books.length; i++) {
+				//load names and prices
+				$('#book_name' + (i + 1)).html(books.books[i][1]);
+				$('#book_price' + (i + 1)).html(books.books[i][2]);
+				//hidden attr          
+				$('#book' + (i + 1) + 'name').val(books.books[i][1]);
+				$('#book' + (i + 1) + 'price').val(books.books[i][2]);
 			}
-			*/
 		}
 		//swaps login and signup forms
 		function swaplogin() {
