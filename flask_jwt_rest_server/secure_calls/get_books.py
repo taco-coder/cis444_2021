@@ -6,6 +6,8 @@ from tools.logging import logger
 
 def handle_request():
     logger.debug("Get Books Handle Request")
-
-    return json_response( token = create_token(  g.jwt_data ) , books = {})
+    cur = g.db.cursor()
+    cur.execute("select * from books;")
+    db_books = cur.fetchall()    
+    return json_response( token = create_token(  g.jwt_data ) , books = db_books)
 
