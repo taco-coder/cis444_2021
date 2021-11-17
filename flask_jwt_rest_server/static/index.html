@@ -234,7 +234,7 @@
 			<label for="password" id="creds">Password:</label>
 			<input type="password" id="pwd" name="password"><br><br>
 			<button type="button" id="signBtn" onclick="swaplogin();">Sign Up</button>
-			<input type="submit" value="Login" onclick="return send_form();">
+			<input type="submit" value="Login" onclick="return send_login();">
 			<p id="login_status"></p>
 		</form>
 	</div>
@@ -623,11 +623,12 @@
 
 	</div>
 	<script>
-		function send_form() {
+		function send_login() {
 			$.post("/open_api/login", { "username": $('#user').val(), "password": $('#pwd').val() },
 				function (data, textStatus) {
 					//this gets called when browser receives response from server
 					console.log(data.token);
+					console.log(textStatus);
 					//Set global JWT
 					jwt = data.token;
 					//make secure call with the jwt
@@ -642,7 +643,7 @@
 
 		function get_books() {
 			//make secure call with the jwt
-			secure_get_with_token("/secure_api/get_books", function (data) { console.log("got books"); console.log(data) },
+			secure_get_with_token("/secure_api/get_books", function (data) { console.log("got books"); console.log(data); console.log(jwt) },
 				function (err) { console.log(err) });
 		}
 		//swaps login and signup forms
@@ -650,14 +651,15 @@
 			$('#loginForm').toggle();
 			$('#signupForm').toggle();
 		}
-		$('#loginForm').show()
-		$('#signupForm').hide();
-		$('#book-page').hide();
-		$('#become_taco_page').hide();
-		$('#car_jack_page').hide();
-		$('#red_lepanka_page').hide();
-		$('#ego_bias_page').hide();
-		$('#cart_page').hide();
+		$('#loginForm').show();
+		$('div:not(#loginForm)').hide();
+		//$('#signupForm').hide();
+		//$('#book-page').hide();
+		//$('#become_taco_page').hide();
+		//$('#car_jack_page').hide();
+		//$('#red_lepanka_page').hide();
+		//$('#ego_bias_page').hide();
+		//$('#cart_page').hide();
 	</script>
 </body>
 
