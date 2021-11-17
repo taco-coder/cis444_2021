@@ -622,7 +622,9 @@
 		</div>
 
 	</div>
+	<script src="/static/cis444.js"></script>
 	<script>
+
 		function send_login() {
 			$.post("/open_api/login", { "username": $('#user').val(), "password": $('#pwd').val() },
 				function (data, textStatus) {
