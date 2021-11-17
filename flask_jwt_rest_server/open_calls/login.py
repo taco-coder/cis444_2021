@@ -17,8 +17,7 @@ def handle_request():
             "sub" : request.form['username'] #sub is used by pyJwt as the owner of the token
             }
     #sanitize the query
-    query = sql.SQL("select {field} from {table} where {pkey} = %s").format(
-      field=sql.Identifier('*'),
+    query = sql.SQL("select * from {table} where {pkey} = %s").format(
       table=sql.Identifier('users'),
       pkey=sql.Identifier('username'))
     
