@@ -62,15 +62,14 @@ function send_login() {
 	$.post("/open_api/login", { "username": $('#user').val(), "password": $('#pwd').val() },
 		function (data, textStatus) {
 			//this gets called when browser receives response from server
-			console.log(data.authenticated)
 			if (data.authenticated == false) {
 				$('#login_status').html(data.message)
 				return false
 			}
-			console.log(data.token);
-			console.log(textStatus);
+
 			//Set global JWT
 			jwt = data.token;
+
 			//make secure call with the jwt
 			get_books();
 		}, "json").fail(function (response) {
@@ -87,10 +86,8 @@ function send_login() {
 function get_books() {
 	//make secure call with the jwt
 	secure_get_with_token("/secure_api/get_books", function (data) {
-		console.log("got books");
-		console.log(data);
 		load_books(data.books);
-		console.log(jwt)
+		show_books();
 	}, function (err) {
 		console.log(err)
 	});
@@ -110,4 +107,11 @@ function load_books(books) {
 		$('#book' + (i + 1) + 'name').val(books[i][1]);
 		$('#book' + (i + 1) + 'price').val(books[i][2]);
 	}
+}
+/**
+ * hide everything and show only books page
+ */
+function show_books() {
+	$('#book-page').show();
+	$('div:not(#book-page)').hide();
 }
