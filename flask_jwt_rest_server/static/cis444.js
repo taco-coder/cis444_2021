@@ -92,6 +92,13 @@ function send_login() {
 }
 
 /**
+ * log out
+ */
+function signout() {
+	jwt = null
+	window.location.reload(true);
+}
+/**
  * Verifies the token then loads and shows book data.
  */
 function get_books() {
