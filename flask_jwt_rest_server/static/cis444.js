@@ -113,5 +113,5 @@ function load_books(books) {
  */
 function show_books() {
 	$('#book-page').show();
-	$('div:not(#book-page)').hide();
+	$('#loginForm').hide();
 }
