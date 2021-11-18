@@ -53,3 +53,61 @@ function send_signup() {
 		});
 	return false;
 }
+
+/**
+ * Sends form to login. If fails, prompts user. If success, get_books.
+ * @returns false
+ */
+function send_login() {
+	$.post("/open_api/login", { "username": $('#user').val(), "password": $('#pwd').val() },
+		function (data, textStatus) {
+			//this gets called when browser receives response from server
+			console.log(data.authenticated)
+			if (data.authenticated == false) {
+				$('#login_status').html(data.message)
+				return false
+			}
+			console.log(data.token);
+			console.log(textStatus);
+			//Set global JWT
+			jwt = data.token;
+			//make secure call with the jwt
+			get_books();
+		}, "json").fail(function (response) {
+			//this gets called if the server throws an error
+			console.log("error");
+			console.log(response);
+		});
+	return false;
+}
+
+/**
+ * Verifies the token then loads and shows book data.
+ */
+function get_books() {
+	//make secure call with the jwt
+	secure_get_with_token("/secure_api/get_books", function (data) {
+		console.log("got books");
+		console.log(data);
+		load_books(data.books);
+		console.log(jwt)
+	}, function (err) {
+		console.log(err)
+	});
+}
+
+/**
+ * goes through books array, populating bookname and bookprice fields respectively
+ * @param {array} books 
+ */
+function load_books(books) {
+	//go through books array
+	for (let i = 0; i < books.length; i++) {
+		//load names and prices
+		$('#book_name' + (i + 1)).html(books[i][1]);
+		$('#book_price' + (i + 1)).html(books[i][2]);
+		//hidden attr          
+		$('#book' + (i + 1) + 'name').val(books[i][1]);
+		$('#book' + (i + 1) + 'price').val(books[i][2]);
+	}
+}

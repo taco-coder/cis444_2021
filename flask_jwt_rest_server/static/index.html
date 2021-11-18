@@ -663,11 +663,11 @@
 			//go through books array
 			for (let i = 0; i < books.length; i++) {
 				//load names and prices
-				$('#book_name' + (i + 1)).html(books.books[i][1]);
-				$('#book_price' + (i + 1)).html(books.books[i][2]);
+				$('#book_name' + (i + 1)).html(books[i][1]);
+				$('#book_price' + (i + 1)).html(books[i][2]);
 				//hidden attr          
-				$('#book' + (i + 1) + 'name').val(books.books[i][1]);
-				$('#book' + (i + 1) + 'price').val(books.books[i][2]);
+				$('#book' + (i + 1) + 'name').val(books[i][1]);
+				$('#book' + (i + 1) + 'price').val(books[i][2]);
 			}
 		}
 		//$('#signupForm').hide();
