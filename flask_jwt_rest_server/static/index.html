@@ -254,11 +254,11 @@
 	<!--___________________books page____________________-->
 	<div id="book-page">
 		<div id="genre-bar">
-			<button class="genrebtn active">All Genres</button>
-			<button class="genrebtn">Thriller</button>
-			<button class="genrebtn">Romance</button>
-			<button class="genrebtn">Sci-Fi</button>
-			<button class="genrebtn">Self-Help</button>
+			<button class="genrebtn active" onclick="showOnly('all');">All Genres</button>
+			<button class="genrebtn" onclick="showOnly('thriller');">Thriller</button>
+			<button class="genrebtn" onclick="showOnly('romance');">Romance</button>
+			<button class="genrebtn" onclick="showOnly('scifi');">Sci-Fi</button>
+			<button class="genrebtn" onclick="showOnly('selfhelp');">Self-Help</button>
 		</div>
 		<div style="margin-left: 85%; margin-top: -40px;">
 			<button class="btn" type="button" onclick="signout()">Sign Out</button>

@@ -4,7 +4,6 @@ $('#loginForm').show();
 $('div:not(#loginForm)').hide();
 
 //book genre logic
-var genreOpt = ["all", "thriller", "romance", "scifi", "selfhelp"];
 var header = document.getElementById("genre-bar");
 var btns = header.getElementsByClassName("genrebtn");
 for (var i = 0; i < btns.length; i++) {
@@ -13,8 +12,6 @@ for (var i = 0; i < btns.length; i++) {
 		current[0].className = current[0].className.replace(" active", "");
 		this.className += " active";
 	});
-	console.log(genreOpt[i]);
-	showOnly(genreOpt[i]);
 }
 
 /**
