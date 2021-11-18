@@ -112,6 +112,6 @@ function load_books(books) {
  * hide everything and show only books page
  */
 function show_books() {
-	$('#book-page').show().children().show();
+	$('#book-page').show().find('*').show();
 	$('#loginForm').hide();
 }
