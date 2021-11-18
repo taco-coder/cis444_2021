@@ -4,6 +4,7 @@ $('#loginForm').show();
 $('div:not(#loginForm)').hide();
 
 //book genre logic
+var genreOpt = ["all", "thriller", "romance", "scifi", "selfhelp"]
 var header = document.getElementById("genre-bar");
 var btns = header.getElementsByClassName("genrebtn");
 for (var i = 0; i < btns.length; i++) {
@@ -11,6 +12,7 @@ for (var i = 0; i < btns.length; i++) {
 		var current = document.getElementsByClassName("active");
 		current[0].className = current[0].className.replace(" active", "");
 		this.className += " active";
+		showOnly(genreOpt[i]);
 	});
 }
 
@@ -135,49 +137,21 @@ function show_books() {
 }
 
 /**
- * show only thriller books
+ * Shows books only of specific genre
+ * @param {string} genre 
  */
-function onlyThriller() {
-	$('#book_row_one_column_one').show();
-	$('#book_row_one_column_two').hide();
-	$('#book_row_two_column_two').hide();
-	$('#book_row_two_column_one').hide();
+function showOnly(genre) {
+	if (genre == "all") {
+		showAll();
+	}
+	else {
+		$('div.book').not('.' + genre).hide();
+		$('div.book.' + genre).show();
+	}
 }
-/**
- * show only romance books
- */
-function onlyRomance() {
-	$('#book_row_two_column_two').show();
-	$('#book_row_one_column_one').hide();
-	$('#book_row_one_column_two').hide();
-	$('#book_row_two_column_one').hide();
-}
-
-/**
- * show only scifi books
- */
-function onlyScifi() {
-	$('#book_row_one_column_two').show();
-	$('#book_row_one_column_one').hide();
-	$('#book_row_two_column_two').hide();
-	$('#book_row_two_column_one').hide();
-}
-/**
- * show only selfhelp books
- */
-function onlySelfhelp() {
-	$('#book_row_two_column_one').show();
-	$('#book_row_one_column_two').hide();
-	$('#book_row_two_column_two').hide();
-	$('#book_row_one_column_one').hide();
-}
-
 /**
  * show all books regardless of genre
  */
 function showAll() {
-	$('#book_row_one_column_one').show();
-	$('#book_row_one_column_two').show();
-	$('#book_row_two_column_two').show();
-	$('#book_row_two_column_one').show();
+	$('div.book').show();
 }
