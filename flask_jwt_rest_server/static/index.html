@@ -260,9 +260,9 @@
 			<button class="genrebtn" onclick="onlyScifi();">Sci-Fi</button>
 			<button class="genrebtn" onclick="onlySelfhelp();">Self-Help</button>
 		</div>
-		<form style="margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
-			<input type="submit" class="btn" value="Sign Out">
-		</form>
+		<div style="margin-left: 85%; margin-top: -40px;">
+			<button class="btn" type="button" onclick="signout()">Sign Out</button>
+		</div>
 		<div id="cart_btn_container">
 			<button id="cart_btn" class="btn" onclick="getCartPage();">Go to Cart &#128722</button>
 		</div>
@@ -621,18 +621,9 @@
 		</div>
 
 	</div>
+
 	<script src="/static/cis444.js"></script>
-	<script>
 
-
-		//$('#signupForm').hide();
-		//$('#book-page').hide();
-		//$('#become_taco_page').hide();
-		//$('#car_jack_page').hide();
-		//$('#red_lepanka_page').hide();
-		//$('#ego_bias_page').hide();
-		//$('#cart_page').hide();
-	</script>
 </body>
 
 </html>
