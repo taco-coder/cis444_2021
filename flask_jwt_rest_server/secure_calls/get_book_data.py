@@ -8,4 +8,5 @@ def handle_request():
     logger.debug("Get Books Data Handle Request")
     print(f"Book ID: {request.get_data()}")
     print(request)
+    print(request.args.get('book_id', type=str))
     return json_response( token = create_token(  g.jwt_data ) , info = {})
