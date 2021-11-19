@@ -157,7 +157,7 @@ function showOnly(genre) {
 function getRedLepankaPage() {
 	$('#book-page').hide();
 	$('#red_lepanka_page').show().find('*').show();
-	getBookData(1);
+	getBookData("1");
 }
 
 function getBookData(book_id) {
