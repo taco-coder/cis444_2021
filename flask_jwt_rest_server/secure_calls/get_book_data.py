@@ -6,5 +6,5 @@ from tools.logging import logger
 
 def handle_request():
     logger.debug("Get Books Data Handle Request")
-    print(f"Book ID: {request.json['book_id']}")
+    print(f"Book ID: {request.get_data()}")
     return json_response( token = create_token(  g.jwt_data ) , info = {})
