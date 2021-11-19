@@ -28,6 +28,7 @@ function swaplogin() {
  * @param {function} on_fail_callback 
  */
 function secure_get_with_token(endpoint, on_success_callback, on_fail_callback) {
+	console.log("Secure Get")
 	xhr = new XMLHttpRequest();
 	function setHeader(xhr) {
 		xhr.setRequestHeader('Authorization', 'Bearer:' + jwt);
@@ -40,12 +41,14 @@ function secure_get_with_token(endpoint, on_success_callback, on_fail_callback) 
 	}
 	$.ajax({
 		url: endpoint,
+		data: data_to_send,
 		type: 'GET',
 		datatype: 'json',
 		success: on_success_callback,
 		error: on_fail_callback,
 		beforeSend: setHeader
 	});
+
 }
 
 /**
@@ -103,7 +106,7 @@ function signout() {
  */
 function get_books() {
 	//make secure call with the jwt
-	secure_get_with_token("/secure_api/get_books", function (data) {
+	secure_get_with_token("/secure_api/get_books", {}, function (data) {
 		load_books(data.books);
 		show_books();
 	}, function (err) {
@@ -140,16 +143,28 @@ function show_books() {
  */
 function showOnly(genre) {
 	if (genre == "all") {
-		showAll();
+		$('div.book').show();
 	}
 	else {
 		$('div.book').not('.' + genre).hide();
 		$('div.book.' + genre).show();
 	}
 }
+
 /**
- * show all books regardless of genre
+ * hides bookstore and gets redlepanka page
  */
-function showAll() {
-	$('div.book').show();
+function getRedLepankaPage() {
+	$('#book-page').hide();
+	$('#red_lepanka_page').show().find('*').show();
+	getBookData(1);
+}
+
+function getBookData(book_id) {
+	secure_get_with_token("/secure_calls/get_book_data", { 'book_id': book_id }, function (data) {
+		console.log("got book data");
+		console.log(data);
+	}, function (err) {
+		console.log(err);
+	});
 }
