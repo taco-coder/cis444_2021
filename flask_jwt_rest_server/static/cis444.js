@@ -256,7 +256,7 @@ function getReviews(book) {
  * @param {int} book_id 
  */
 function postReview(book_id) {
-	var reviewText = "#review-text" + book_id;
+	var reviewText = "#book-review" + book_id;
 	var rating = "#rate" + book_id;
 	//var userR = "#user-review" + book_id;
 	//var rate = "#avg-rate" + book_id;
