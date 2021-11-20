@@ -169,6 +169,33 @@ function getRedLepankaPage() {
 }
 
 /**
+ * hides bookstore and gets becometaco page
+ */
+function getBecomeTacoPage() {
+	$('#book-page').hide();
+	$('#become_taco_page').show().find('*').show();
+	getBookData(2);
+}
+
+/**
+ * hides bookstore and gets carjack page
+ */
+function getCarjackerPage() {
+	$('#book-page').hide();
+	$('#car_jack_page').show().find('*').show();
+	getBookData(3);
+}
+
+/**
+ * hides bookstore and gets egobias page
+ */
+function getEgoBiasPage() {
+	$('#book-page').hide();
+	$('#ego_bias_page').show().find('*').show();
+	getBookData(4);
+}
+
+/**
  * Takes an int corresponding to the book you want to fetch. Gets and sets book name, price, and calls getReviews
  * @param {int} book_id 
  */
