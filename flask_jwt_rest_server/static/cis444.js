@@ -163,6 +163,8 @@ function getRedLepankaPage() {
 function getBookData(book_id) {
 	secure_get_with_token("/secure_api/get_book_data", { "book_id": book_id }, function (data) {
 		console.log("got book data");
+		var name = "name" + book_id;
+		console.log(name);
 		console.log(data);
 	}, function (err) {
 		console.log(err);
