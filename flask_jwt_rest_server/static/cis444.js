@@ -24,10 +24,12 @@ function swaplogin() {
 /**
  * Gets get_books endpoint and assigns global JWT
  * @param {string} endpoint 
+ * @param {string} method
+ * @param {JSON}	data_to_send
  * @param {function} on_success_callback 
  * @param {function} on_fail_callback 
  */
-function secure_get_with_token(endpoint, data_to_send, on_success_callback, on_fail_callback) {
+function secure_call_with_token(endpoint, method, data_to_send, on_success_callback, on_fail_callback) {
 	console.log("Secure Get")
 	console.log(data_to_send)
 	xhr = new XMLHttpRequest();
@@ -42,7 +44,7 @@ function secure_get_with_token(endpoint, data_to_send, on_success_callback, on_f
 	$.ajax({
 		url: endpoint,
 		data: data_to_send,
-		type: 'GET',
+		type: method,
 		datatype: 'json',
 		success: on_success_callback,
 		error: on_fail_callback,
@@ -107,7 +109,7 @@ function signout() {
  */
 function get_books() {
 	//make secure call with the jwt
-	secure_get_with_token("/secure_api/get_books", {}, function (data) {
+	secure_call_with_token("/secure_api/get_books", 'GET', {}, function (data) {
 		load_books(data.books);
 		show_books();
 	}, function (err) {
@@ -200,7 +202,7 @@ function getEgoBiasPage() {
  * @param {int} book_id 
  */
 function getBookData(book_id) {
-	secure_get_with_token("/secure_api/get_book_data", { "book_id": book_id }, function (data) {
+	secure_call_with_token("/secure_api/get_book_data", 'GET', { "book_id": book_id }, function (data) {
 		console.log("got book data");
 
 		//initialize html div ID strings
@@ -227,7 +229,7 @@ function getBookData(book_id) {
  * @param {int} book 
  */
 function getReviews(book) {
-	secure_get_with_token("/secure_api/get_book_data", { "book_id": book }, function (data) {
+	secure_call_with_token("/secure_api/get_book_data", 'GET', { "book_id": book }, function (data) {
 		console.log("got reviews");
 
 		//initialize avgRate, html ID strings, and reviews array
@@ -258,14 +260,12 @@ function getReviews(book) {
 function postReview(book_id) {
 	var reviewText = "#book-review" + book_id;
 	var rating = "#rate" + book_id;
-	//var userR = "#user-review" + book_id;
-	//var rate = "#avg-rate" + book_id;
+	var userR = "#user-review" + book_id;
+	var rate = "#avg-rate" + book_id;
 
-	console.log("post review")
-	secure_get_with_token("/secure_api/add_book_review", { "book_id": book_id, "review": $(reviewText).val(), "rate": $(rating).val() },
+	secure_call_with_token("/secure_api/add_book_review", 'POST', { "book_id": book_id, "review": $(reviewText).val(), "rate": $(rating).val() },
 		function (data) {
 			console.log(data)
-			console.log(data.token)
 		}, function (err) {
 			console.log(err)
 		});
