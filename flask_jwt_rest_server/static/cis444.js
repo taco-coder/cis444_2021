@@ -262,7 +262,7 @@ function postReview(book_id) {
 	//var rate = "#avg-rate" + book_id;
 
 	console.log("post review")
-	secure_get_with_token("/secure_api/post_book_review", { "book_id": book_id, "review": $(reviewText).val(), "rate": $(rating).val() },
+	secure_get_with_token("/secure_api/add_book_review", { "book_id": book_id, "review": $(reviewText).val(), "rate": $(rating).val() },
 		function (data) {
 			console.log(data)
 		}, function (err) {
