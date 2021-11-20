@@ -23,6 +23,6 @@ def handle_request():
       rating=sql.Identifier('rating'),
       review_user=sql.Identifier('review_user'))
     
-    cur.execute(query, (bid, user_review, user_rate, user))
+    cur.execute(query, (bid, user_review, user_rate, user,))
     db.commit()
     return json_response( token = create_token(  user ) , review = {"user": user['sub'], "review":user_review, "rate": user_rate})
