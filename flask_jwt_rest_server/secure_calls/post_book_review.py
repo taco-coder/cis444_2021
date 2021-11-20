@@ -16,7 +16,7 @@ def handle_request():
     user_rate = request.form.get('rate')
     
     #sanitize the query to insert new book review
-    query = sql.SQL("insert into {table} ({id}, {review}, {rating}, {review_user}) values (%i, %s, %i, %s)").format(
+    query = sql.SQL("insert into {table} ({id}, {review}, {rating}, {review_user}) values (%s, %s, %s, %s)").format(
       table=sql.Identifier('reviews'),
       id=sql.Identifier('id'),
       review=sql.Identifier('review'),
