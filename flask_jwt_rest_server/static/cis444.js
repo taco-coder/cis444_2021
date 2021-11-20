@@ -258,13 +258,14 @@ function getReviews(book) {
 function postReview(book_id) {
 	var reviewText = "#review-text" + book_id;
 	var rating = "#rate" + book_id;
-	var userR = "#user-review" + book_id;
-	var rate = "#avg-rate" + book_id;
+	//var userR = "#user-review" + book_id;
+	//var rate = "#avg-rate" + book_id;
+
+	console.log("post review")
 	secure_get_with_token("/secure_api/post_book_review", { "book_id": book_id, "review": $(reviewText).val(), "rate": $(rating).val() },
 		function (data) {
 			console.log(data)
 		}, function (err) {
 			console.log(err)
 		});
-
 }
