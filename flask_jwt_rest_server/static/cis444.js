@@ -95,12 +95,13 @@ function send_login() {
 }
 
 /**
- * log out
+ * Reloading the page takes you back to the login screen. Clear JWT data
  */
 function signout() {
 	jwt = null
 	window.location.reload(true);
 }
+
 /**
  * Verifies the token then loads and shows book data.
  */
@@ -160,18 +161,59 @@ function getRedLepankaPage() {
 	getBookData(1);
 }
 
+/**
+ * Takes an int corresponding to the book you want to fetch. Gets and sets book name, price, and calls getReviews
+ * @param {int} book_id 
+ */
 function getBookData(book_id) {
 	secure_get_with_token("/secure_api/get_book_data", { "book_id": book_id }, function (data) {
 		console.log("got book data");
+
+		//initialize html ID strings
 		var name = "#name" + book_id;
 		var price = "#price" + book_id;
+		var hideName = "#bookname" + book_id;
+		var hidePrice = "#bookprice" + book_id;
 
+		//set HTML and hidden attributes
 		$(name).html(data.info['bookname'])
 		$(price).html(data.info['price'])
+		$(hideName).val(data.info['bookname'])
+		$(hidePrice).val(data.info['price'])
 
-		console.log(name);
-		console.log(data);
+		//fetch the reviews
+		getReviews(book_id)
 	}, function (err) {
 		console.log(err);
 	});
 }
+
+/**
+ * Gets the reviews and calculates avg rating
+ * @param {int} book 
+ */
+function getReviews(book) {
+	secure_get_with_token("/secure_api/get_book_data", { "book_id": book_id }, function (data) {
+		console.log("got reviews");
+
+		//initialize avgRate, html ID strings, and reviews array
+		var avgRate = 0;
+		var userR = "#user-review" + book;
+		var rate = "#avg-rate" + book;
+		var reviews = data.info['reviews']
+
+		//append all reviews in reviews array
+		for (let i = 0; i < reviews.length; i++) {
+			$(userR).append(reviews[i][3] + " rated: " + reviews[i][2] + "/5 - " + reviews[i][1])
+			avgRate += reviews[i][2]
+			$(userR).append("<br><br>")
+		}
+
+		//calc and set the avg rating
+		avgRate = avgRate / reviews.length
+		$(rate).html("Rating: " + avgRate.toFixed(1) + "/5")
+	}, function (err) {
+		console.log(err);
+	});
+}
+
