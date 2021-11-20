@@ -3,7 +3,7 @@ var jwt = null
 $('#loginForm').show();
 $('div:not(#loginForm)').hide();
 
-//book genre logic
+//book genre-bar logic
 var header = document.getElementById("genre-bar");
 var btns = header.getElementsByClassName("genrebtn");
 for (var i = 0; i < btns.length; i++) {
@@ -153,6 +153,13 @@ function showOnly(genre) {
 }
 
 /**
+ * Goes back to main page
+ */
+function backToMain() {
+	$('div').not('#book-page').hide();
+	$('#book-page').show().find('*').show();
+}
+/**
  * hides bookstore and gets redlepanka page
  */
 function getRedLepankaPage() {
@@ -169,7 +176,7 @@ function getBookData(book_id) {
 	secure_get_with_token("/secure_api/get_book_data", { "book_id": book_id }, function (data) {
 		console.log("got book data");
 
-		//initialize html ID strings
+		//initialize html div ID strings
 		var name = "#name" + book_id;
 		var price = "#price" + book_id;
 		var hideName = "#bookname" + book_id;
