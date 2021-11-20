@@ -193,7 +193,7 @@ function getBookData(book_id) {
  * @param {int} book 
  */
 function getReviews(book) {
-	secure_get_with_token("/secure_api/get_book_data", { "book_id": book_id }, function (data) {
+	secure_get_with_token("/secure_api/get_book_data", { "book_id": book }, function (data) {
 		console.log("got reviews");
 
 		//initialize avgRate, html ID strings, and reviews array
