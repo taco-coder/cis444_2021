@@ -268,4 +268,5 @@ function postReview(book_id) {
 		}, function (err) {
 			console.log(err)
 		});
+	return false;
 }
