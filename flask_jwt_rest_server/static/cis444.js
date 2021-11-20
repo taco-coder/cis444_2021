@@ -258,14 +258,27 @@ function getReviews(book) {
  * @param {int} book_id 
  */
 function postReview(book_id) {
+	//init html IDs and get avg rate html
 	var reviewText = "#book-review" + book_id;
 	var rating = "#rate" + book_id;
 	var userR = "#user-review" + book_id;
 	var rate = "#avg-rate" + book_id;
+	var avgRate = $(rate).html();
+	//clearing to just get the avg rate
+	avgRate = avgRate.replace("Rating: ", "");
+	avgRate = avgRate.replace("/5", "");
 
-	secure_call_with_token("/secure_api/add_book_review", 'POST', { "book_id": book_id, "review": $(reviewText).val(), "rate": $(rating).val() },
+	secure_call_with_token("/secure_api/post_book_review", 'POST', { "book_id": book_id, "review": $(reviewText).val(), "rate": $(rating).val() },
 		function (data) {
-			console.log(data)
+			//add new review
+			$(userR).append(data.review['user'] + " rated: " + data.review['rate'] + "/5 - " + data.review['review']);
+			$(userR).append("<br><br>");
+
+			//calc new avg rating
+			var numReviews = ($(userR + " br").length) / 2; //there are 2 line breaks after each review; getting num of reviews based on line breaks
+			numReviews += 1; //add the current review
+			avgRate = (avgRate + $(rating).val()) / numReviews;
+			$(rate).html("Rating: " + avgRate.toFixed(1) + "/5")
 		}, function (err) {
 			console.log(err)
 		});
