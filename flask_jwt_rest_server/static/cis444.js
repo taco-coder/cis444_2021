@@ -30,7 +30,7 @@ function swaplogin() {
  * @param {function} on_fail_callback 
  */
 function secure_call_with_token(endpoint, method, data_to_send, on_success_callback, on_fail_callback) {
-	console.log("Secure Get")
+	console.log("Secure Call: " + method)
 	console.log(data_to_send)
 	xhr = new XMLHttpRequest();
 	function setHeader(xhr) {

@@ -8,8 +8,8 @@ from tools.logging import logger
 def handle_request():
     logger.debug("Post Book Review Handle Request")
     user = g.jwt_data
-    print(request.args.get('book_id'))
-    print(request.args.get('review'))
-    print(request.args.get('rate'))
+    print(request.form.get('book_id'))
+    print(request.form.get('review'))
+    print(request.form.get('rate'))
     print(user)    
     return json_response( token = create_token(  user ) , books = {"id": request.args.get('book_id'), "review": request.args.get('review'), "rate": request.args.get('rate')})
