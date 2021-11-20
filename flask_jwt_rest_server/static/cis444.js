@@ -83,7 +83,7 @@ function send_login() {
 
 			//Set global JWT
 			jwt = data.token;
-
+			console.log(jwt)
 			//make secure call with the jwt
 			get_books();
 		}, "json").fail(function (response) {
@@ -265,6 +265,7 @@ function postReview(book_id) {
 	secure_get_with_token("/secure_api/add_book_review", { "book_id": book_id, "review": $(reviewText).val(), "rate": $(rating).val() },
 		function (data) {
 			console.log(data)
+			console.log(data.token)
 		}, function (err) {
 			console.log(err)
 		});
