@@ -31,6 +31,7 @@ def token_required(f):
             logger.debug("Got token")
             data = jwt.decode(token,  secrets['JWT'], algorithms=["HS256"])
             #set global jwt_data
+            logger.debug(data)
             g.jwt_data = data
             return f( *args, **kwargs)
         except jwt.ExpiredSignatureError:
