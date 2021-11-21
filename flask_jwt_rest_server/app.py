@@ -21,6 +21,7 @@ ERROR_MSG = "Ooops.. Didn't work!"
 
 #Create our app
 app = Flask(__name__)
+app.secret_key = "bad key"
 #add in flask json
 FlaskJSON(app)
 
@@ -28,15 +29,13 @@ FlaskJSON(app)
 def init_new_env():
     if 'db' not in g:
         g.db = get_db()
-    if 'cart' not in g:
-        g.cart = []
+
     g.secrets = get_secrets()
 
 #This gets executed by default by the browser if no page is specified
 #So.. we redirect to the endpoint we want to load the base page
 @app.route('/') #endpoint
 def index():
-    cart.clear_cart()
     return redirect('/static/index.html')
 
 
