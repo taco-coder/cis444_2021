@@ -32,6 +32,7 @@ def handle_request():
         hashed_pass = cur.fetchone()[2]
         
         if bcrypt.checkpw(bytes(password_from_user_form, 'utf-8'), bytes(hashed_pass, 'utf-8')):
+            g.cart = {}
             return json_response( token = create_token(user) , authenticated = True)
         else:
             return json_response(message = "Incorrect username/password. Please try again.", authenticated = False)

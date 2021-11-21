@@ -290,9 +290,14 @@ function postReview(book_id) {
  * @param {int} bid
  */
 function addToCart(bid) {
+	//get book name and price
 	var name = $("input[name=book_name" + bid + "]").val();
 	var price = $("input[name=book_price" + bid + "]").val();
-	console.log(name);
-	console.log(price);
+
+	secure_call_with_token("/secure_api/add_to_cart", 'POST', { 'name': name, 'price': price }, function (data) {
+		console.log(data);
+	}, function (err) {
+		console.log(err);
+	})
 	return false;
 }
