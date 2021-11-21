@@ -8,7 +8,7 @@ def handle_request():
     logger.debug("Post Book Review Handle Request")
 
     if 'cart' in session:
-      session['cart'].append({request.form.get('name') : request.form.get('price')})
+      session['cart'] = session.get('cart') + ";" + {request.form.get('name') : request.form.get('price')}
     else:
       session['cart'] = {request.form.get('name') : request.form.get('price')}
 
