@@ -7,7 +7,7 @@ from tools.logging import logger
 
 def handle_request():
     logger.debug("Post Book Review Handle Request")
-    cart.add_to_cart({request.form.get['name']: request.form.get['price']})
+    cart.add_to_cart({request.form['name']: request.form['price']})
     print(cart.get_cart())
 
 
