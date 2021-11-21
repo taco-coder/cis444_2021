@@ -1,5 +1,6 @@
-from flask import Flask,render_template,request, redirect, url_for, g
+from flask import Flask,render_template,request, redirect, url_for, g, session
 from flask_json import FlaskJSON, JsonError, json_response, as_json
+from flask_jwt_rest_server.tools.get_aws_secrets import session_secret
 import jwt
 
 import sys
@@ -20,6 +21,9 @@ ERROR_MSG = "Ooops.. Didn't work!"
 
 #Create our app
 app = Flask(__name__)
+
+#add secret key for sessions
+app.secret_key = session_secret()
 #add in flask json
 FlaskJSON(app)
 

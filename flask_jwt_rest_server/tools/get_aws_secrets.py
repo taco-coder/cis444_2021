@@ -13,6 +13,9 @@ if NO_AWS:
 
 SECRET_CACHE = {}
 
+def session_secret():
+    return "pinksprinklesimpsonsdonut"
+
 def get_secrets():
     global SECRET_CACHE
     if NO_AWS:
