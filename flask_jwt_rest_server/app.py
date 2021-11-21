@@ -10,6 +10,7 @@ import traceback
 
 from db_con import get_db_instance, get_db
 
+from tools import cart
 from tools.token_required import token_required
 from tools.get_aws_secrets import get_secrets
 
@@ -35,6 +36,7 @@ def init_new_env():
 #So.. we redirect to the endpoint we want to load the base page
 @app.route('/') #endpoint
 def index():
+    cart.clear_cart()
     return redirect('/static/index.html')
 
 
