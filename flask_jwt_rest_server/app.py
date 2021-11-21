@@ -11,7 +11,7 @@ import traceback
 from db_con import get_db_instance, get_db
 
 from tools.token_required import token_required
-from tools.get_aws_secrets import get_secrets, session_secret
+from tools.get_aws_secrets import get_secrets
 
 from tools.logging import logger
 
@@ -20,9 +20,6 @@ ERROR_MSG = "Ooops.. Didn't work!"
 
 #Create our app
 app = Flask(__name__)
-
-#add secret key for sessions
-app.secret_key = session_secret()
 #add in flask json
 FlaskJSON(app)
 
