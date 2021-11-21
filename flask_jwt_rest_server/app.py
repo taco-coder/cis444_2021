@@ -27,7 +27,8 @@ FlaskJSON(app)
 def init_new_env():
     if 'db' not in g:
         g.db = get_db()
-
+    if 'cart' not in g:
+        g.cart = []
     g.secrets = get_secrets()
 
 #This gets executed by default by the browser if no page is specified
