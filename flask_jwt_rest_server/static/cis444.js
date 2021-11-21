@@ -279,8 +279,9 @@ function postReview(book_id) {
 			console.log(avgRate)
 			console.log(avgRate * numReviews)
 			console.log($(rating).val())
+			console.log((avgRate * numReviews) + $(rating).val())
 			//get rough sum of all the previous ratings, add the current rating, then div by num of previous reviews plus this new one
-			avgRate = ((avgRate * numReviews) + $(rating).val()) / (numReviews);
+			avgRate = ((avgRate * numReviews) + $(rating).val()) / numReviews;
 			$(rate).html("Rating: " + avgRate.toFixed(1) + "/5")
 		}, function (err) {
 			console.log(err)
