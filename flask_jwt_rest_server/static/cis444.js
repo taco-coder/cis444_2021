@@ -276,16 +276,22 @@ function postReview(book_id) {
 
 			//calc new avg rating
 			var numReviews = ($(userR + " br").length) / 2; //there are 2 line breaks after each review; getting num of reviews based on line breaks
-			console.log(numReviews)
-			console.log(avgRate)
-			console.log(avgRate * numReviews)
-			console.log($(rating).val())
-			console.log((avgRate * numReviews) + $(rating).val())
 			//get rough sum of all the previous ratings, add the current rating, then div by num of previous reviews plus this new one
 			avgRate = ((avgRate * numReviews) + $(rating).val()) / numReviews;
-			$(rate).html("Rating: " + avgRate.toFixed(1) + "/5")
+			$(rate).html("Rating: " + avgRate.toFixed(1) + "/5");
 		}, function (err) {
-			console.log(err)
+			console.log(err);
 		});
+	return false;
+}
+
+/**
+ * Adds to cart
+ */
+function addToCart() {
+	var name = $("input[name=book_name]").val();
+	var price = $("input[name=book_price]").val();
+	console.log(name);
+	console.log(price);
 	return false;
 }
