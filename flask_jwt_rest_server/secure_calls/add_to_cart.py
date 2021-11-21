@@ -17,4 +17,4 @@ def handle_request():
         session['book_price'] = request.form['price'] 
 
 
-    return json_response( token = create_token( g.jwt_data ), cart = session['book_name'])
+    return json_response( token = create_token( g.jwt_data ))

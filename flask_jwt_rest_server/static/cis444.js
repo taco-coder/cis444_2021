@@ -31,13 +31,11 @@ function swaplogin() {
  */
 function secure_call_with_token(endpoint, method, data_to_send, on_success_callback, on_fail_callback) {
 	console.log("Secure Call: " + method)
-	console.log(data_to_send)
 	xhr = new XMLHttpRequest();
 	function setHeader(xhr) {
 		xhr.setRequestHeader('Authorization', 'Bearer:' + jwt);
 	}
 	function get_and_set_new_jwt(data) {
-		console.log(data);
 		jwt = data.token
 		on_success_callback(data)
 	}
@@ -85,7 +83,6 @@ function send_login() {
 
 			//Set global JWT
 			jwt = data.token;
-			console.log(jwt)
 			//make secure call with the jwt
 			get_books();
 		}, "json").fail(function (response) {
@@ -203,7 +200,6 @@ function getEgoBiasPage() {
  */
 function getBookData(book_id) {
 	secure_call_with_token("/secure_api/get_book_data", 'GET', { "book_id": book_id }, function (data) {
-		console.log("got book data");
 
 		//initialize html div ID strings
 		var name = "#name" + book_id;
@@ -230,7 +226,6 @@ function getBookData(book_id) {
  */
 function getReviews(book) {
 	secure_call_with_token("/secure_api/get_book_data", 'GET', { "book_id": book }, function (data) {
-		console.log("got reviews");
 
 		//initialize avgRate, html ID strings, and reviews array
 		var avgRate = 0;
