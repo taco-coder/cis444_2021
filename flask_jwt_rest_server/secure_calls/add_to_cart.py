@@ -8,5 +8,6 @@ def handle_request():
     logger.debug("Post Book Review Handle Request")
     print(request.form.get('name'))
     print(request.form.get('price'))
-    g.cart.update({})
+    cart = g.cart
+
     return json_response( token = create_token( g.jwt_data ) )
