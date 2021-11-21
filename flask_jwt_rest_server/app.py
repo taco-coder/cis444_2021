@@ -10,7 +10,7 @@ import traceback
 
 from db_con import get_db_instance, get_db
 
-from tools import cart
+
 from tools.token_required import token_required
 from tools.get_aws_secrets import get_secrets
 
