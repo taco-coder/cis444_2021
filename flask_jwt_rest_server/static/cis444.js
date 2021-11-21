@@ -267,6 +267,7 @@ function postReview(book_id) {
 	//clearing to just get the avg rate
 	avgRate = avgRate.replace("Rating: ", "");
 	avgRate = avgRate.replace("/5", "");
+	avgRate = parseFloat(avgRate)
 	secure_call_with_token("/secure_api/post_book_review", 'POST', { "book_id": book_id, "review": $(reviewText).val(), "rate": $(rating).val() },
 		function (data) {
 			//add new review
