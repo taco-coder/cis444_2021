@@ -12,7 +12,7 @@ import traceback
 from db_con import get_db_instance, get_db
 
 from tools.token_required import token_required
-from tools.get_aws_secrets import get_secrets
+from tools.get_aws_secrets import get_secrets, session_secret
 
 from tools.logging import logger
 

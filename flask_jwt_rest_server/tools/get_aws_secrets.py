@@ -12,9 +12,8 @@ if NO_AWS:
     import boto3
 
 SECRET_CACHE = {}
-
 def session_secret():
-    return "pinksprinklesimpsonsdonut"
+    return "bad secret"
 
 def get_secrets():
     global SECRET_CACHE
