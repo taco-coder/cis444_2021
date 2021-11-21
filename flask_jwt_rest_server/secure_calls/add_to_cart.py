@@ -8,6 +8,11 @@ def handle_request():
     logger.debug("Post Book Review Handle Request")
     print(request.form.get('name'))
     print(request.form.get('price'))
-    cart = g.cart
+    if 'cart' not in g:
+      g.cart = [{request.form.get('name') : request.form.get('price')}]
+    else:
+      cart = g.cart
+      cart.append({request.form.get('name') : request.form.get('price')})
+      g.cart = cart
 
     return json_response( token = create_token( g.jwt_data ) )
