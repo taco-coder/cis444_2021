@@ -267,7 +267,6 @@ function postReview(book_id) {
 	//clearing to just get the avg rate
 	avgRate = avgRate.replace("Rating: ", "");
 	avgRate = avgRate.replace("/5", "");
-
 	secure_call_with_token("/secure_api/post_book_review", 'POST', { "book_id": book_id, "review": $(reviewText).val(), "rate": $(rating).val() },
 		function (data) {
 			//add new review
@@ -276,8 +275,8 @@ function postReview(book_id) {
 
 			//calc new avg rating
 			var numReviews = ($(userR + " br").length) / 2; //there are 2 line breaks after each review; getting num of reviews based on line breaks
-			numReviews += 1; //add the current review
-			avgRate = (avgRate + $(rating).val()) / numReviews;
+			//get rough sum of all the previous ratings, add the current rating, then div by num of previous reviews plus this new one
+			avgRate = ((avgRate * numReviews) + $(rating).val()) / (numReviews + 1);
 			$(rate).html("Rating: " + avgRate.toFixed(1) + "/5")
 		}, function (err) {
 			console.log(err)
