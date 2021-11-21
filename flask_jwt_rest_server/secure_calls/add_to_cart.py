@@ -10,6 +10,7 @@ def handle_request():
     print(request.form.get('price'))
     if 'cart' not in g:
       g.cart = [{request.form.get('name') : request.form.get('price')}]
+      cart = g.cart
     else:
       cart = g.cart
       cart.append({request.form.get('name') : request.form.get('price')})
