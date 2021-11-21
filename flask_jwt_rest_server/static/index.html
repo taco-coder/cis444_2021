@@ -275,10 +275,10 @@
 					<h2 id="book_name1"></h2>
 					<p id="book_price1" class="inner"></p>
 					<form action="/add_to_cart" method="post">
-						<input type="hidden" id="book1name" name="book_name" value="">
-						<input type="hidden" id="book1price" name="book_price" value="">
+						<input type="hidden" id="book1name" name="book_name1" value="">
+						<input type="hidden" id="book1price" name="book_price1" value="">
 						<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722"
-							onclick="return addToCart();">
+							onclick="return addToCart(1);">
 					</form>
 				</div>
 				<div id="book_row_two_column_one" class="book selfhelp">
@@ -287,11 +287,11 @@
 					</button>
 					<h2 id="book_name2"></h2>
 					<p id="book_price2" class="inner"></p>
-					<form action="/add_to_cart" method="post">
-						<input type="hidden" id="book2name" name="book_name" value="">
-						<input type="hidden" id="book2price" name="book_price" value="">
+					<form>
+						<input type="hidden" id="book2name" name="book_name2" value="">
+						<input type="hidden" id="book2price" name="book_price2" value="">
 						<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722"
-							onclick="return addToCart();">
+							onclick="return addToCart(2);">
 					</form>
 				</div>
 			</div>
@@ -304,11 +304,11 @@
 					</div>
 					<h2 id="book_name3"></h2>
 					<p id="book_price3" class="inner"></p>
-					<form style="padding-left: 100px;" action="/add_to_cart" method="post">
-						<input type="hidden" id="book3name" name="book_name" value="">
-						<input type="hidden" id="book3price" name="book_price" value="">
+					<form style="padding-left: 100px;">
+						<input type="hidden" id="book3name" name="book_name3" value="">
+						<input type="hidden" id="book3price" name="book_price3" value="">
 						<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722"
-							onclick="return addToCart();">
+							onclick="return addToCart(3);">
 					</form>
 				</div>
 				<div id="book_row_two_column_two" class="book romance">
@@ -319,11 +319,11 @@
 					</div>
 					<h2 id="book_name4"></h2>
 					<p id="book_price4" class="inner"></p>
-					<form style="padding-left: 100px;" action="/add_to_cart" method="post">
-						<input type="hidden" id="book4name" name="book_name" value="">
-						<input type="hidden" id="book4price" name="book_price" value="">
+					<form style="padding-left: 100px;">
+						<input type="hidden" id="book4name" name="book_name4" value="">
+						<input type="hidden" id="book4price" name="book_price4" value="">
 						<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722"
-							onclick="return addToCart();">
+							onclick="return addToCart(4);">
 					</form>
 				</div>
 			</div>
@@ -348,9 +348,9 @@
 			<h1 style="margin-bottom: 200px; font-size: 50px;" id="name1"></h1>
 			<h3 id="price1"></h3>
 			<form action="/add_to_cart" method="post">
-				<input type="hidden" id="bookname1" name="book_name" value="">
-				<input type="hidden" id="bookprice1" name="book_price" value="">
-				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart();">
+				<input type="hidden" id="bookname1" name="book_name1" value="">
+				<input type="hidden" id="bookprice1" name="book_price1" value="">
+				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart(1);">
 			</form>
 		</div>
 		<div id="testimonies">
@@ -414,9 +414,9 @@
 			<h1 style="margin-bottom: 200px; font-size: 50px;" id="name2"></h1>
 			<h3 id="price2"></h3>
 			<form action="/add_to_cart" method="post">
-				<input type="hidden" id="bookname2" name="book_name" value="">
-				<input type="hidden" id="bookprice2" name="book_price" value="">
-				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart();">
+				<input type="hidden" id="bookname2" name="book_name2" value="">
+				<input type="hidden" id="bookprice2" name="book_price2" value="">
+				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart(2);">
 			</form>
 		</div>
 		<div id="testimonies">
@@ -496,9 +496,9 @@
 			<h1 style="margin-bottom: 200px; font-size: 50px;" id="name3"></h1>
 			<h3 id="price3"></h3>
 			<form action="/add_to_cart" method="post">
-				<input type="hidden" id="bookname3" name="book_name" value="">
-				<input type="hidden" id="bookprice3" name="book_price" value="">
-				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart();">
+				<input type="hidden" id="bookname3" name="book_name3" value="">
+				<input type="hidden" id="bookprice3" name="book_price3" value="">
+				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart(3);">
 			</form>
 		</div>
 		<div id="testimonies">
@@ -565,9 +565,9 @@
 			<h1 style="margin-bottom: 200px; font-size: 50px;" id="name4"></h1>
 			<h3 id="price4"></h3>
 			<form>
-				<input type="hidden" id="bookname4" name="book_name" value="">
-				<input type="hidden" id="bookprice4" name="book_price" value="">
-				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart();">
+				<input type="hidden" id="bookname4" name="book_name4" value="">
+				<input type="hidden" id="bookprice4" name="book_price4" value="">
+				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart(4);">
 			</form>
 		</div>
 		<div id="testimonies">

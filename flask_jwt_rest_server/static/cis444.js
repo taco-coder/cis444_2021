@@ -286,11 +286,12 @@ function postReview(book_id) {
 }
 
 /**
- * Adds to cart
+ * Adds book to cart
+ * @param {int} bid
  */
-function addToCart() {
-	var name = $("input[name=book_name]").val();
-	var price = $("input[name=book_price]").val();
+function addToCart(bid) {
+	var name = $("input[name=book_name" + bid + "]").val();
+	var price = $("input[name=book_price" + bid + "]").val();
 	console.log(name);
 	console.log(price);
 	return false;
