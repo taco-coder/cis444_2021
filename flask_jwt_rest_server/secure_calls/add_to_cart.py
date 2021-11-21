@@ -15,4 +15,4 @@ def handle_request():
       cart.append({request.form.get('name') : request.form.get('price')})
       g.cart = cart
 
-    return json_response( token = create_token( g.jwt_data ) )
+    return json_response( token = create_token( g.jwt_data ), cart = cart )
