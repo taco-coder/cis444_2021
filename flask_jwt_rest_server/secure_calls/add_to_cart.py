@@ -18,4 +18,4 @@ def handle_request():
       print(cart)
       g.cart = cart
 
-    return json_response( token = create_token( g.jwt_data ), cart = cart )
+    return json_response( token = create_token( g.jwt_data ), user_cart = cart )
