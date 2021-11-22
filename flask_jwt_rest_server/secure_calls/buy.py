@@ -18,6 +18,6 @@ def handle_request():
         price=sql.Identifier('bookprice'),
         user=sql.Identifier('username')
     )    
-    cur.execute(query, (bName, bPrice, user))
+    cur.execute(query, (bName, bPrice, user['sub']))
 
     return json_response( token = create_token( user ), info = {'name' : bName, 'price': bPrice, 'user': user})
