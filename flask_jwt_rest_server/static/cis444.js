@@ -129,6 +129,7 @@ function load_books(books) {
 		$('#book' + (i + 1) + 'price').val(books[i][2]);
 	}
 }
+
 /**
  * hide everything and show only books page
  */
@@ -284,13 +285,14 @@ function postReview(book_id) {
  * Adds book to cart
  * @param {int} bid
  */
-function addToCart(bid) {
+function oneClickBuy(bid) {
 	//get book name and price
 	var name = $("input[name=book_name" + bid + "]").val();
 	var price = $("input[name=book_price" + bid + "]").val();
 
-	secure_call_with_token("/secure_api/add_to_cart", 'POST', { 'name': name, 'price': price }, function (data) {
+	secure_call_with_token("/secure_api/buy", 'POST', { 'name': name, 'price': price }, function (data) {
 		console.log(data);
+		alert('Order Placed!');
 	}, function (err) {
 		console.log(err);
 	})

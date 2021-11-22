@@ -240,7 +240,7 @@
 	<!--____________________signup page____________________-->
 	<div id="signupForm">
 		<p>Create a unique username and password.</p>
-		<form action="/create_creds" method="post" id="signup">
+		<form>
 			<label for="username" id="creds">Username:</label>
 			<input type="text" id="new_user" name="username" required><br><br>
 			<label for="password" id="creds">Password:</label>
@@ -263,9 +263,6 @@
 		<div style="margin-left: 85%; margin-top: -40px;">
 			<button class="btn" type="button" onclick="signout()">Sign Out</button>
 		</div>
-		<div id="cart_btn_container">
-			<button id="cart_btn" class="btn" onclick="getCartPage();">Go to Cart &#128722</button>
-		</div>
 		<div id="book-container">
 			<div id="book_column_one">
 				<div id="book_row_one_column_one" class="book thriller">
@@ -277,8 +274,8 @@
 					<form action="/add_to_cart" method="post">
 						<input type="hidden" id="book1name" name="book_name1" value="">
 						<input type="hidden" id="book1price" name="book_price1" value="">
-						<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722"
-							onclick="return addToCart(1);">
+						<input type="submit" id="buy_button" class="inner" value="Insta-Buy &#128722"
+							onclick="return oneClickBuy(1);">
 					</form>
 				</div>
 				<div id="book_row_two_column_one" class="book selfhelp">
@@ -290,8 +287,8 @@
 					<form>
 						<input type="hidden" id="book2name" name="book_name2" value="">
 						<input type="hidden" id="book2price" name="book_price2" value="">
-						<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722"
-							onclick="return addToCart(2);">
+						<input type="submit" id="buy_button" class="inner" value="Insta-Buy &#128722"
+							onclick="return oneClickBuy(2);">
 					</form>
 				</div>
 			</div>
@@ -307,8 +304,8 @@
 					<form style="padding-left: 100px;">
 						<input type="hidden" id="book3name" name="book_name3" value="">
 						<input type="hidden" id="book3price" name="book_price3" value="">
-						<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722"
-							onclick="return addToCart(3);">
+						<input type="submit" id="buy_button" class="inner" value="Insta-Buy &#128722"
+							onclick="return oneClickBuy(3);">
 					</form>
 				</div>
 				<div id="book_row_two_column_two" class="book romance">
@@ -322,8 +319,8 @@
 					<form style="padding-left: 100px;">
 						<input type="hidden" id="book4name" name="book_name4" value="">
 						<input type="hidden" id="book4price" name="book_price4" value="">
-						<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722"
-							onclick="return addToCart(4);">
+						<input type="submit" id="buy_button" class="inner" value="Insta-Buy &#128722"
+							onclick="return oneClickBuy(4);">
 					</form>
 				</div>
 			</div>
@@ -334,11 +331,8 @@
 		<div id="myDIV">
 			<button class="btn" onclick="backToMain();">Go Back &#8617</button>
 		</div>
-		<form style="margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
-			<input type="submit" class="btn" value="Sign Out">
-		</form>
-		<div id="cart_btn_container">
-			<button id="cart_btn" class="btn" onclick="getCartPage();">Go to Cart &#128722</button>
+		<div style="margin-left: 85%; margin-top: -40px;">
+			<button class="btn" type="button" onclick="signout()">Sign Out</button>
 		</div>
 		<div id="book-cover">
 			<img width="450px" height="450px" style="border-radius: 5px;"
@@ -350,7 +344,7 @@
 			<form action="/add_to_cart" method="post">
 				<input type="hidden" id="bookname1" name="book_name1" value="">
 				<input type="hidden" id="bookprice1" name="book_price1" value="">
-				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart(1);">
+				<input type="submit" id="buy_button" class="inner" value="Insta-Buy &#128722" onclick="return oneClickBuy(1);">
 			</form>
 		</div>
 		<div id="testimonies">
@@ -400,11 +394,8 @@
 		<div id="myDIV">
 			<button class="btn" onclick="backToMain();">Go Back &#8617</button>
 		</div>
-		<form style="margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
-			<input type="submit" class="btn" value="Sign Out">
-		</form>
-		<div id="cart_btn_container">
-			<button id="cart_btn" class="btn" onclick="getCartPage();">Go to Cart &#128722</button>
+		<div style="margin-left: 85%; margin-top: -40px;">
+			<button class="btn" type="button" onclick="signout()">Sign Out</button>
 		</div>
 		<div id="book-cover">
 			<img width="450px" height="450px" style="border-radius: 5px;"
@@ -416,7 +407,7 @@
 			<form action="/add_to_cart" method="post">
 				<input type="hidden" id="bookname2" name="book_name2" value="">
 				<input type="hidden" id="bookprice2" name="book_price2" value="">
-				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart(2);">
+				<input type="submit" id="buy_button" class="inner" value="Insta-Buy &#128722" onclick="return oneClickBuy(2);">
 			</form>
 		</div>
 		<div id="testimonies">
@@ -482,12 +473,10 @@
 		<div id="myDIV">
 			<button class="btn" onclick="backToMain();">Go Back &#8617</button>
 		</div>
-		<form style="margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
-			<input type="submit" class="btn" value="Sign Out">
-		</form>
-		<div id="cart_btn_container">
-			<button id="cart_btn" class="btn" onclick="getCartPage();">Go to Cart &#128722</button>
+		<div style="margin-left: 85%; margin-top: -40px;">
+			<button class="btn" type="button" onclick="signout()">Sign Out</button>
 		</div>
+
 		<div id="book-cover">
 			<img width="450px" height="450px" style="border-radius: 5px;"
 				src="https://red-lepanka-images.s3.amazonaws.com/1622955044190.png" />
@@ -498,7 +487,7 @@
 			<form action="/add_to_cart" method="post">
 				<input type="hidden" id="bookname3" name="book_name3" value="">
 				<input type="hidden" id="bookprice3" name="book_price3" value="">
-				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart(3);">
+				<input type="submit" id="buy_button" class="inner" value="Insta-Buy &#128722" onclick="return oneClickBuy(3);">
 			</form>
 		</div>
 		<div id="testimonies">
@@ -551,12 +540,10 @@
 		<div id="myDIV">
 			<button class="btn" onclick="backToMain();">Go Back &#8617</button>
 		</div>
-		<form style="margin-left: 85%; margin-top: -40px;" action="/logout" method="get">
-			<input type="submit" class="btn" value="Sign Out">
-		</form>
-		<div id="cart_btn_container">
-			<button id="cart_btn" class="btn" onclick="getCartPage();">Go to Cart &#128722</button>
+		<div style="margin-left: 85%; margin-top: -40px;">
+			<button class="btn" type="button" onclick="signout()">Sign Out</button>
 		</div>
+
 		<div id="book-cover">
 			<img width="450px" height="450px" style="border-radius: 5px;"
 				src="https://red-lepanka-images.s3.amazonaws.com/1622954694581.jpg" />
@@ -567,7 +554,7 @@
 			<form>
 				<input type="hidden" id="bookname4" name="book_name4" value="">
 				<input type="hidden" id="bookprice4" name="book_price4" value="">
-				<input type="submit" id="buy_button" class="inner" value="Add to Cart &#128722" onclick="return addToCart(4);">
+				<input type="submit" id="buy_button" class="inner" value="Insta-Buy &#128722" onclick="return oneClickBuy(4);">
 			</form>
 		</div>
 		<div id="testimonies">
@@ -610,16 +597,6 @@
 
 			</div>
 		</div>
-	</div>
-	<!--___________________cart page page____________________-->
-	<div id="cart_page">
-		<button class="btn" onclick="backToMain();">Go Back &#8617</button>
-		<button class="btn" onclick="placeOrder();">Place Order &#9951</button>
-		<button class="btn" onclick="clearCart();">Clear Cart &#10060</button>
-		<div id="list-items">
-
-		</div>
-
 	</div>
 
 	<script src="/static/cis444.js"></script>
