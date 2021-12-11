@@ -1,0 +1,8 @@
+Lambda Functions:
+Done: login - try check if user and pass are valid, update connectionId with new connectionId except invalid user/pass
+Done: signup - try if username doesn't exist, create account except username exists
+like - active,liked unactive,remove like
+dislike - active,disliked unactive,remove dislike
+post - for connectionIds in followers, try post_to_connection except offline exceptions
+search user - onkeypress, try query db for string matches, update list of users except no matching query
+follow user - add to following list, add self username to other users followers list
