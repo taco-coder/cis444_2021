@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hello World HTML</title>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="app.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="user-home-page">
+    <div id="main-page-area">
+      <div id="main-page-area-post"></div>
+    </div>
+    <div id="main-page-area-post-field">
+      <textarea rows="8" cols="197" placeholder="Release your thoughts into the void..." maxlength="240" name="posttext"
+        id="post-text-area" onkeyup="countChar(this)"></textarea><br>
+      <button style="float: right;" type="button" id="make_post" onclick="make_post();">Post</button>
+      <div id="charNum"></div>
+    </div>
+  </div>
+</body>
+
+</html>
